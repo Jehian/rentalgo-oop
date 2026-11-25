@@ -1,58 +1,149 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# RentalGo
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi web sistem informasi **rental kendaraan** yang dibangun dengan Laravel dan PHP OOP untuk
+UAS mata kuliah Pemrograman Berorientasi Objek (SI2WPO084), Program Studi Sistem Informasi.
 
-## About Laravel
+> **Status:** Phase 0 (Requirements & Planning) selesai. **Implementasi aplikasi belum dimulai.**
+> Repository saat ini berisi skeleton Laravel dan dokumen perencanaan.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Tentang Proyek
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+RentalGo membantu pengelolaan operasional rental kendaraan: data pelanggan, data mobil/motor,
+transaksi penyewaan, pengembalian, denda keterlambatan, pembayaran, dan dashboard ringkas.
+Fokus proyek adalah penerapan OOP yang dapat dipahami, MVC sederhana, CRUD, relasi database,
+autentikasi sederhana, validasi, dan dokumentasi.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Fitur yang Direncanakan
 
-## Learning Laravel
+- Login, logout, session, dan pembatasan akses Admin/Staff.
+- Dashboard ringkasan dan grafik pendapatan/status kendaraan.
+- CRUD pelanggan dengan pencarian, pagination, sorting, dan riwayat rental.
+- CRUD kendaraan dengan filter, upload gambar, dan riwayat rental.
+- Transaksi rental: cek ketersediaan, perhitungan biaya, pengembalian, denda, pembatalan.
+- Pembayaran: catat, ubah status, edit/hapus selama pending.
+- Validasi form dan error handling.
+- UI responsif dengan Tailwind CSS.
+- Bonus yang direncanakan: REST API read-only kendaraan/rental dan export PDF invoice/laporan.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Fitur tambahan yang ditargetkan: search, pagination, sorting, filter, upload gambar, dan dashboard
+chart (UAS mewajibkan minimal dua).
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## OOP yang Diterapkan
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+- **Encapsulation** — property domain private/protected dan getter.
+- **Inheritance** — `Car` dan `Motorcycle` extends abstract `Vehicle`.
+- **Polymorphism** — override `calculateRentalCost()`.
+- **Abstraction** — interface `Rentable` dan abstract class `Vehicle`.
+- **Constructor** — constructor domain dan dependency injection service.
+- **Static method** — `VehicleFactory::fromModel()` dan `DocumentCodeGenerator`.
+- **Exception handling** — custom exception dan try-catch.
+- **Namespace** — PSR-4 `App\...`.
 
-## Agentic Development
+## Teknologi
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+| Komponen | Teknologi |
+|---|---|
+| Bahasa | PHP 8.4 (minimum 8.3) |
+| Framework | Laravel 13 |
+| Database utama | MySQL 8+/9.x (MariaDB kompatibel) |
+| Database test | SQLite in-memory |
+| Frontend | Blade, Tailwind CSS 4, Vite 8 |
+| Testing | PHPUnit 12 |
+| Code style | Laravel Pint |
+| Version control | Git + GitHub |
 
-```bash
-composer require laravel/boost --dev
+Tidak digunakan: Docker, Breeze/Jetstream, framework SPA.
 
-php artisan boost:install
+## Requirements
+
+- PHP >= 8.3 dengan ekstensi standar Laravel.
+- Composer.
+- Node.js dan npm.
+- MySQL 9.x via WAMP untuk aplikasi; SQLite hanya untuk automated test.
+
+## Instalasi (Setelah Phase 1)
+
+Langkah berikut menjadi acuan setelah implementasi fondasi tersedia:
+
+```powershell
+composer install
+Copy-Item .env.example .env
+php artisan key:generate
+npm install
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Buat database MySQL:
 
-## Contributing
+```powershell
+mysql -u root -p -e "CREATE DATABASE rentalgo CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Atur koneksi database di `.env`:
 
-## Code of Conduct
+```dotenv
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=rentalgo
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Jalankan migrasi dan seeder:
 
-## Security Vulnerabilities
+```powershell
+php artisan migrate:fresh --seed
+php artisan storage:link
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Jalankan aplikasi:
 
-## License
+```powershell
+npm run dev
+php artisan serve
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Jalankan test:
+
+```powershell
+php artisan test
+```
+
+## Dokumentasi
+
+| Dokumen | Isi |
+|---|---|
+| [PRD.md](PRD.md) | Product requirements, fitur, aturan bisnis, acceptance criteria |
+| [docs/UAS_REQUIREMENTS.md](docs/UAS_REQUIREMENTS.md) | Ekstraksi requirement UAS |
+| [docs/UAS_TRACEABILITY.md](docs/UAS_TRACEABILITY.md) | Traceability requirement → implementasi → verifikasi |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Arsitektur, OOP class design, UML |
+| [docs/DATABASE_SCHEMA.md](docs/DATABASE_SCHEMA.md) | Skema database dan ERD |
+| [docs/DECISIONS.md](docs/DECISIONS.md) | Keputusan teknis (ADR) |
+| [docs/PHASE_PLAN.md](docs/PHASE_PLAN.md) | Rencana fase dan pembagian tim |
+| [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md) | Status proyek terkini |
+| [docs/AI_HANDOFF.md](docs/AI_HANDOFF.md) | Konteks handoff untuk anggota/AI agent |
+| [AGENTS.md](AGENTS.md) | Aturan kerja dan konvensi kode |
+
+Dokumen UAS asli ada di `docs/reference/` dan tidak diubah.
+
+## Alur Kolaborasi
+
+- Phase 0 (dokumentasi) dikerjakan langsung di `main`.
+- Fase implementasi memakai branch `phase/XX-nama` dan pull request ke `main`.
+- Commit memakai Conventional Commits.
+- Setiap fase memperbarui laporan di `docs/progress/`, `PROJECT_STATUS.md`, `UAS_TRACEABILITY.md`,
+  dan `CONTRIBUTION_LOG.md`.
+
+## Tim
+
+| Anggota | Nama / NIM | Tanggung Jawab |
+|---|---|---|
+| Anggota 1 | Benny Anderson / 422024008 | Phase 0 (planning) + Phase 1 (foundation) |
+| Anggota 2 | Steven Credentia Ivanemaga Zega / 422024020 | Phase 2 (auth, layout, dashboard) |
+| Anggota 3 | Jason / 422024004 | Phase 3 (master data) |
+| Anggota 4 | Steven / 422024001 | Phase 4 (rental & payment) |
+
+## Lisensi
+
+Proyek akademik untuk UAS. Tidak untuk distribusi komersial. Seluruh kode ditulis untuk keperluan
+pembelajaran dan harus dipahami oleh seluruh anggota tim.
