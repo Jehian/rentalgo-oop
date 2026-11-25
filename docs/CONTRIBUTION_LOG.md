@@ -17,7 +17,9 @@ belum dikerjakan. Log ini menjadi bukti pendukung penilaian individu (UAS-IND-01
 | Tanggal | Anggota | Fase | Branch | Commit/PR | Area/File | Deskripsi | Verifikasi | Reviewer |
 |---|---|---|---|---|---|---|---|---|
 | 2026-11-25 | Benny Anderson (422024008) | Phase 0 | `main` | `commit Phase 0` | `PRD.md`, `AGENTS.md`, `README.md`, `docs/*` | Menyusun requirements, PRD, traceability, arsitektur, schema, phase plan, template, dan workflow | 66/66 ID traceable; `php artisan test` 2 passed; Pint passed; koneksi MySQL `rentalgo` terverifikasi | `pending` |
-| 2026-11-25 | Benny Anderson (422024008) | Phase 1 | `phase/01-foundation` | `8510ea6`, `72490c1`, `c9ac1b7`, `c6c4dc8`, `eea47e9`, `22fb7c5` | `app/*`, `config/rental.php`, `database/*`, `routes/*`, `tests/*`, `docs/progress/phase-01-foundation.md` | Konfigurasi, migration 5 tabel + role, model/relasi/cast/scope, domain OOP, `RentalService`, factory/seeder, route file kosong, test fondasi | `php artisan migrate:fresh --seed --force` berhasil; `php artisan test` 25 passed (57 assertions); Pint passed; data demo 2/8/8/12/12 | `pending` |
+| 2026-11-25 | Benny Anderson (422024008) | Phase 1 | `phase/01-foundation` | `8510ea6`, `72490c1`, `c9ac1b7`, `c6c4dc8`, `eea47e9`, `22fb7c5`; PR #1 (merge `1b5caee`) | `app/*`, `config/rental.php`, `database/*`, `routes/*`, `tests/*`, `docs/progress/phase-01-foundation.md` | Konfigurasi, migration 5 tabel + role, model/relasi/cast/scope, domain OOP, `RentalService`, factory/seeder, route file kosong, test fondasi | `php artisan migrate:fresh --seed --force` berhasil; `php artisan test` 25 passed (57 assertions); Pint passed; data demo 2/8/8/12/12 | Steven Credentia Ivanemaga Zega (422024020) |
+| 2026-11-25 | Steven Credentia Ivanemaga Zega (422024020) | Phase 1 review | `main` | PR #1 (`1b5caee`) | PR Phase 1 | Mereview fondasi Phase 1 sebelum merge | PR #1 merged ke `main` | — |
+| 2026-11-25 | Steven Credentia Ivanemaga Zega (422024020) | Phase 2 | `phase/02-auth-dashboard` | `da691a8`, `963c356`, `f68f1e9`, `d670468`, `ee5a754` | `app/Http/Controllers/*`, `app/Http/Requests/*`, `app/Http/Middleware/*`, `app/Services/*`, `app/Models/Customer.php`, `config/auth.php`, `database/migrations/2026_11_25_000006_*`, `resources/views/*`, `resources/js/app.js`, `routes/*`, `tests/Feature/*`, `docs/*` | Auth operator (`web`) & pelanggan terpisah (`customer` di tabel `customers`), middleware `admin`, layout operator & publik sederhana, 7 komponen Blade, dashboard + Chart.js, portal pelanggan (katalog, detail/estimasi, booking mandiri, riwayat, profil), test, dokumentasi Phase 2, ADR-028 | `php artisan test` 47 passed (153 assertions); Pint passed; `npm run build` passed | `pending` |
 
 ## 3. Contoh Pengisian (Hapus/abaikan saat produksi)
 
@@ -31,8 +33,8 @@ Baris berikut hanya contoh format, **bukan kontribusi nyata**:
 
 | Anggota | Fase Utama | Jumlah Baris Log | Status |
 |---|---|---:|---|
-| Benny Anderson (422024008) | Phase 0, Phase 1 | 2 | Phase 0 selesai; Phase 1 committed dan di-push, menunggu PR |
-| Steven Credentia Ivanemaga Zega (422024020) | Phase 2 | 0 | Belum mulai |
+| Benny Anderson (422024008) | Phase 0, Phase 1 | 2 | Phase 0 selesai; Phase 1 merged (PR #1) |
+| Steven Credentia Ivanemaga Zega (422024020) | Phase 1 review, Phase 2 | 2 | Review PR #1; Phase 2 implemented, menunggu PR |
 | Jason (422024004) | Phase 3 | 0 | Belum mulai |
 | Steven (422024001) | Phase 4 | 0 | Belum mulai |
 

@@ -61,15 +61,24 @@ app/
 │   └── UnsupportedVehicleTypeException.php # Phase 1
 ├── Http/
 │   ├── Controllers/
-│   │   ├── Auth/AuthController.php      # Phase 2
-│   │   ├── DashboardController.php      # Phase 2
+│   │   ├── Auth/AuthController.php      # Phase 2 (operator)
+│   │   ├── Customer/CustomerAuthController.php    # Phase 2 (login/registrasi pelanggan)
+│   │   ├── Customer/CustomerProfileController.php # Phase 2 (profil pelanggan)
+│   │   ├── Customer/CustomerRentalController.php  # Phase 2 (booking & riwayat pelanggan)
+│   │   ├── DashboardController.php      # Phase 2 (Admin/Staff)
+│   │   ├── PortalController.php         # Phase 2 (katalog publik)
 │   │   ├── CustomerController.php       # Phase 3
 │   │   ├── VehicleController.php        # Phase 3
 │   │   ├── RentalController.php         # Phase 4
 │   │   └── PaymentController.php        # Phase 4
-│   ├── Middleware/EnsureUserIsAdmin.php # Phase 2
+│   ├── Middleware/
+│   │   └── EnsureUserIsAdmin.php        # Phase 2
 │   └── Requests/
-│       ├── Auth/LoginRequest.php        # Phase 2
+│       ├── Auth/LoginRequest.php        # Phase 2 (operator)
+│       ├── Customer/CustomerLoginRequest.php        # Phase 2
+│       ├── Customer/CustomerRegisterRequest.php     # Phase 2
+│       ├── Customer/CustomerBookingRequest.php      # Phase 2
+│       ├── Customer/UpdateCustomerProfileRequest.php # Phase 2
 │       ├── StoreCustomerRequest.php     # Phase 3
 │       ├── UpdateCustomerRequest.php    # Phase 3
 │       ├── StoreVehicleRequest.php      # Phase 3
@@ -103,15 +112,19 @@ database/
 routes/
 ├── web.php                              # Phase 1/2 (include route modul)
 ├── auth.php                             # Phase 2
+├── customer.php                         # Phase 2 (portal pelanggan & katalog publik)
 ├── dashboard.php                        # Phase 2
 ├── master.php                           # Phase 3
 └── rental.php                           # Phase 4
 
 resources/views/
-├── layouts/app.blade.php                # Phase 2
+├── layouts/app.blade.php                # Phase 2 (Admin/Staff)
+├── layouts/public.blade.php             # Phase 2 (Publik & Pelanggan)
 ├── components/                          # Phase 2
 ├── auth/                                # Phase 2
 ├── dashboard/                           # Phase 2
+├── portal/                              # Phase 2 (katalog & detail kendaraan publik)
+├── customer/                            # Phase 2 (riwayat rental & profil pelanggan)
 ├── customers/                           # Phase 3
 ├── vehicles/                            # Phase 3
 ├── rentals/                             # Phase 4
@@ -394,9 +407,9 @@ flowchart LR
 
 Perbedaan hak akses:
 
-- Admin dapat menghapus data master (soft delete) dan seluruh aksi.
+- Admin dapat menghapus data master (soft delete) dan seluruh aksi operasional.
 - Staff dapat membuat/mengubah data operasional, tetapi aksi hapus data master dibatasi.
-- Pelanggan bukan actor aplikasi; data pelanggan dikelola Admin/Staff.
+- Pelanggan dapat mendaftar/login melalui portal publik, menjelajahi katalog kendaraan, membuat booking mandiri, melihat riwayat rental & pembayaran pribadinya, membatalkan rental aktif pribadinya, serta mengelola profilnya. Pelanggan tidak dapat mengakses `/dashboard` atau modul operasional Admin/Staff.
 
 ## 8. Arsitektur UI
 

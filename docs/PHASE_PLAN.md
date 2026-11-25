@@ -19,8 +19,8 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 | Fase | Nama | Pemilik | Branch | Status |
 |---|---|---|---|---|
 | 0 | Requirements & Planning | Anggota 1 | `main` (dokumentasi saja) | Selesai |
-| 1 | Foundation & Architecture | Anggota 1 | `phase/01-foundation` | Pushed; belum PR |
-| 2 | Auth, Layout & Dashboard | Anggota 2 | `phase/02-auth-dashboard` | Belum dimulai |
+| 1 | Foundation & Architecture | Anggota 1 | `phase/01-foundation` | Merged (PR #1, `1b5caee`) |
+| 2 | Auth, Layout & Dashboard | Anggota 2 | `phase/02-auth-dashboard` | Implemented — PR pending |
 | 3 | Master Data CRUD | Anggota 3 | `phase/03-master-data` | Belum dimulai |
 | 4 | Rental & Payment Workflow | Anggota 4 | `phase/04-rental-payment` | Belum dimulai |
 | 5 | Integration, Testing & Delivery | Semua | `phase/05-integration` | Belum dimulai |
@@ -67,7 +67,7 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 - [x] Empat pembagian tanggung jawab didefinisikan.
 - [x] Review dan persetujuan manusia.
 
-**Handoff:** Phase 1 sudah diimplementasikan, di-commit, dan di-push; PR berikutnya.
+**Handoff:** Phase 1 sudah merged melalui PR #1 (`1b5caee`); lanjut Phase 2.
 
 ---
 
@@ -109,7 +109,7 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 - [x] Semua test lulus; Pint bersih.
 - [x] Tidak ada controller/view/auth yang dikerjakan.
 - [x] Phase report, status, dan contribution log diperbarui.
-- [ ] PR direview dan digabung.
+- [x] PR direview dan digabung (PR #1, `1b5caee`).
 
 **Handoff ke Phase 2–4:** schema stabil, model/relasi, seeder, domain/service, route stub.
 
@@ -123,34 +123,38 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 
 **Scope:**
 
-- Custom login/logout/session; tidak ada registrasi publik.
-- Middleware `auth` dan `EnsureUserIsAdmin`.
-- Layout utama responsif + komponen Blade reusable.
-- Dashboard: kartu ringkasan, grafik pendapatan/status, rental terbaru.
-- `DashboardService`, `DashboardController`.
+- Custom login/logout/session operator (`web` guard) + login/registrasi/logout pelanggan terpisah (`customer` guard).
+- Middleware `auth:web`, `auth:customer`, dan `EnsureUserIsAdmin`.
+- Layout utama responsif (`app.blade.php`), layout guest, dan layout publik/pelanggan (`public.blade.php`) + komponen Blade reusable.
+- Portal pelanggan publik: halaman katalog kendaraan (`/`), detail & estimasi tarif kendaraan, booking mandiri via `RentalService`, riwayat & detail rental pribadi, pembatalan rental aktif pribadi, dan profil pelanggan.
+- Dashboard Admin/Staff: kartu ringkasan, grafik pendapatan/status, rental terbaru.
+- `DashboardService`, `DashboardController`, `PortalController`, `CustomerAuthController`, `CustomerRentalController`, `CustomerProfileController`.
 - Chart.js melalui npm.
-- Feature test auth dan dashboard.
+- Feature test auth, registrasi, isolasi guard, dashboard, dan portal pelanggan.
 
 **File/modul utama:**
 
 - `app/Http/Controllers/Auth/AuthController.php`
+- `app/Http/Controllers/PortalController.php`, `Customer/CustomerAuthController.php`, `Customer/CustomerRentalController.php`, `Customer/CustomerProfileController.php`
 - `app/Http/Requests/Auth/LoginRequest.php`
+- `app/Http/Requests/Customer/CustomerLoginRequest.php`, `CustomerRegisterRequest.php`, `CustomerBookingRequest.php`, `UpdateCustomerProfileRequest.php`
 - `app/Http/Middleware/EnsureUserIsAdmin.php`
 - `app/Http/Controllers/DashboardController.php`
 - `app/Services/DashboardService.php`
-- `resources/views/layouts/`, `components/`, `auth/`, `dashboard/`
-- `routes/auth.php`, `routes/dashboard.php`
-- `tests/Feature/Auth/`, `tests/Feature/Dashboard/`
+- `config/auth.php`, `database/migrations/2026_11_25_000006_*`
+- `resources/views/layouts/`, `components/`, `auth/`, `dashboard/`, `portal/`, `customer/`
+- `routes/auth.php`, `routes/dashboard.php`, `routes/customer.php`
+- `tests/Feature/Auth/`, `tests/Feature/Dashboard/`, `tests/Feature/Customer/`
 - `package.json` (Chart.js)
 
 **Acceptance criteria:**
 
-- [ ] Login valid/invalid, logout, dan proteksi route lulus feature test.
-- [ ] Session regenerate saat login dan invalidate saat logout.
-- [ ] Layout responsive di desktop/tablet/mobile.
-- [ ] Dashboard menampilkan angka yang sesuai data seeder dan grafik tampil.
-- [ ] Tidak ada akses halaman operasional tanpa login.
-- [ ] Phase report, status, traceability, contribution log diperbarui.
+- [x] Login valid/invalid, logout, dan proteksi route lulus feature test.
+- [x] Session regenerate saat login dan invalidate saat logout.
+- [x] Layout responsive di desktop/tablet/mobile.
+- [x] Dashboard menampilkan angka yang sesuai data seeder dan grafik tampil.
+- [x] Tidak ada akses halaman operasional tanpa login.
+- [x] Phase report, status, traceability, contribution log diperbarui.
 - [ ] PR direview dan digabung.
 
 **Handoff ke Phase 3–4:** layout, komponen, navigasi, pola controller/request/view.
@@ -281,11 +285,11 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 | `app/Services/PaymentService.php` | Anggota 4 | Anggota 4 | Phase 4 |
 | `app/Services/DashboardService.php` | Anggota 2 | Anggota 2 | Phase 2 |
 | `app/Services/VehicleImageService.php` | Anggota 3 | Anggota 3 | Phase 3 |
-| Auth, layout, dashboard | Anggota 2 | Anggota 2 | Phase 2 |
-| Pelanggan & kendaraan | Anggota 3 | Anggota 3 | Phase 3 |
-| Rental & pembayaran | Anggota 4 | Anggota 4 | Phase 4 |
-| `routes/web.php` | Anggota 1 | Anggota 1 | Hanya include route modul |
-| `routes/auth.php`, `routes/dashboard.php` | Anggota 2 | Anggota 2 | Phase 2 |
+| Auth, layout, dashboard, portal pelanggan | Anggota 2 | Anggota 2 | Phase 2 |
+| Pelanggan & kendaraan (admin CRUD) | Anggota 3 | Anggota 3 | Phase 3 |
+| Rental & pembayaran (admin CRUD) | Anggota 4 | Anggota 4 | Phase 4 |
+| `routes/web.php` | Anggota 1 | Anggota 1/2 | Include route modul |
+| `routes/auth.php`, `routes/dashboard.php`, `routes/customer.php` | Anggota 2 | Anggota 2 | Phase 2 |
 | `routes/master.php` | Anggota 3 | Anggota 3 | Phase 3 |
 | `routes/rental.php` | Anggota 4 | Anggota 4 | Phase 4 |
 | `resources/views/layouts`, `components` | Anggota 2 | Anggota 2 | Dipakai semua modul |

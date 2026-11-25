@@ -72,15 +72,15 @@ terpusat, alur rental yang jelas, validasi input, dan dashboard ringkas.
 
 | Peran | Deskripsi | Hak Akses Utama |
 |---|---|---|
-| Admin | Pemilik/pengelola usaha | Seluruh fitur, termasuk hapus data master, melihat dashboard, dan mengelola transaksi |
+| Admin | Pemilik/pengelola usaha | Seluruh fitur operasional & dashboard, termasuk hapus data master dan mengelola transaksi |
 | Staff | Petugas operasional | Login, dashboard, kelola pelanggan dan kendaraan (tanpa hapus permanen), buat rental, proses pengembalian, catat pembayaran |
-| Pelanggan | Orang yang menyewa kendaraan | **Bukan pengguna aplikasi.** Data pelanggan dikelola oleh Admin/Staff; tidak ada portal pelanggan |
+| Pelanggan (`Customer`) | Pengguna yang menyewa kendaraan melalui portal publik | Registrasi publik, login, menjelajahi katalog kendaraan, melihat estimasi biaya, membuat booking rental mandiri, melihat riwayat rental & pembayaran pribadi, membatalkan rental aktif pribadi, dan mengelola profil |
 
 Catatan:
 
-- Tidak ada registrasi publik. Akun Admin dan Staff disediakan melalui seeder.
-- Pembatasan hak akses Admin/Staff adalah keputusan proyek, bukan kebutuhan eksplisit UAS.
-- UAS hanya mewajibkan login, logout, dan session user sederhana.
+- Registrasi publik tersedia khusus untuk peran **Pelanggan** (`customer`).
+- Akun Admin dan Staff tetap disediakan melalui seeder (tidak ada registrasi publik Admin/Staff).
+- Admin dan Staff diarahkan ke `/dashboard`; Pelanggan diarahkan ke portal pelanggan (`/`) dan tidak dapat mengakses `/dashboard`.
 
 ---
 
@@ -107,8 +107,9 @@ Prioritas: **M** = wajib untuk UAS, **S** = pendukung, **O** = opsional/bonus.
 |---|---|---|
 | FR-AUTH-01 | Pengguna dapat login menggunakan email dan password yang valid. | M |
 | FR-AUTH-02 | Pengguna dapat logout dan session diakhiri. | M |
-| FR-AUTH-03 | Seluruh halaman operasional dilindungi middleware `auth`; pengguna yang belum login diarahkan ke halaman login. | M |
-| FR-AUTH-04 | Sistem membedakan hak akses Admin dan Staff pada aksi tertentu (terutama hapus data). | S |
+| FR-AUTH-03 | Seluruh halaman operasional dan halaman pribadi pelanggan dilindungi middleware `auth:web` atau `auth:customer` yang terpisah; pengguna yang belum login diarahkan ke login masing-masing. | M |
+| FR-AUTH-04 | Sistem membedakan hak akses Admin, Staff (guard `web`), dan Pelanggan (guard `customer`). | S |
+| FR-AUTH-05 | Pelanggan dapat mendaftar akun melalui halaman registrasi publik (`/customer/register`) yang membuat record pada tabel `customers` terpisah dari `users`. | M |
 
 ### 6.2 Dashboard
 
@@ -192,6 +193,16 @@ UAS mewajibkan minimal **dua** fitur tambahan. RentalGo menargetkan enam:
 | FR-BONUS-04 | Real-time notification | +3 | Tidak direncanakan |
 | FR-BONUS-05 | Docker deployment | +3 | **Tidak digunakan** (keputusan pemilik proyek) |
 
+### 6.10 Portal Pelanggan (Customer Self-Service)
+
+| ID | Requirement | Prioritas |
+|---|---|---|
+| FR-PORTAL-01 | Halaman utama (`/`) menampilkan landing page dan katalog kendaraan publik dengan pencarian, filter tipe/ketersediaan, pengurutan harga, dan pagination. | M |
+| FR-PORTAL-02 | Halaman detail kendaraan publik menampilkan spesifikasi, status ketersediaan, aturan tarif mobil/motor, dan estimasi biaya sewa. | M |
+| FR-PORTAL-03 | Pelanggan yang login dapat membuat booking rental mandiri pada kendaraan tersedia melalui `RentalService`, opsional memilih metode pembayaran awal (pending). | M |
+| FR-PORTAL-04 | Pelanggan dapat melihat daftar dan detail riwayat rental serta status pembayaran pribadinya, dan membatalkan rental aktif pribadinya. | M |
+| FR-PORTAL-05 | Pelanggan dapat melihat dan memperbarui profil pribadi (nama, telepon, NIK, nomor SIM, alamat). | M |
+
 ---
 
 ## 7. Non-Functional Requirements
@@ -219,8 +230,8 @@ UAS mewajibkan minimal **dua** fitur tambahan. RentalGo menargetkan enam:
 
 | ID | Aturan |
 |---|---|
-| BR-01 | Hanya Admin dan Staff yang dapat login. Tidak ada registrasi publik. |
-| BR-02 | Admin memiliki akses penuh. Staff tidak dapat menghapus data master secara permanen. |
+| BR-01 | Akun Admin dan Staff disediakan di tabel `users` melalui seeder; Pelanggan mendaftar pada tabel `customers` melalui registrasi publik (`/customer/register`). |
+| BR-02 | Admin memiliki akses penuh operasional; Staff tidak dapat menghapus data master secara permanen; Pelanggan memakai guard terpisah untuk portal publik, booking mandiri, profil, dan riwayat rental pribadinya. |
 | BR-03 | Nomor polisi kendaraan, email pelanggan (jika diisi), NIK, dan nomor SIM harus unik. |
 | BR-04 | Kendaraan hanya dapat disewakan jika statusnya `available` dan tidak ada rental `active` dengan tanggal beririsan. |
 | BR-05 | Durasi rental dihitung inklusif: `selisih hari + 1`. Rental satu hari menghasilkan 1 hari. |
@@ -271,8 +282,9 @@ UAS mewajibkan minimal tiga entitas dengan tambah, edit, hapus, dan detail. Rent
 ### 9.1 In Scope
 
 - Aplikasi web Laravel dengan Blade + Tailwind CSS.
-- Autentikasi sederhana Admin/Staff.
-- Dashboard ringkasan dan grafik.
+- Autentikasi Admin/Staff dan registrasi/login Pelanggan.
+- Portal pelanggan publik (katalog kendaraan, detail & estimasi tarif, booking mandiri, riwayat rental/pembayaran, profil).
+- Dashboard ringkasan dan grafik (Admin/Staff).
 - CRUD pelanggan, kendaraan, dan pembayaran; lifecycle rental.
 - Pencarian, pagination, sorting, filter, upload gambar kendaraan.
 - Validasi form dan error handling.
@@ -283,7 +295,6 @@ UAS mewajibkan minimal tiga entitas dengan tambah, edit, hapus, dan detail. Rent
 
 ### 9.2 Out of Scope
 
-- Customer self-service portal atau registrasi publik.
 - Payment gateway online, integrasi bank, atau pembayaran otomatis.
 - Email/SMS nyata (simulasi email tidak dipilih).
 - Multi-cabang, multi-gudang, atau multi-tenant.
@@ -388,7 +399,7 @@ Tidak digunakan: Bootstrap, framework JavaScript SPA, Breeze/Jetstream, Docker, 
 | OQ-03 | Bonus yang ingin dikerjakan? | Selesai: REST API + PDF + commit rapi (direncanakan) |
 | OQ-04 | Apakah dosen menerima UML berbentuk Mermaid? | Ya; PNG disiapkan jika diminta |
 | OQ-05 | Tanggal presentasi dan format slide? | Ditentukan Phase 5 |
-| OQ-06 | Apakah akun customer perlu login? | Tidak |
+| OQ-06 | Apakah akun customer perlu login? | Ya — role `customer`, registrasi publik, dan portal pelanggan ditambahkan pada Phase 2 |
 
 ---
 

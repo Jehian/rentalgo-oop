@@ -55,11 +55,11 @@ Jika terjadi konflik, dokumen UAS menang. Jangan mengarang requirement baru; cat
 ## 5. Status Repository Saat Ini
 
 - Phase 0: selesai dan di-commit di `main` (`510a309`).
-- Phase 1: committed dan di-push di branch `phase/01-foundation`; belum PR/merge.
-- Fondasi tersedia: konfigurasi, migration, model, domain OOP, service, factory, seeder, test.
-- UI, autentikasi, controller, dan CRUD belum ada; dikerjakan Phase 2–4.
-
-Jangan menganggap kode Phase 1 sudah tersedia di `main` sebelum branch `phase/01-foundation` digabung.
+- Phase 1: merged ke `main` melalui PR #1 (`1b5caee`). Fondasi (migration, model, domain OOP,
+  service, factory, seeder, test) tersedia di `main`.
+- Phase 2: diimplementasikan pada branch `phase/02-auth-dashboard`; sudah lulus test lokal dan
+  menunggu PR/review.
+- CRUD pelanggan/kendaraan, rental, dan pembayaran belum ada; dikerjakan Phase 3–4.
 
 ## 6. Branching
 
@@ -166,7 +166,7 @@ Aturan:
 - Domain tidak boleh bergantung pada HTTP/request.
 - Service tidak boleh mengembalikan response HTTP.
 - Model tidak menyimpan logika presentasi.
-- Route per modul: `auth.php`, `dashboard.php`, `master.php`, `rental.php`; `web.php` hanya include.
+- Route per modul: `auth.php`, `dashboard.php`, `customer.php`, `master.php`, `rental.php`; `web.php` hanya include.
 - Jangan menambah repository pattern generik, DDD aggregate, CQRS, event sourcing, atau SPA.
 
 ## 10. Database
@@ -265,7 +265,6 @@ mysql -u root -p -e "CREATE DATABASE rentalgo CHARACTER SET utf8mb4 COLLATE utf8
 
 ## 17. Di Luar Scope
 
-- Customer portal/registrasi publik.
 - Payment gateway.
 - Email/SMS nyata.
 - Multi-cabang/multi-tenant.

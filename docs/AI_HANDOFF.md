@@ -26,24 +26,24 @@ dokumen UAS menang; perbaiki dokumen proyek melalui PR.
 |---|---|
 | Repository | `https://github.com/Jehian/rentalgo-oop` |
 | Branch dokumentasi | `main` |
-| Commit terakhir | Phase 0 `510a309` (`main`); Phase 1 `8510ea6..22fb7c5` (branch) |
+| Commit terakhir | `main`: merge PR #1 `1b5caee`; Phase 2 belum commit |
 | Framework | Laravel 13.44.1 |
 | PHP CLI | 8.4.8 (minimum 8.3); WAMP PHP 8.4.27 tersedia |
 | Node/npm | 22.16.0 / 10.9.2 |
 | Database lokal | MySQL 9.1, `127.0.0.1:3306`, database `rentalgo` |
-| Implementasi aplikasi | Phase 1 foundation committed dan di-push |
-| Migration bisnis | 5 tabel + role sudah dibuat |
-| Model/controller/service/view | Model/service ada; controller/view belum |
-| Test | 25 test lulus (57 assertions) |
+| Implementasi aplikasi | Phase 1 merged; Phase 2 (termasuk portal pelanggan) implemented, PR pending |
+| Migration bisnis | 5 tabel + role + auth kolom `customers` + `rentals.user_id` nullable |
+| Model/controller/service/view | Model/service/auth/dashboard/portal pelanggan ada; CRUD admin Phase 3–4 belum |
+| Test | 47 test lulus (153 assertions) |
 | Docker | Tidak digunakan |
 
-Phase 0 sudah selesai dan di-commit. Phase 1 sudah diimplementasikan, di-commit, dan di-push pada
-branch `phase/01-foundation`, tetapi belum di-PR dan belum digabung.
+Phase 0 dan Phase 1 sudah selesai; Phase 1 digabung ke `main` melalui PR #1 (`1b5caee`). Phase 2
+(auth, layout, dashboard) sudah diimplementasikan pada branch `phase/02-auth-dashboard` dan menunggu
+PR/review. CRUD pelanggan/kendaraan, rental, dan pembayaran belum tersedia.
 
-## 3. Kontrak Phase 1 (Tersedia di Branch)
+## 3. Kontrak Phase 1 (Tersedia di Main)
 
-Anggota 2–4 boleh membaca kode Phase 1 di branch, tetapi **jangan mengandalkan kode tersebut sebelum
-branch `phase/01-foundation` digabung**. Kontrak yang sudah tersedia:
+Kontrak ini sudah tersedia di `main` dan boleh dipakai Phase 3–4:
 
 ### 3.1 Database dan Model
 
@@ -113,8 +113,9 @@ return [
 
 Akun demo (lokal saja):
 
-- `admin@rentalgo.test` / `password`
-- `staff@rentalgo.test` / `password`
+- `admin@rentalgo.test` / `password` (tabel `users`, login `/login`)
+- `staff@rentalgo.test` / `password` (tabel `users`, login `/login`)
+- `customer@rentalgo.test` / `password` (tabel `customers`, login `/customer/login`)
 
 Data demo saat ini: 8 pelanggan, 4 mobil + 4 motor, 12 rental (6 aktif, 6 selesai), dan 12
 pembayaran. Seeder hanya dimiliki Anggota 1.
@@ -125,14 +126,15 @@ pembayaran. Seeder hanya dimiliki Anggota 1.
 
 ```php
 require __DIR__.'/auth.php';
+require __DIR__.'/customer.php';
 require __DIR__.'/dashboard.php';
 require __DIR__.'/master.php';
 require __DIR__.'/rental.php';
 ```
 
-File route modul dibuat kosong pada Phase 1, lalu diisi pemilik fase masing-masing:
+File route modul:
 
-- `auth.php`, `dashboard.php` — Anggota 2
+- `auth.php`, `customer.php`, `dashboard.php` — Anggota 2
 - `master.php` — Anggota 3
 - `rental.php` — Anggota 4
 
@@ -144,19 +146,18 @@ File route modul dibuat kosong pada Phase 1, lalu diisi pemilik fase masing-masi
 
 **Lakukan:**
 
-- Custom auth (`AuthController`, `LoginRequest`, views).
-- Middleware `auth` dan `EnsureUserIsAdmin`.
-- Layout utama + komponen Blade reusable.
+- Custom auth operator (`AuthController`, `LoginRequest`, `web` guard) dan auth pelanggan terpisah (`CustomerAuthController`, `CustomerLoginRequest`, `CustomerRegisterRequest`, `customer` guard).
+- Middleware `auth:web`, `auth:customer`, dan `EnsureUserIsAdmin`.
+- Layout utama (`app.blade.php`), guest, dan layout publik/pelanggan (`public.blade.php`) + komponen Blade reusable.
+- Portal pelanggan publik: `PortalController`, `CustomerRentalController`, `CustomerProfileController`, katalog kendaraan (`/`), detail & estimasi tarif, booking mandiri, riwayat rental, profil.
 - `DashboardService`, `DashboardController`, dashboard cards/chart.
 - Chart.js via npm.
-- Feature test auth/dashboard.
+- Feature test auth/registrasi/isolasi guard/dashboard/portal pelanggan.
 
 **Jangan:**
 
-- Mengubah migration/model/seeder.
 - Mengubah file modul Phase 3/4.
 - Menambah dependency selain Chart.js tanpa persetujuan.
-- Membuat registrasi publik atau portal pelanggan.
 
 **Serahkan ke Phase 3/4:** layout, komponen, navigasi, pola controller/request/view.
 
@@ -322,7 +323,7 @@ Aturan lengkap di `AGENTS.md`. Ringkasan:
 
 ## 9. Pertanyaan Terbuka
 
-1. Otorisasi commit/push/PR Phase 1 (menunggu instruksi pemilik proyek).
+1. Otorisasi commit/push/PR Phase 2 (menunggu instruksi pemilik proyek).
 2. Format final UML (Mermaid/PNG).
 3. Jadwal presentasi.
 

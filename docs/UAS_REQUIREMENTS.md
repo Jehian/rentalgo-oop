@@ -178,7 +178,7 @@ Hal-hal berikut **tidak** diwajibkan oleh dokumen UAS dan merupakan keputusan pr
 | 1 | Apakah UML harus berupa gambar atau boleh Mermaid di Markdown? | Format deliverable | Mermaid + opsi export PNG |
 | 2 | Apakah MySQL wajib saat demo, atau SQLite diperbolehkan? | Konfigurasi database | MySQL utama; SQLite untuk test |
 | 3 | Apakah dosen mengizinkan Laravel dengan custom auth (tanpa Breeze)? | Implementasi auth | Custom auth sederhana |
-| 4 | Apakah akun pelanggan perlu login? | Scope auth/UI | Tidak |
+| 4 | Apakah akun pelanggan perlu login? | Scope auth/UI | Ya — role `customer` dan portal pelanggan ditambahkan |
 | 5 | Bonus mana yang ingin dikerjakan? | Scope Phase 5 | REST API + PDF + commit rapi (direncanakan) |
 | 6 | Nama/NIM anggota dan pembagian peran final? | Dokumentasi & penilaian individu | Sudah dikonfirmasi; lihat `README.md` dan `docs/PHASE_PLAN.md` |
 | 7 | Kredensial MySQL lokal? | Setup Phase 1 | MySQL 9.1, `root`, password lokal sudah diisi, port 3306, database `rentalgo` |
