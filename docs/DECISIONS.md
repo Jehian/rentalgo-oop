@@ -11,7 +11,9 @@ manusia ditandai `Proposed`; keputusan yang sudah menjadi baseline proyek ditand
 | ADR-002 | MySQL sebagai database utama, SQLite untuk test | Accepted |
 | ADR-003 | Tailwind CSS 4 sebagai framework UI | Accepted |
 | ADR-004 | Custom authentication, tanpa Breeze/Jetstream | Accepted |
-| ADR-005 | Peran Admin dan Staff; pelanggan bukan user login | Accepted |
+| ADR-005 | Peran Admin, Staff, dan Customer | Superseded partly by ADR-028 |
+| ADR-027 | Pendapatan dashboard dari pembayaran `paid` | Accepted |
+| ADR-028 | Portal pelanggan dan registrasi publik | Accepted |
 | ADR-006 | Satu tabel `vehicles` + domain subclass | Accepted |
 | ADR-007 | Lima tabel bisnis | Accepted |
 | ADR-008 | Service layer terbatas, tanpa repository pattern | Accepted |
@@ -29,9 +31,12 @@ manusia ditandai `Proposed`; keputusan yang sudah menjadi baseline proyek ditand
 | ADR-020 | Conventional Commits dan merge commit | Accepted |
 | ADR-021 | Bonus REST API/PDF/commit direncanakan | Accepted (rencana) |
 | ADR-022 | Gambar kendaraan di public disk | Accepted |
-| ADR-023 | Chart.js ditambahkan pada Phase 2 | Accepted |
+| ADR-023 | Chart.js ditambahkan pada Phase 2 | Accepted (diimplementasikan) |
 | ADR-024 | Kolom role memakai migration terpisah | Accepted |
 | ADR-025 | Nama/NIM anggota sudah diisi | Accepted |
+| ADR-026 | Panjang string terindeks untuk MySQL lokal | Accepted |
+| ADR-027 | Pendapatan dashboard dari pembayaran `paid` | Accepted |
+| ADR-028 | Portal pelanggan dan registrasi publik | Accepted |
 
 ---
 
@@ -358,9 +363,10 @@ dikirim sebagai JSON ke view.
 
 **Alternatif:** Grafik CSS manual (terbatas); library lain (tidak perlu).
 
-**Konsekuensi:** Menambah dependency frontend; tidak dipasang pada Phase 0.
+**Konsekuensi:** Menambah dependency frontend; tidak dipasang pada Phase 0. Pada Phase 2 dipasang
+`chart.js` 4.6.2 dan grafik diinisialisasi dari JSON di `resources/js/app.js`.
 
-**Status:** Accepted (rencana).
+**Status:** Accepted (diimplementasikan Phase 2).
 
 ## ADR-024 — Migration Role Terpisah
 
@@ -412,3 +418,52 @@ prefix index manual (kurang portabel).
 email, session ID, cache key, UUID, dan kode dokumen RentalGo.
 
 **Status:** Accepted.
+
+## ADR-027 — Pendapatan Dashboard dari Pembayaran `paid`
+
+**Konteks:** Dashboard menampilkan "Pendapatan Bulan Ini" dan grafik pendapatan enam bulan. Sumber
+angka dapat berupa total tagihan rental atau pembayaran yang benar-benar diterima.
+
+**Keputusan:** Pendapatan dihitung dari tabel `payments` berstatus `paid` memakai `paid_at`.
+Pembayaran `pending`/`failed`/`cancelled` dan tagihan rental yang belum dibayar tidak dihitung.
+Ringkasan bulan ini memakai rentang awal–akhir bulan berjalan; grafik memakai enam bulan terakhir.
+
+**Alternatif:** Menjumlahkan `rentals.total_amount` (mencampur tagihan dan kas diterima); menghitung
+semua pembayaran (melebihkan pendapatan).
+
+**Konsekuensi:** Angka dashboard konsisten dengan kas diterima dan dapat direkonsiliasi ke tabel
+`payments`. Rental yang belum dibayar tidak menambah pendapatan.
+
+**Status:** Accepted.
+
+## ADR-028 — Portal Pelanggan dan Registrasi Publik
+
+**Konteks:** Pemilik proyek mengonfirmasi bahwa aplikasi tidak hanya berisi dashboard Admin/Staff,
+tetapi juga halaman publik dan portal pelanggan (registrasi, login, katalog kendaraan, booking
+mandiri, riwayat rental/pembayaran pribadi, dan profil). Keputusan awal ADR-005 yang membatasi
+login hanya untuk Admin/Staff perlu diperbarui.
+
+**Keputusan:**
+- Memisahkan tabel dan guard autentikasi antara operator (`users` dengan guard `web`, role
+  `admin`/`staff`) dan pelanggan (`customers` dengan guard `customer`), sehingga ID `users` dan
+  ID `customers` terpisah sepenuhnya.
+- Menambahkan kolom `password` (nullable) dan `remember_token` pada tabel `customers`, serta
+  membuat `rentals.user_id` nullable (bernilai `NULL` untuk booking mandiri pelanggan) melalui
+  migration `2026_11_25_000006_add_auth_columns_to_customers_and_nullable_user_id_on_rentals.php`.
+- Mengganti halaman `/` (`welcome.blade.php`) menjadi katalog kendaraan publik (`PortalController`)
+  dengan layout publik responsif sederhana (`layouts/public.blade.php`).
+- Menambahkan login/registrasi pelanggan terpisah (`/customer/login`, `/customer/register`,
+  `/customer/logout`) yang membuat record `Customer` saja tanpa menyentuh tabel `users`.
+- Memisahkan route operator (`/login`, `/logout`, `/dashboard` dengan guard `web`) dari portal
+  pelanggan (`/my-rentals`, `/my-profile`, `/catalog/{vehicle}/book` dengan guard `customer`).
+- Tetap menggunakan `RentalService::createRental()` untuk booking mandiri pelanggan sehingga aturan
+  ketersediaan dan pricing OOP tetap tunggal.
+
+**Alternatif:** Menambahkan role `customer` di tabel `users` (mencampur ID operator dan pelanggan
+dalam satu tabel/guard).
+
+**Konsekuensi:** Ada satu migration tambahan pada Phase 2 untuk kolom auth `customers` dan
+`rentals.user_id` nullable, guard `customer` di `config/auth.php`, serta pemisahan login operator
+dan pelanggan.
+
+**Status:** Accepted (keputusan pemilik proyek pada Phase 2).

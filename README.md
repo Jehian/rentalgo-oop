@@ -3,9 +3,10 @@
 Aplikasi web sistem informasi **rental kendaraan** yang dibangun dengan Laravel dan PHP OOP untuk
 UAS mata kuliah Pemrograman Berorientasi Objek (SI2WPO084), Program Studi Sistem Informasi.
 
-> **Status:** Phase 0 selesai. Phase 1 (Foundation & Architecture) sudah diimplementasikan,
-> di-commit, dan di-push pada branch `phase/01-foundation`; UI/auth/CRUD belum tersedia dan Phase 1
-> belum di-merge.
+> **Status:** Phase 0 dan Phase 1 selesai; Phase 1 sudah merged ke `main` melalui PR #1 (`1b5caee`).
+> Phase 2 (Authentication, Layout & Dashboard) sudah diimplementasikan pada branch
+> `phase/02-auth-dashboard` dan menunggu PR/review. CRUD pelanggan/kendaraan, rental, dan pembayaran
+> belum tersedia (Phase 3–4).
 
 ## Tentang Proyek
 
@@ -14,20 +15,27 @@ transaksi penyewaan, pengembalian, denda keterlambatan, pembayaran, dan dashboar
 Fokus proyek adalah penerapan OOP yang dapat dipahami, MVC sederhana, CRUD, relasi database,
 autentikasi sederhana, validasi, dan dokumentasi.
 
-## Fitur yang Direncanakan
+## Fitur
 
-- Login, logout, session, dan pembatasan akses Admin/Staff.
-- Dashboard ringkasan dan grafik pendapatan/status kendaraan.
+Sudah tersedia (Phase 2):
+
+- Portal pelanggan publik: katalog kendaraan (`/`), pencarian, filter tipe/status, sorting tarif, detail kendaraan, dan estimasi biaya otomatis.
+- Registrasi pelanggan publik (`/register`), login, logout, session, serta pemisahan akses Admin, Staff (`operator`), dan Pelanggan (`customer`).
+- Booking mandiri pelanggan, riwayat dan detail pesanan pribadi, pembatalan rental aktif pribadi, serta pengelolaan profil pelanggan.
+- Layout responsif operator (`app.blade.php`) dan layout publik/pelanggan (`public.blade.php`).
+- Dashboard Admin/Staff: ringkasan, grafik pendapatan enam bulan, komposisi status kendaraan, dan rental terbaru.
+- Komponen Blade reusable dan halaman error 403 berbahasa Indonesia.
+
+Direncanakan (Phase 3–4):
+
 - CRUD pelanggan dengan pencarian, pagination, sorting, dan riwayat rental.
 - CRUD kendaraan dengan filter, upload gambar, dan riwayat rental.
 - Transaksi rental: cek ketersediaan, perhitungan biaya, pengembalian, denda, pembatalan.
 - Pembayaran: catat, ubah status, edit/hapus selama pending.
-- Validasi form dan error handling.
-- UI responsif dengan Tailwind CSS.
 - Bonus yang direncanakan: REST API read-only kendaraan/rental dan export PDF invoice/laporan.
 
 Fitur tambahan yang ditargetkan: search, pagination, sorting, filter, upload gambar, dan dashboard
-chart (UAS mewajibkan minimal dua).
+chart (UAS mewajibkan minimal dua). Dashboard chart sudah selesai pada Phase 2.
 
 ## OOP yang Diterapkan
 
@@ -48,7 +56,7 @@ chart (UAS mewajibkan minimal dua).
 | Framework | Laravel 13 |
 | Database utama | MySQL 8+/9.x (MariaDB kompatibel) |
 | Database test | SQLite in-memory |
-| Frontend | Blade, Tailwind CSS 4, Vite 8 |
+| Frontend | Blade, Tailwind CSS 4, Vite 8, Chart.js 4 |
 | Testing | PHPUnit 12 |
 | Code style | Laravel Pint |
 | Version control | Git + GitHub |
@@ -97,6 +105,16 @@ php artisan migrate:fresh --seed
 php artisan storage:link
 ```
 
+## Akun Demo
+
+Seeder membuat tiga akun lokal:
+
+| Role | Email | Password |
+|---|---|---|
+| Admin | `admin@rentalgo.test` | `password` |
+| Staff | `staff@rentalgo.test` | `password` |
+| Pelanggan | `customer@rentalgo.test` | `password` |
+
 Jalankan aplikasi:
 
 ```powershell
@@ -109,6 +127,13 @@ Jalankan test:
 ```powershell
 php artisan test
 ```
+
+## Screenshot
+
+| Halaman | Desktop | Mobile |
+|---|---|---|
+| Login | [login-desktop.png](docs/assets/phase-02/login-desktop.png) | [login-mobile.png](docs/assets/phase-02/login-mobile.png) |
+| Dashboard | [dashboard-desktop.png](docs/assets/phase-02/dashboard-desktop.png) | [dashboard-mobile.png](docs/assets/phase-02/dashboard-mobile.png) |
 
 ## Dokumentasi
 
@@ -140,7 +165,7 @@ Dokumen UAS asli ada di `docs/reference/` dan tidak diubah.
 | Anggota | Nama / NIM | Tanggung Jawab |
 |---|---|---|
 | Anggota 1 | Benny Anderson / 422024008 | Phase 0 (planning) + Phase 1 (foundation) |
-| Anggota 2 | Steven Credentia Ivanemaga Zega / 422024020 | Phase 2 (auth, layout, dashboard) |
+| Anggota 2 | Steven Credentia Ivanemaga Zega / 422024020 | Phase 2 (auth, layout, dashboard, portal pelanggan) |
 | Anggota 3 | Jason / 422024004 | Phase 3 (master data) |
 | Anggota 4 | Steven / 422024001 | Phase 4 (rental & payment) |
 

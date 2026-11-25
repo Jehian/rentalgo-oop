@@ -4,12 +4,16 @@ namespace Database\Factories;
 
 use App\Models\Customer;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 /**
  * @extends Factory<Customer>
  */
 class CustomerFactory extends Factory
 {
+    protected static ?string $password;
+
     /**
      * @return array<string, mixed>
      */
@@ -18,6 +22,8 @@ class CustomerFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
+            'password' => static::$password ??= Hash::make('password'),
+            'remember_token' => Str::random(10),
             'phone' => fake()->numerify('08##########'),
             'identity_number' => fake()->unique()->numerify('################'),
             'license_number' => fake()->unique()->bothify('SIM-##########'),

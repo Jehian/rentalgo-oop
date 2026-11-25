@@ -5,11 +5,11 @@
 | Fase | Phase 1 — Foundation & Architecture |
 | Pemilik | Benny Anderson (422024008) |
 | Branch | `phase/01-foundation` |
-| Pull Request | Belum dibuat |
+| Pull Request | [#1](https://github.com/Jehian/rentalgo-oop/pull/1) (merged) |
 | Tanggal mulai | 2026-11-25 |
-| Tanggal selesai | 2026-11-25 (implementasi lokal) |
-| Status | Draft — sudah di-push; menunggu PR/review |
-| Reviewer | `pending` |
+| Tanggal selesai | 2026-11-25 (merged `1b5caee`) |
+| Status | Merged |
+| Reviewer | Steven Credentia Ivanemaga Zega (422024020) |
 
 ## 1. Ringkasan
 
@@ -29,7 +29,7 @@ view, autentikasi, atau UI yang dibuat pada fase ini.
 | Factory dan seeder demo | Tercapai | `database/factories`, `database/seeders` |
 | Route file kosong per modul | Tercapai | `routes/auth.php`, `dashboard.php`, `master.php`, `rental.php` |
 | Test dan Pint | Tercapai | 25 test lulus; Pint lulus |
-| PR/review/merge | Belum | Commit `8510ea6..22fb7c5` sudah di-push; PR belum dibuat |
+| PR/review/merge | Tercapai | PR #1 direview Steven Credentia Ivanemaga Zega; merge commit `1b5caee` |
 
 ## 3. Scope yang Diselesaikan
 
@@ -45,7 +45,7 @@ view, autentikasi, atau UI yang dibuat pada fase ini.
 - [x] Unit/feature test Phase 1.
 - [x] Commit lokal Phase 1 (`8510ea6`, `72490c1`, `c9ac1b7`, `c6c4dc8`, `eea47e9`).
 - [x] Push branch `phase/01-foundation` (`22fb7c5`).
-- [ ] PR/review/merge.
+- [x] PR #1 direview Steven Credentia Ivanemaga Zega dan di-merge (`1b5caee`).
 
 ## 4. File yang Dibuat/Diubah
 
@@ -166,7 +166,7 @@ Tidak ada; Phase 1 tidak membuat UI.
 - `intl` belum aktif di PHP CLI; verifikasi memakai `number_format`/Tinker, bukan `Number::format`.
 - `curl` diblokir Application Control; hanya warning startup, tidak menghalangi test/Artisan.
 - Route file sengaja kosong; route fitur baru diisi Phase 2–4.
-- Commit sudah dibuat dan branch sudah di-push; PR, reviewer, dan merge untuk Phase 1 belum ada.
+- PR #1 sudah direview dan di-merge ke `main` (`1b5caee`); status laporan diperbarui saat Phase 2.
 
 ## 10. Handoff ke Fase Berikutnya
 
@@ -186,12 +186,13 @@ Tidak ada; Phase 1 tidak membuat UI.
 - [x] Dokumentasi status/traceability/contribution log diperbarui.
 - [x] Commit lokal Phase 1 dibuat.
 - [x] Branch Phase 1 di-push.
-- [ ] Screenshot disertakan (tidak ada UI).
-- [ ] PR dibuat dan direview.
-- [ ] Merge selesai.
+- [x] Screenshot tidak diperlukan (tidak ada UI).
+- [x] PR dibuat dan direview (PR #1).
+- [x] Merge selesai (`1b5caee`).
 
 ## 12. Catatan Kontribusi
 
 | Anggota | Kontribusi | Commit/PR |
 |---|---|---|
-| Benny Anderson (422024008) | Konfigurasi, migration, model, domain, service, factory, seeder, test, dokumentasi Phase 1 | `8510ea6`, `72490c1`, `c9ac1b7`, `c6c4dc8`, `eea47e9`, `22fb7c5` |
+| Benny Anderson (422024008) | Konfigurasi, migration, model, domain, service, factory, seeder, test, dokumentasi Phase 1 | `8510ea6`, `72490c1`, `c9ac1b7`, `c6c4dc8`, `eea47e9`, `22fb7c5`; PR #1 |
+| Steven Credentia Ivanemaga Zega (422024020) | Review PR #1 dan merge ke `main` | `1b5caee` |

@@ -30,6 +30,7 @@ class FoundationSchemaTest extends TestCase
         $this->assertTrue(Schema::hasTable('payments'));
 
         $this->assertTrue(Schema::hasColumns('users', ['role']));
+        $this->assertTrue(Schema::hasColumns('customers', ['password', 'remember_token']));
         $this->assertTrue(Schema::hasColumns('vehicles', ['type', 'status', 'daily_rate']));
         $this->assertTrue(Schema::hasColumns('rentals', ['rental_code', 'duration_days', 'total_amount', 'late_fee']));
         $this->assertTrue(Schema::hasColumns('payments', ['payment_code', 'method', 'status']));

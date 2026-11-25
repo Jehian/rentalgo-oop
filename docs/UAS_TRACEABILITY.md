@@ -5,6 +5,10 @@ yang direncanakan, fase pengerjaan, dan metode verifikasi.
 
 > **Penting:** Status `Planned` berarti belum diimplementasikan. Jangan mengubah status menjadi
 > `Verified` tanpa bukti implementasi dan pengujian. Dokumen ini diperbarui pada setiap phase report.
+>
+> **Pembaruan Phase 2 (2026-11-25):** Phase 1 sudah merged (PR #1, `1b5caee`). Requirement login,
+> logout, session, role, layout, dan dashboard berstatus `Implemented` karena sudah lulus test lokal;
+> status `Verified` menunggu review PR Phase 2.
 
 ## 1. Legenda Status
 
@@ -22,10 +26,10 @@ yang direncanakan, fase pengerjaan, dan metode verifikasi.
 
 | ID | Requirement | PRD | Lokasi Implementasi (Rencana) | Fase | Verifikasi | Status |
 |---|---|---|---|---|---|---|
-| UAS-GEN-01 | Aplikasi web PHP OOP untuk masalah nyata | §1, §3 | Seluruh aplikasi | 1–5 | Demo + code review | Planned |
-| UAS-GEN-02 | Tema Sistem Rental Kendaraan | §1 | Modul pelanggan, kendaraan, rental, pembayaran | 1–4 | Review fitur | Planned |
-| UAS-GEN-03 | Fokus OOP, modular, CRUD, auth, MVC | §3.2, §5 | `app/Domain`, `app/Models`, `app/Http`, `app/Services` | 1–4 | Code review + demo | Planned |
-| UAS-GEN-04 | Framework yang diizinkan (Laravel fitur dasar) | §10 | Laravel 13, Blade, Eloquent | 1–5 | Review stack | Planned |
+| UAS-GEN-01 | Aplikasi web PHP OOP untuk masalah nyata | §1, §3 | Seluruh aplikasi | 1–5 | Demo + code review | In Progress |
+| UAS-GEN-02 | Tema Sistem Rental Kendaraan | §1 | Modul pelanggan, kendaraan, rental, pembayaran | 1–4 | Review fitur | In Progress |
+| UAS-GEN-03 | Fokus OOP, modular, CRUD, auth, MVC | §3.2, §5 | `app/Domain`, `app/Models`, `app/Http`, `app/Services` | 1–4 | Code review + demo | In Progress |
+| UAS-GEN-04 | Framework yang diizinkan (Laravel fitur dasar) | §10 | Laravel 13, Blade, Eloquent | 1–5 | Review stack | Implemented |
 | UAS-OOP-01 | Minimal 8 class | §12.1 | `app/Domain/Vehicles/*`, `app/Models/*`, `app/Services/*`, `app/Support/*`, `app/Exceptions/*` | 1–4 | Hitung class + class diagram | Implemented |
 | UAS-OOP-02 | Encapsulation | §12.1 | Private/protected property + getter di domain; `#[Fillable]`, `#[Hidden]` di model; dependency private di service | 1 | Code review + unit test | Implemented |
 | UAS-OOP-03 | Minimal 2 inheritance | §12.1 | `Car extends Vehicle`, `Motorcycle extends Vehicle` | 1 | Unit test + class diagram | Implemented |
@@ -35,27 +39,27 @@ yang direncanakan, fase pengerjaan, dan metode verifikasi.
 | UAS-OOP-07 | Minimal 1 static method | §12.1 | `VehicleFactory::fromModel()`, `DocumentCodeGenerator::rentalCode()`/`paymentCode()` | 1 | Unit test | Implemented |
 | UAS-OOP-08 | Namespace (disarankan) | §12.1 | PSR-4 `App\...`, `Database\...` | 1 | `composer dump-autoload` + review | Implemented |
 | UAS-OOP-09 | Exception handling minimal try-catch | §12.1 | `VehicleNotAvailableException`, `UnsupportedVehicleTypeException`; try-catch di factory/service | 1 | Unit test + review | Implemented |
-| UAS-ARC-01 | MVC sederhana | §12.1 | `routes/`, `app/Http/Controllers`, `app/Models`, `resources/views` | 2–4 | Review struktur + demo | Planned |
-| UAS-ARC-02 | Modular programming | §12.1 | Route per modul, folder controller/request/view per modul | 2–4 | Review struktur | Planned |
-| UAS-ARC-03 | Reusable component | §12.1 | Blade components, Form Requests, service, enum label | 2–4 | Review komponen | Planned |
+| UAS-ARC-01 | MVC sederhana | §12.1 | `routes/`, `app/Http/Controllers`, `app/Models`, `resources/views` | 2–4 | Review struktur + demo | In Progress |
+| UAS-ARC-02 | Modular programming | §12.1 | Route per modul, folder controller/request/view per modul | 2–4 | Review struktur | In Progress |
+| UAS-ARC-03 | Reusable component | §12.1 | 7 komponen Blade di `resources/views/components` | 2–4 | Review komponen + screenshot | Implemented |
 
 ## 3. Requirement Fitur
 
 | ID | Requirement | PRD | Lokasi Implementasi (Rencana) | Fase | Verifikasi | Status |
 |---|---|---|---|---|---|---|
-| UAS-FEA-01 | Login | FR-AUTH-01 | `AuthController@store`, `routes/auth.php`, `views/auth/login` | 2 | Feature test login | Planned |
-| UAS-FEA-02 | Logout | FR-AUTH-02 | `AuthController@destroy`, route POST logout | 2 | Feature test logout | Planned |
-| UAS-FEA-03 | Session user | FR-AUTH-03 | Middleware `auth`, session regenerate/invalidate | 2 | Feature test proteksi route | Planned |
-| UAS-FEA-04 | Dashboard ringkas/statistik | FR-DASH-01, FR-DASH-02 | `DashboardController`, `DashboardService`, `views/dashboard` | 2 | Feature test + manual | Planned |
+| UAS-FEA-01 | Login | FR-AUTH-01 | `AuthController@login` (`web`), `CustomerAuthController` (`customer`), `routes/auth.php`, `routes/customer.php` | 2 | `AuthTest` login/registrasi/guard | Implemented |
+| UAS-FEA-02 | Logout | FR-AUTH-02 | `AuthController@logout`, `CustomerAuthController@logout` | 2 | `AuthTest` logout | Implemented |
+| UAS-FEA-03 | Session user | FR-AUTH-03 | Guard terpisah `auth:web` dan `auth:customer`, session regenerate/invalidate | 2 | `AuthTest` & `CustomerPortalTest` isolasi guard | Implemented |
+| UAS-FEA-04 | Dashboard ringkas/statistik | FR-DASH-01, FR-DASH-02 | `DashboardController`, `DashboardService`, `views/dashboard`, `PortalController`, `views/portal` | 2 | `DashboardTest`, `CustomerPortalTest`, screenshot | Implemented |
 | UAS-FEA-05 | CRUD: tambah data (min. 3 entitas) | FR-CUST-02, FR-VEH-02, FR-PAY-01 | Controller + Form Request + view untuk pelanggan, kendaraan, pembayaran | 3–4 | Feature test create | Planned |
 | UAS-FEA-06 | CRUD: edit data (min. 3 entitas) | FR-CUST-03, FR-VEH-03, FR-PAY-03 | Controller + Form Request + view | 3–4 | Feature test update | Planned |
 | UAS-FEA-07 | CRUD: hapus data (min. 3 entitas) | FR-CUST-04, FR-VEH-04, FR-PAY-04 | Soft delete pelanggan/kendaraan; delete payment pending | 3–4 | Feature test delete + aturan | Planned |
 | UAS-FEA-08 | CRUD: detail data (min. 3 entitas) | FR-CUST-05, FR-VEH-05, FR-PAY-05 | Controller show + view detail | 3–4 | Feature test show | Planned |
-| UAS-FEA-09 | Minimal 2 fitur tambahan | §6.8 | Search, pagination, sorting, filter, upload gambar, chart | 2–4 | Manual checklist + test | Planned |
-| UAS-FEA-10 | Daftar fitur tambahan yang dipilih | §6.8 | Lihat pemetaan fitur di PRD §6.8 | 2–4 | Review fitur | Planned |
-| UAS-UI-01 | Bootstrap/Tailwind/admin template | §10 | Tailwind CSS 4 + Blade layout | 2–4 | Review UI | Planned |
-| UAS-UI-02 | Responsive layout | NFR-01 | `resources/views/layouts`, Tailwind breakpoints | 2–4 | Manual desktop/tablet/mobile | Planned |
-| UAS-UI-03 | Form validation sederhana | FR-VAL-01, NFR-03 | Form Request + error Blade | 2–4 | Feature test validasi | Planned |
+| UAS-FEA-09 | Minimal 2 fitur tambahan | §6.8 | Chart dashboard selesai; search/pagination/sorting/filter/upload menyusul Phase 3–4 | 2–4 | Manual checklist + test | In Progress |
+| UAS-FEA-10 | Daftar fitur tambahan yang dipilih | §6.8 | Lihat pemetaan fitur di PRD §6.8 | 2–4 | Review fitur | In Progress |
+| UAS-UI-01 | Bootstrap/Tailwind/admin template | §10 | Tailwind CSS 4 + layout Blade responsif | 2–4 | Review UI + screenshot | Implemented |
+| UAS-UI-02 | Responsive layout | NFR-01 | `resources/views/layouts`, Tailwind breakpoints | 2–4 | Screenshot desktop/mobile | Implemented |
+| UAS-UI-03 | Form validation sederhana | FR-VAL-01, NFR-03 | `LoginRequest` + error dekat field; modul lain menyusul | 2–4 | `AuthTest` validasi | In Progress |
 | UAS-UML-01 | Use case diagram | §11, ARCHITECTURE §7 | `docs/ARCHITECTURE.md` | 0 | Review dokumen | Documented |
 | UAS-UML-02 | Class diagram | §11, ARCHITECTURE §6 | `docs/ARCHITECTURE.md` | 0 | Review dokumen | Documented |
 | UAS-UML-03 | ERD sederhana | §11, DATABASE_SCHEMA §4 | `docs/DATABASE_SCHEMA.md` | 0 | Review dokumen | Documented |
@@ -90,18 +94,18 @@ Pemetaan dokumentasi UAS:
 | UAS-INT-01 | Minimal 1000 LOC | NFR-09 | Kode proyek di `app/`, `database/`, `routes/`, `resources/views/` | 1–5 | Hitung LOC di Phase 5 | Planned |
 | UAS-INT-02 | Minimal 8 class | UAS-OOP-01 | Sama dengan UAS-OOP-01 | 1 | Hitung class | Implemented |
 | UAS-INT-03 | Minimal 4 tabel | §8, DATABASE_SCHEMA | 5 tabel: users, customers, vehicles, rentals, payments | 1 | Migrasi + `SHOW TABLES` | Implemented |
-| UAS-INT-04 | Authentication sederhana | FR-AUTH-01–03 | Modul auth Phase 2 | 2 | Feature test | Planned |
+| UAS-INT-04 | Authentication sederhana | FR-AUTH-01–03 | Modul auth Phase 2 | 2 | 9 feature test auth | Implemented |
 | UAS-INT-05 | CRUD lengkap | FR-CUST/VEH/PAY | Modul pelanggan, kendaraan, pembayaran | 3–4 | Feature test + manual | Planned |
 | UAS-INT-06 | Relasi database | DATABASE_SCHEMA §5 | Foreign key dan relasi Eloquent | 1 | Migrasi + test relasi | Implemented |
-| UAS-INT-07 | Validasi form | FR-VAL-01 | Form Request di semua modul | 2–4 | Feature test validasi | Planned |
+| UAS-INT-07 | Validasi form | FR-VAL-01 | `LoginRequest` selesai; Form Request modul lain menyusul | 2–4 | `AuthTest` validasi login | In Progress |
 
 ## 6. Kriteria Penilaian
 
 | ID | Aspek | Bobot | Fokus RentalGo | Verifikasi | Status |
 |---|---|---|---|---|---|
 | UAS-ASM-01 | Implementasi OOP | 30% | Domain vehicle hierarchy, service, enum, exception | Code review + test + class diagram | Planned |
-| UAS-ASM-02 | Fungsionalitas | 20% | Auth, CRUD, rental, payment, search/filter, validation | Feature test + demo | Planned |
-| UAS-ASM-03 | UI/UX | 10% | Tailwind, konsistensi, responsive | Screenshot + review | Planned |
+| UAS-ASM-02 | Fungsionalitas | 20% | Auth, CRUD, rental, payment, search/filter, validation | Feature test + demo | In Progress |
+| UAS-ASM-03 | UI/UX | 10% | Tailwind, konsistensi, responsive | Screenshot + review | In Progress |
 | UAS-ASM-04 | Dokumentasi | 15% | PRD, docs, UML, laporan akhir | Checklist dokumen | Documented / Planned |
 | UAS-ASM-05 | Presentasi | 15% | Demo + penjelasan | Rehearsal | Planned |
 | UAS-ASM-06 | Kontribusi individu | 10% | Contribution log + commit history | Review log + Git | Planned |
@@ -114,7 +118,7 @@ Pemetaan dokumentasi UAS:
 | UAS-BON-02 | Export PDF/Excel | +2 | Export PDF invoice/laporan di Phase 5 | Manual buka PDF | Planned |
 | UAS-BON-03 | Real-time notification | +3 | Tidak direncanakan | — | Not Pursued |
 | UAS-BON-04 | Docker deployment | +3 | Tidak digunakan (keputusan pemilik proyek) | — | Not Pursued |
-| UAS-BON-05 | GitHub commit aktif & rapi | +2 | Conventional Commits, branch per fase, PR | Riwayat Git | Planned |
+| UAS-BON-05 | GitHub commit aktif & rapi | +2 | Conventional Commits, branch per fase, PR | Riwayat Git | In Progress |
 | UAS-BON-06 | Total bonus maksimal 10 | 10 | Maksimal realistis 7 poin tanpa Docker/real-time | Rekap bonus | Planned |
 
 ## 8. Pencegahan Pengurangan Nilai

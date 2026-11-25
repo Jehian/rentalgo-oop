@@ -40,7 +40,7 @@ minimum empat tabel UAS.
 | `email` | VARCHAR(150) | No | — | UNIQUE | Login |
 | `email_verified_at` | TIMESTAMP | Yes | NULL | — | Bawaan Laravel |
 | `password` | VARCHAR(255) | No | — | — | Hash password |
-| `role` | VARCHAR(20) | No | `staff` | index | `admin` atau `staff` |
+| `role` | VARCHAR(20) | No | `staff` | index | `admin` atau `staff` (khusus operator) |
 | `remember_token` | VARCHAR(100) | Yes | NULL | — | Bawaan Laravel |
 | `created_at` | TIMESTAMP | Yes | NULL | — | — |
 | `updated_at` | TIMESTAMP | Yes | NULL | — | — |
@@ -49,9 +49,11 @@ minimum empat tabel UAS.
 
 | Kolom | Tipe | Null | Default | Constraint | Keterangan |
 |---|---|---:|---|---|---|
-| `id` | BIGINT UNSIGNED | No | auto | PK | ID pelanggan |
+| `id` | BIGINT UNSIGNED | No | auto | PK | ID pelanggan (terpisah dari `users.id`) |
 | `name` | VARCHAR(100) | No | — | index | Nama lengkap |
-| `email` | VARCHAR(150) | Yes | NULL | UNIQUE | Email (opsional) |
+| `email` | VARCHAR(150) | Yes | NULL | UNIQUE | Email (login portal pelanggan) |
+| `password` | VARCHAR(255) | Yes | NULL | — | Hash password portal (opsional bila dibuat operator) |
+| `remember_token` | VARCHAR(100) | Yes | NULL | — | Remember token guard `customer` |
 | `phone` | VARCHAR(20) | No | — | index | Nomor telepon |
 | `identity_number` | VARCHAR(30) | No | — | UNIQUE | NIK/KTP |
 | `license_number` | VARCHAR(30) | No | — | UNIQUE | Nomor SIM |
@@ -91,7 +93,7 @@ Index komposit: `(type, status)` untuk filter daftar kendaraan.
 | `rental_code` | VARCHAR(20) | No | — | UNIQUE | Kode transaksi, contoh `RNT-20261125-A1B2` |
 | `customer_id` | BIGINT UNSIGNED | No | — | FK → `customers.id`, RESTRICT | Pelanggan |
 | `vehicle_id` | BIGINT UNSIGNED | No | — | FK → `vehicles.id`, RESTRICT | Kendaraan |
-| `user_id` | BIGINT UNSIGNED | No | — | FK → `users.id`, RESTRICT | Admin/Staff pemroses |
+| `user_id` | BIGINT UNSIGNED | Yes | NULL | FK → `users.id`, RESTRICT | Admin/Staff pemroses (`NULL` jika booking mandiri pelanggan) |
 | `start_date` | DATE | No | — | index | Tanggal mulai |
 | `end_date` | DATE | No | — | index | Tanggal selesai |
 | `duration_days` | SMALLINT UNSIGNED | No | — | >= 1 | Snapshot durasi inklusif |
@@ -201,7 +203,7 @@ erDiagram
 
 | Relasi | Kardinalitas | Foreign Key | On Delete | Penjelasan |
 |---|---|---|---|---|
-| User → Rental | 1 : N | `rentals.user_id` | RESTRICT | Satu staff memproses banyak rental |
+| User → Rental | 1 : N | `rentals.user_id` | RESTRICT | Satu staff memproses banyak rental (`NULL` untuk booking mandiri) |
 | Customer → Rental | 1 : N | `rentals.customer_id` | RESTRICT | Satu pelanggan dapat memiliki banyak rental |
 | Vehicle → Rental | 1 : N | `rentals.vehicle_id` | RESTRICT | Satu kendaraan memiliki riwayat banyak rental |
 | Rental → Payment | 1 : N | `payments.rental_id` | RESTRICT | Satu rental dapat memiliki beberapa pembayaran |
@@ -361,6 +363,7 @@ Urutan yang direncanakan:
 3. `create_vehicles_table`.
 4. `create_rentals_table` — FK ke customers, vehicles, users.
 5. `create_payments_table` — FK ke rentals.
+6. `add_auth_columns_to_customers_and_nullable_user_id_on_rentals` (Phase 2) — menambah `password`/`remember_token` pada `customers` untuk guard `customer` dan menjadikan `rentals.user_id` nullable.
 
 Catatan:
 

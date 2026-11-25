@@ -25,7 +25,8 @@ class RentalService
         VehicleModel $vehicle,
         CarbonInterface|string $startDate,
         CarbonInterface|string $endDate,
-        User $user,
+        ?User $user = null,
+        ?string $notes = null,
     ): Rental {
         $start = Carbon::parse($startDate)->startOfDay();
         $end = Carbon::parse($endDate)->startOfDay();
@@ -47,12 +48,13 @@ class RentalService
             $durationDays,
             $dailyRate,
             $totalAmount,
+            $notes,
         ): Rental {
             $rental = Rental::create([
                 'rental_code' => DocumentCodeGenerator::rentalCode(),
                 'customer_id' => $customer->id,
                 'vehicle_id' => $vehicle->id,
-                'user_id' => $user->id,
+                'user_id' => $user?->id,
                 'start_date' => $start->toDateString(),
                 'end_date' => $end->toDateString(),
                 'duration_days' => $durationDays,
@@ -60,6 +62,7 @@ class RentalService
                 'total_amount' => $totalAmount,
                 'late_fee' => 0,
                 'status' => RentalStatus::Active,
+                'notes' => $notes,
             ]);
 
             $vehicle->update(['status' => VehicleStatus::Rented]);

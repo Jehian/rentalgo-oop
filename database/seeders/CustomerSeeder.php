@@ -9,6 +9,12 @@ class CustomerSeeder extends Seeder
 {
     public function run(): void
     {
-        Customer::factory()->count(8)->create();
+        Customer::factory()->create([
+            'name' => 'Pelanggan Demo',
+            'email' => 'customer@rentalgo.test',
+            'password' => (string) config('rental.demo_password', 'password'),
+        ]);
+
+        Customer::factory()->count(7)->create();
     }
 }

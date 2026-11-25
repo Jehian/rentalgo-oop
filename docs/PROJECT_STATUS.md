@@ -2,29 +2,32 @@
 
 | Item | Nilai |
 |---|---|
-| Fase saat ini | Phase 1 — Foundation & Architecture (committed lokal) |
-| Status fase | Draft: sudah di-push; belum PR/merge |
-| Branch | `phase/01-foundation` |
-| Implementasi aplikasi | Fondasi Phase 1 selesai dan committed lokal; UI/auth/CRUD/dashboard belum |
+| Fase saat ini | Phase 2 — Authentication, Layout & Dashboard (implemented; PR pending) |
+| Status fase | Implementasi lokal selesai (termasuk portal pelanggan); 47 test lulus; menunggu review/merge |
+| Branch | `phase/02-auth-dashboard` |
+| Implementasi aplikasi | Auth, registrasi, layout, dashboard, dan portal pelanggan selesai; CRUD admin Phase 3–4 belum |
 | Terakhir diperbarui | 25 November 2026 |
-| Diperbarui oleh | Benny Anderson (422024008) |
+| Diperbarui oleh | Steven Credentia Ivanemaga Zega (422024020) |
 
 ## 1. Ringkasan Status
 
-Phase 0 selesai dan sudah di-commit di `main`. Phase 1 sudah diimplementasikan secara lokal pada
-branch `phase/01-foundation`: konfigurasi, lima tabel bisnis, model/relasi, domain OOP, service,
-factory, seeder, dan test. Belum ada controller, view, autentikasi, dashboard, atau CRUD UI.
-Phase 1 sudah di-commit pada lima commit `8510ea6..22fb7c5` dan branch sudah di-push; belum di-PR
-dan belum direview.
+Phase 0 (dokumentasi) dan Phase 1 (fondasi) sudah selesai. Phase 1 digabung ke `main` melalui PR #1
+dengan merge commit `1b5caee`, sehingga migration, model, enum, domain OOP, service, factory, seeder,
+dan route stub sudah tersedia di `main`.
+
+Phase 2 sudah diimplementasikan pada branch `phase/02-auth-dashboard`: autentikasi custom, middleware
+role Admin, layout responsif, komponen Blade reusable, dashboard dengan Chart.js, dan feature test.
+Belum ada CRUD pelanggan/kendaraan, transaksi rental, atau pembayaran; itu scope Phase 3–4. Phase 2
+belum di-PR dan belum di-merge.
 
 ## 2. Status Fase
 
 | Fase | Status | Catatan |
 |---|---|---|
 | 0 — Requirements & Planning | Selesai | Dokumen dibuat dan di-commit di `main` |
-| 1 — Foundation & Architecture | Pushed | 25 test lulus; commit `8510ea6..22fb7c5`; menunggu PR/review |
-| 2 — Auth, Layout & Dashboard | Belum dimulai | Dependensi: Phase 1 merged |
-| 3 — Master Data CRUD | Belum dimulai | Dependensi: Phase 1–2 |
+| 1 — Foundation & Architecture | Merged | PR #1, merge commit `1b5caee`; 25 test saat itu |
+| 2 — Auth, Layout & Dashboard | Implemented — PR pending | 47 test lulus; termasuk portal pelanggan; menunggu review |
+| 3 — Master Data CRUD | Belum dimulai | Dependensi: Phase 2 merged |
 | 4 — Rental & Payment Workflow | Belum dimulai | Dependensi: Phase 1–3 |
 | 5 — Integration & Delivery | Belum dimulai | Dependensi: Phase 2–4 |
 
@@ -32,36 +35,37 @@ dan belum direview.
 
 | Area | Status |
 |---|---|
-| Requirement UAS diekstrak | Selesai |
-| Traceability matrix | Diperbarui; 12 ID Phase 1 berstatus `Implemented` |
+| Requirement UAS diekstrak | Selesai (66 ID) |
+| Traceability matrix | Diperbarui; requirement Phase 1–2 berstatus `Implemented` |
 | PRD | Selesai |
 | Arsitektur dan UML | Selesai (dokumen) |
 | Database schema dan ERD | Selesai (dokumen) |
 | Phase plan dan pembagian tim | Selesai |
 | Workflow Git dan AI handoff | Selesai |
-| Implementasi OOP | Fondasi domain/service selesai |
-| Database/migration | 5 tabel bisnis + role selesai |
-| Autentikasi | 0% |
-| CRUD | 0% |
-| Dashboard | 0% |
-| Test fitur | 25 passed (57 assertions) |
+| Implementasi OOP | Fondasi domain/service selesai; service dashboard ditambahkan |
+| Database/migration | 5 tabel bisnis + role selesai (Phase 1) |
+| Autentikasi | Implemented (Phase 2) — login, logout, registrasi pelanggan |
+| Layout dan komponen UI | Implemented (Phase 2) — operator + publik/pelanggan |
+| Portal pelanggan | Implemented (Phase 2) — katalog, detail/estimasi, booking, riwayat, profil |
+| Dashboard | Implemented (Phase 2) |
+| CRUD pelanggan/kendaraan | 0% (Phase 3) |
+| Rental dan pembayaran | 0% (Phase 4) |
+| Test | 47 passed (153 assertions) |
 | SQL dump | 0% |
-| Screenshot | 0% |
+| Screenshot | Login dan dashboard desktop/mobile tersedia |
 | Laporan akhir | 0% |
 | Presentasi | 0% |
 
 ## 4. Yang Sudah Selesai
 
-### 4.1 Phase 0
+### 4.1 Phase 0 — Requirements & Planning
 
-- [x] Membaca dokumen UAS dan mengekstrak 66 requirement ID.
-- [x] Menyusun `PRD.md`, `docs/UAS_REQUIREMENTS.md`, `docs/UAS_TRACEABILITY.md`.
-- [x] Menyusun `docs/ARCHITECTURE.md`, `docs/DATABASE_SCHEMA.md`, `docs/DECISIONS.md`.
-- [x] Menyusun `docs/PHASE_PLAN.md`, `docs/AI_HANDOFF.md`, `AGENTS.md`, template phase report.
-- [x] Mengisi nama/NIM anggota dan merapikan `.env.example` untuk MySQL `rentalgo`.
+- [x] Membaca UAS dan mengekstrak 66 requirement ID.
+- [x] Menyusun `PRD.md`, requirement, traceability, arsitektur, schema, keputusan teknis.
+- [x] Menyusun phase plan, workflow Git, template laporan, AI handoff.
 - [x] Commit Phase 0 `510a309` di `main`; baseline test dan Pint lulus.
 
-### 4.2 Phase 1 — implementasi lokal
+### 4.2 Phase 1 — Foundation & Architecture (merged)
 
 - [x] Konfigurasi `config/rental.php`, timezone `Asia/Jakarta`, dan `APP_TIMEZONE`.
 - [x] Migration role user, `customers`, `vehicles`, `rentals`, `payments`.
@@ -69,74 +73,90 @@ dan belum direview.
 - [x] Enam enum dengan label Indonesia.
 - [x] `Rentable`, abstract `Vehicle`, `Car`, `Motorcycle`, `VehicleFactory`.
 - [x] Custom exception dan `DocumentCodeGenerator`.
-- [x] `RentalService` create/update/complete/cancel dan late fee.
-- [x] Factory, seeder admin/staff, 8 pelanggan, 8 kendaraan, 12 rental, 12 pembayaran.
-- [x] Route file kosong per modul dan include di `routes/web.php`.
-- [x] Unit/feature test Phase 1.
-- [x] Commit lokal Phase 1 (`8510ea6`, `72490c1`, `c9ac1b7`, `c6c4dc8`, `eea47e9`, `22fb7c5`).
-- [x] Push branch `phase/01-foundation`.
-- [ ] PR/review/merge Phase 1.
+- [x] `RentalService` untuk create/update/complete/cancel dan denda.
+- [x] Factory, seeder demo, route stub, unit/feature test.
+- [x] PR #1 direview Steven Credentia Ivanemaga Zega dan di-merge (`1b5caee`).
 
-### 4.3 Verifikasi Phase 1
+### 4.3 Phase 2 — Authentication, Layout & Dashboard (implementasi lokal)
+
+- [x] Login/logout/session operator (`web` guard di tabel `users`) + login/registrasi/logout pelanggan terpisah (`customer` guard di tabel `customers`).
+- [x] Validasi login/registrasi dan rate limit 5 percobaan.
+- [x] Middleware `EnsureUserIsAdmin` (`admin`) serta isolasi guard `auth:web` vs `auth:customer`.
+- [x] Redirect `guest` dan user terautentikasi sesuai area (`/login` ↔ `/dashboard`, `/customer/login` ↔ `/`).
+- [x] Layout utama operator (`app.blade.php`), layout guest sederhana, dan layout publik/pelanggan (`public.blade.php`).
+- [x] Komponen `x-alert`, `x-button`, `x-card`, `x-input`, `x-modal`, `x-pagination`, `x-status-badge`.
+- [x] `DashboardService` dan `DashboardController`.
+- [x] Kartu ringkasan, grafik pendapatan 6 bulan, komposisi status kendaraan, rental terbaru.
+- [x] Chart.js 4.6.2 melalui npm.
+- [x] Halaman 403 berbahasa Indonesia.
+- [x] Portal pelanggan publik: katalog kendaraan (`/`), search, filter tipe/status, sorting tarif, detail & estimasi tarif live, booking mandiri via `RentalService`, riwayat/detail pesanan, pembatalan rental aktif pribadi, dan edit profil.
+- [x] Feature test auth, registrasi, isolasi guard, dashboard, dan portal pelanggan (47 test total, 153 assertions).
+- [x] Screenshot login/dashboard desktop dan mobile.
+- [x] Dokumentasi Phase 2, PRD, ADR-028, skema, arsitektur, traceability, contribution log, dan README diperbarui.
+- [ ] PR, review anggota lain, dan merge.
+
+### 4.4 Verifikasi Phase 2
 
 | Pemeriksaan | Hasil |
 |---|---|
-| `php artisan migrate:fresh --seed --force` | Berhasil di MySQL 9.1 |
-| Data demo | 2 users, 8 customers, 8 vehicles, 12 rentals, 12 payments |
-| Status data demo | 6 rental aktif, 6 selesai, 2 kendaraan tersedia, 6 disewa |
-| `php artisan test` | 25 passed (57 assertions) |
-| `vendor/bin/pint --test` | Passed |
-| Route file | Kosong dan ter-include; route fitur diisi Phase 2–4 |
-| Commit/PR | Commit `8510ea6..22fb7c5` sudah di-push; PR belum dibuat |
+| `php artisan test` | 47 passed (153 assertions) |
+| `vendor\bin\pint --test` | Passed |
+| `npm run build` | Passed; CSS 77.10 kB (gzip 14.59 kB), JS 209.82 kB (gzip 72.05 kB) |
+| `php artisan migrate:fresh --seed --force` | Perlu dijalankan ulang di MySQL lokal setelah penambahan migration `add_auth_columns_to_customers_and_nullable_user_id_on_rentals` |
+| Login/registrasi & proteksi role | Lulus via feature test |
+| Portal pelanggan (katalog, booking, riwayat, profil) | Lulus via feature test |
+| Dashboard dengan data seeder | Lulus; chart dan tabel tampil |
+| Screenshot | 4 file login/dashboard di `docs/assets/phase-02/` |
 
 ## 5. Yang Sedang Dikerjakan
 
-Implementasi Phase 1 selesai, sudah diverifikasi, dan branch sudah di-push. Pekerjaan berikutnya
-adalah membuat PR dan review Phase 1.
+Tidak ada pekerjaan implementasi lain yang berjalan. Phase 2 selesai secara lokal dan menunggu
+PR/review. Phase 3 belum boleh dimulai sebelum Phase 2 digabung, sesuai urutan dependensi.
 
 ## 6. Langkah Berikutnya
 
-1. Buat PR dari `phase/01-foundation` ke `main`.
-2. Reviewer memeriksa kode, test, dan dokumentasi; merge setelah disetujui.
-3. Mulai Phase 2: autentikasi, layout, dashboard, dan middleware role.
+1. Tunjukkan ringkasan perubahan dan hasil verifikasi Phase 2 kepada pemilik proyek.
+2. Setelah disetujui: commit dengan Conventional Commits, push branch `phase/02-auth-dashboard`.
+3. Buat PR ke `main`, minta reviewer anggota lain (bukan pemilik branch).
+4. Review, lalu merge memakai merge commit (bukan squash).
+5. Setelah merge, mulai Phase 3 dari `main` terbaru: CRUD pelanggan dan kendaraan.
+6. Phase 4: rental dan pembayaran; Phase 5: integrasi, SQL dump, laporan, presentasi.
 
 ## 7. Metrik Rencana
 
 | Metrik | Target UAS | Rencana RentalGo | Status |
 |---|---:|---:|---|
-| Class OOP | ≥ 8 | 16 class + 1 interface + 6 enum | 13 class + 1 interface + 6 enum (Phase 1) |
-| Inheritance | ≥ 2 | 2 (`Car`, `Motorcycle`) | Selesai |
-| Static method | ≥ 1 | 2+ | 2 (`VehicleFactory`, `DocumentCodeGenerator`) |
-| Tabel bisnis | ≥ 4 | 5 | Selesai |
-| Fitur tambahan | ≥ 2 | 6 | Direncanakan Phase 2–4 |
+| Class OOP | ≥ 8 | 16 class + 1 interface + 6 enum | 18 class + 1 interface + 6 enum |
+| Inheritance | ≥ 2 | 2 (`Car`, `Motorcycle`) | Tercapai |
+| Static method | ≥ 1 | 2+ | Tercapai |
+| Tabel bisnis | ≥ 4 | 5 | Tercapai |
+| Fitur tambahan | ≥ 2 | 6 | Chart selesai; search/pagination/sort/filter/upload menyusul |
 | LOC | ≥ 1000 | Target ≥ 1000 | Belum dihitung |
-| Entitas CRUD | ≥ 3 | Pelanggan, kendaraan, pembayaran (+ lifecycle rental) | Direncanakan Phase 3–4 |
-| Test suite | Wajib berjalan | Unit + feature | 25 passed |
+| Entitas CRUD | ≥ 3 | Pelanggan, kendaraan, pembayaran (+ lifecycle rental) | Belum ada (Phase 3–4) |
+| Test suite | Wajib berjalan | Unit + feature | 47 passed (153 assertions) |
 
 ## 8. Pertanyaan Terbuka / Blockers
 
 | No | Hal | Dampak | Status |
 |---|---|---|---|
-| 1 | Nama/NIM anggota tim | Dokumen dan penilaian individu | Selesai |
-| 2 | Kredensial MySQL lokal | Setup Phase 1 | Selesai: MySQL 9.1, port 3306, `rentalgo` |
-| 3 | Bonus yang dikerjakan | Scope Phase 5 | Selesai: REST API + PDF direncanakan |
-| 4 | Format UML final (Mermaid/PNG) | Presentasi/dokumen | Default: Mermaid + PNG jika diminta |
-| 5 | Tanggal/format presentasi | Phase 5 | Menunggu informasi |
-| 6 | PR/review Phase 1 | Submission dan review | Branch sudah di-push; menunggu PR/review |
+| 1 | PR/review Phase 2 | Merge dan mulai Phase 3 | Implementasi selesai; PR belum dibuat |
+| 2 | Reviewer Phase 2 | Syarat Definition of Done | Perlu anggota selain pemilik branch |
+| 3 | Format UML final (Mermaid/PNG) | Presentasi/dokumen | Default: Mermaid + PNG jika diminta |
+| 4 | Tanggal/format presentasi | Phase 5 | Menunggu informasi |
+| 5 | Aktivasi link sidebar Phase 3/4 | Navigasi UI | Menunggu route dari fase terkait |
 
-Tidak ada blocker teknis; Phase 1 sudah lulus verifikasi lokal.
+Tidak ada blocker teknis untuk review Phase 2.
 
 ## 9. Catatan Environment
 
 - PHP CLI 8.4.8; Laravel 13.44.1; Node 22.16.0; npm 10.9.2.
 - Database aktif di `.env`: MySQL 9.1, `127.0.0.1:3306`, database `rentalgo`.
 - Service WAMP MySQL dan MariaDB berjalan; MariaDB memakai port 3307 dan tidak dipakai proyek.
-- MySQL lokal membatasi key index 1000 byte; string terindeks pada migration skeleton dibatasi
-  (`email` 150, key/id 191) agar kompatibel.
 - PHP CLI menampilkan peringatan startup `ext/curl` yang diblokir kebijakan sistem; Artisan tetap
   berjalan. Ini masalah environment lokal, bukan bug proyek.
-- Ekstensi `intl` belum aktif di PHP CLI; aplikasi akan memakai `number_format`, bukan
-  `Number::format`. Error `db:show` setelah koneksi berasal dari keterbatasan ini.
+- Ekstensi `intl` belum aktif di PHP CLI; aplikasi memakai `number_format`, bukan `Number::format`.
+- Chart.js 4.6.2 terpasang melalui npm; `npm run build` menghasilkan aset di `public/build`.
+- Screenshot Phase 2 diambil dengan headless Chrome pada aplikasi lokal.
 - Docker tidak digunakan.
 
 ## 10. Aturan Pembaruan Status
