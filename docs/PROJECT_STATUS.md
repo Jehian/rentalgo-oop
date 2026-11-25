@@ -3,7 +3,7 @@
 | Item | Nilai |
 |---|---|
 | Fase saat ini | Phase 1 — Foundation & Architecture (committed lokal) |
-| Status fase | Draft: sudah di-commit lokal; belum push/PR/merge |
+| Status fase | Draft: sudah di-push; belum PR/merge |
 | Branch | `phase/01-foundation` |
 | Implementasi aplikasi | Fondasi Phase 1 selesai dan committed lokal; UI/auth/CRUD/dashboard belum |
 | Terakhir diperbarui | 25 November 2026 |
@@ -14,7 +14,7 @@
 Phase 0 selesai dan sudah di-commit di `main`. Phase 1 sudah diimplementasikan secara lokal pada
 branch `phase/01-foundation`: konfigurasi, lima tabel bisnis, model/relasi, domain OOP, service,
 factory, seeder, dan test. Belum ada controller, view, autentikasi, dashboard, atau CRUD UI.
-Phase 1 sudah di-commit lokal pada lima commit `8510ea6..eea47e9`; belum di-push, belum di-PR,
+Phase 1 sudah di-commit pada lima commit `8510ea6..22fb7c5` dan branch sudah di-push; belum di-PR
 dan belum direview.
 
 ## 2. Status Fase
@@ -22,7 +22,7 @@ dan belum direview.
 | Fase | Status | Catatan |
 |---|---|---|
 | 0 — Requirements & Planning | Selesai | Dokumen dibuat dan di-commit di `main` |
-| 1 — Foundation & Architecture | Committed lokal | 25 test lulus; commit `8510ea6..eea47e9`; menunggu push/PR/review |
+| 1 — Foundation & Architecture | Pushed | 25 test lulus; commit `8510ea6..22fb7c5`; menunggu PR/review |
 | 2 — Auth, Layout & Dashboard | Belum dimulai | Dependensi: Phase 1 merged |
 | 3 — Master Data CRUD | Belum dimulai | Dependensi: Phase 1–2 |
 | 4 — Rental & Payment Workflow | Belum dimulai | Dependensi: Phase 1–3 |
@@ -73,8 +73,9 @@ dan belum direview.
 - [x] Factory, seeder admin/staff, 8 pelanggan, 8 kendaraan, 12 rental, 12 pembayaran.
 - [x] Route file kosong per modul dan include di `routes/web.php`.
 - [x] Unit/feature test Phase 1.
-- [x] Commit lokal Phase 1 (`8510ea6`, `72490c1`, `c9ac1b7`, `c6c4dc8`, `eea47e9`).
-- [ ] Push/PR/review/merge Phase 1.
+- [x] Commit lokal Phase 1 (`8510ea6`, `72490c1`, `c9ac1b7`, `c6c4dc8`, `eea47e9`, `22fb7c5`).
+- [x] Push branch `phase/01-foundation`.
+- [ ] PR/review/merge Phase 1.
 
 ### 4.3 Verifikasi Phase 1
 
@@ -86,16 +87,16 @@ dan belum direview.
 | `php artisan test` | 25 passed (57 assertions) |
 | `vendor/bin/pint --test` | Passed |
 | Route file | Kosong dan ter-include; route fitur diisi Phase 2–4 |
-| Commit/PR | Commit lokal `8510ea6..eea47e9`; PR belum dibuat |
+| Commit/PR | Commit `8510ea6..22fb7c5` sudah di-push; PR belum dibuat |
 
 ## 5. Yang Sedang Dikerjakan
 
-Implementasi Phase 1 selesai, sudah diverifikasi, dan sudah di-commit lokal. Pekerjaan berikutnya
-adalah push branch, membuat PR, dan review Phase 1.
+Implementasi Phase 1 selesai, sudah diverifikasi, dan branch sudah di-push. Pekerjaan berikutnya
+adalah membuat PR dan review Phase 1.
 
 ## 6. Langkah Berikutnya
 
-1. Push `phase/01-foundation` dan buat PR ke `main`.
+1. Buat PR dari `phase/01-foundation` ke `main`.
 2. Reviewer memeriksa kode, test, dan dokumentasi; merge setelah disetujui.
 3. Mulai Phase 2: autentikasi, layout, dashboard, dan middleware role.
 
@@ -121,7 +122,7 @@ adalah push branch, membuat PR, dan review Phase 1.
 | 3 | Bonus yang dikerjakan | Scope Phase 5 | Selesai: REST API + PDF direncanakan |
 | 4 | Format UML final (Mermaid/PNG) | Presentasi/dokumen | Default: Mermaid + PNG jika diminta |
 | 5 | Tanggal/format presentasi | Phase 5 | Menunggu informasi |
-| 6 | Push/PR/review Phase 1 | Submission dan review | Commit lokal selesai; menunggu push/PR |
+| 6 | PR/review Phase 1 | Submission dan review | Branch sudah di-push; menunggu PR/review |
 
 Tidak ada blocker teknis; Phase 1 sudah lulus verifikasi lokal.
 

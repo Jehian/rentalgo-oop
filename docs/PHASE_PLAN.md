@@ -19,7 +19,7 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 | Fase | Nama | Pemilik | Branch | Status |
 |---|---|---|---|---|
 | 0 | Requirements & Planning | Anggota 1 | `main` (dokumentasi saja) | Selesai |
-| 1 | Foundation & Architecture | Anggota 1 | `phase/01-foundation` | Committed lokal; belum PR |
+| 1 | Foundation & Architecture | Anggota 1 | `phase/01-foundation` | Pushed; belum PR |
 | 2 | Auth, Layout & Dashboard | Anggota 2 | `phase/02-auth-dashboard` | Belum dimulai |
 | 3 | Master Data CRUD | Anggota 3 | `phase/03-master-data` | Belum dimulai |
 | 4 | Rental & Payment Workflow | Anggota 4 | `phase/04-rental-payment` | Belum dimulai |
@@ -67,7 +67,7 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 - [x] Empat pembagian tanggung jawab didefinisikan.
 - [x] Review dan persetujuan manusia.
 
-**Handoff:** Phase 1 sudah diimplementasikan dan di-commit lokal; push/PR berikutnya.
+**Handoff:** Phase 1 sudah diimplementasikan, di-commit, dan di-push; PR berikutnya.
 
 ---
 

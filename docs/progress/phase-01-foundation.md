@@ -8,7 +8,7 @@
 | Pull Request | Belum dibuat |
 | Tanggal mulai | 2026-11-25 |
 | Tanggal selesai | 2026-11-25 (implementasi lokal) |
-| Status | Draft — committed lokal; menunggu push/PR/review |
+| Status | Draft — sudah di-push; menunggu PR/review |
 | Reviewer | `pending` |
 
 ## 1. Ringkasan
@@ -29,7 +29,7 @@ view, autentikasi, atau UI yang dibuat pada fase ini.
 | Factory dan seeder demo | Tercapai | `database/factories`, `database/seeders` |
 | Route file kosong per modul | Tercapai | `routes/auth.php`, `dashboard.php`, `master.php`, `rental.php` |
 | Test dan Pint | Tercapai | 25 test lulus; Pint lulus |
-| Push/PR/review/merge | Belum | Commit lokal `8510ea6..eea47e9`; menunggu push/PR |
+| PR/review/merge | Belum | Commit `8510ea6..22fb7c5` sudah di-push; PR belum dibuat |
 
 ## 3. Scope yang Diselesaikan
 
@@ -44,7 +44,8 @@ view, autentikasi, atau UI yang dibuat pada fase ini.
 - [x] Route file kosong per modul dan include di `routes/web.php`.
 - [x] Unit/feature test Phase 1.
 - [x] Commit lokal Phase 1 (`8510ea6`, `72490c1`, `c9ac1b7`, `c6c4dc8`, `eea47e9`).
-- [ ] Push/PR/review/merge.
+- [x] Push branch `phase/01-foundation` (`22fb7c5`).
+- [ ] PR/review/merge.
 
 ## 4. File yang Dibuat/Diubah
 
@@ -165,7 +166,7 @@ Tidak ada; Phase 1 tidak membuat UI.
 - `intl` belum aktif di PHP CLI; verifikasi memakai `number_format`/Tinker, bukan `Number::format`.
 - `curl` diblokir Application Control; hanya warning startup, tidak menghalangi test/Artisan.
 - Route file sengaja kosong; route fitur baru diisi Phase 2–4.
-- Commit lokal sudah dibuat; PR, reviewer, dan merge untuk Phase 1 belum ada.
+- Commit sudah dibuat dan branch sudah di-push; PR, reviewer, dan merge untuk Phase 1 belum ada.
 
 ## 10. Handoff ke Fase Berikutnya
 
@@ -184,6 +185,7 @@ Tidak ada; Phase 1 tidak membuat UI.
 - [x] Tidak ada secret di file yang diubah.
 - [x] Dokumentasi status/traceability/contribution log diperbarui.
 - [x] Commit lokal Phase 1 dibuat.
+- [x] Branch Phase 1 di-push.
 - [ ] Screenshot disertakan (tidak ada UI).
 - [ ] PR dibuat dan direview.
 - [ ] Merge selesai.
@@ -192,4 +194,4 @@ Tidak ada; Phase 1 tidak membuat UI.
 
 | Anggota | Kontribusi | Commit/PR |
 |---|---|---|
-| Benny Anderson (422024008) | Konfigurasi, migration, model, domain, service, factory, seeder, test, dokumentasi Phase 1 | `8510ea6`, `72490c1`, `c9ac1b7`, `c6c4dc8`, `eea47e9` |
+| Benny Anderson (422024008) | Konfigurasi, migration, model, domain, service, factory, seeder, test, dokumentasi Phase 1 | `8510ea6`, `72490c1`, `c9ac1b7`, `c6c4dc8`, `eea47e9`, `22fb7c5` |

@@ -17,7 +17,7 @@ Direktori ini menyimpan laporan penyelesaian setiap fase.
 | Fase | File | Status |
 |---|---|---|
 | Phase 0 | Belum ada (dokumentasi Phase 0 ada di root dan `docs/`) | — |
-| Phase 1 | [`phase-01-foundation.md`](phase-01-foundation.md) | Draft — committed lokal; belum push/PR |
+| Phase 1 | [`phase-01-foundation.md`](phase-01-foundation.md) | Draft — pushed; belum PR |
 | Phase 2 | `phase-02-auth-dashboard.md` | Belum dibuat |
 | Phase 3 | `phase-03-master-data.md` | Belum dibuat |
 | Phase 4 | `phase-04-rental-payment.md` | Belum dibuat |

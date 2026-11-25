@@ -26,19 +26,19 @@ dokumen UAS menang; perbaiki dokumen proyek melalui PR.
 |---|---|
 | Repository | `https://github.com/Jehian/rentalgo-oop` |
 | Branch dokumentasi | `main` |
-| Commit terakhir | Phase 0 `510a309` (`main`); Phase 1 lokal `8510ea6..eea47e9` |
+| Commit terakhir | Phase 0 `510a309` (`main`); Phase 1 `8510ea6..22fb7c5` (branch) |
 | Framework | Laravel 13.44.1 |
 | PHP CLI | 8.4.8 (minimum 8.3); WAMP PHP 8.4.27 tersedia |
 | Node/npm | 22.16.0 / 10.9.2 |
 | Database lokal | MySQL 9.1, `127.0.0.1:3306`, database `rentalgo` |
-| Implementasi aplikasi | Phase 1 foundation committed lokal |
+| Implementasi aplikasi | Phase 1 foundation committed dan di-push |
 | Migration bisnis | 5 tabel + role sudah dibuat |
 | Model/controller/service/view | Model/service ada; controller/view belum |
 | Test | 25 test lulus (57 assertions) |
 | Docker | Tidak digunakan |
 
-Phase 0 sudah selesai dan di-commit. Phase 1 sudah diimplementasikan dan di-commit lokal pada branch
-`phase/01-foundation`, tetapi belum di-push, belum di-PR, dan belum digabung.
+Phase 0 sudah selesai dan di-commit. Phase 1 sudah diimplementasikan, di-commit, dan di-push pada
+branch `phase/01-foundation`, tetapi belum di-PR dan belum digabung.
 
 ## 3. Kontrak Phase 1 (Tersedia di Branch)
 

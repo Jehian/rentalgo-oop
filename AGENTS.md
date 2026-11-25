@@ -55,7 +55,7 @@ Jika terjadi konflik, dokumen UAS menang. Jangan mengarang requirement baru; cat
 ## 5. Status Repository Saat Ini
 
 - Phase 0: selesai dan di-commit di `main` (`510a309`).
-- Phase 1: committed lokal di branch `phase/01-foundation`; belum push/PR/merge.
+- Phase 1: committed dan di-push di branch `phase/01-foundation`; belum PR/merge.
 - Fondasi tersedia: konfigurasi, migration, model, domain OOP, service, factory, seeder, test.
 - UI, autentikasi, controller, dan CRUD belum ada; dikerjakan Phase 2–4.
 

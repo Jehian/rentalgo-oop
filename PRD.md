@@ -11,7 +11,7 @@
 | Repository | https://github.com/Jehian/rentalgo-oop |
 | Branch dokumentasi | `main` (Phase 0); implementasi Phase 1 di `phase/01-foundation` |
 | Versi Dokumen | 1.1 — Phase 0 + catatan Phase 1 |
-| Status | Perencanaan selesai; fondasi Phase 1 committed lokal, belum merge |
+| Status | Perencanaan selesai; fondasi Phase 1 committed dan di-push, belum merge |
 | Terakhir Diperbarui | 25 November 2026 |
 
 > Dokumen ini adalah sumber kebutuhan produk. Sumber kebenaran utama tetap dokumen UAS resmi di
