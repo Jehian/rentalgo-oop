@@ -364,7 +364,8 @@ Urutan yang direncanakan:
 
 Catatan:
 
-- Migrasi bawaan Laravel untuk users, cache, jobs, sessions tetap dipakai.
+- Migrasi bawaan Laravel untuk users, cache, jobs, sessions tetap dipakai; panjang string terindeks
+  disesuaikan dengan batas key MySQL lokal (ADR-026).
 - Phase 1 menjalankan `php artisan migrate:fresh --seed` di database lokal.
 - Tidak ada data produksi yang perlu dipertahankan.
 - Migration harus dapat di-rollback dengan `down()` yang benar.

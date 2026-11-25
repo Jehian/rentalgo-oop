@@ -26,15 +26,15 @@ yang direncanakan, fase pengerjaan, dan metode verifikasi.
 | UAS-GEN-02 | Tema Sistem Rental Kendaraan | §1 | Modul pelanggan, kendaraan, rental, pembayaran | 1–4 | Review fitur | Planned |
 | UAS-GEN-03 | Fokus OOP, modular, CRUD, auth, MVC | §3.2, §5 | `app/Domain`, `app/Models`, `app/Http`, `app/Services` | 1–4 | Code review + demo | Planned |
 | UAS-GEN-04 | Framework yang diizinkan (Laravel fitur dasar) | §10 | Laravel 13, Blade, Eloquent | 1–5 | Review stack | Planned |
-| UAS-OOP-01 | Minimal 8 class | §12.1 | `app/Domain/Vehicles/*`, `app/Models/*`, `app/Services/*`, `app/Support/*`, `app/Exceptions/*` | 1–4 | Hitung class + class diagram | Planned |
-| UAS-OOP-02 | Encapsulation | §12.1 | Private/protected property + getter di domain; `#[Fillable]`, `#[Hidden]` di model; dependency private di service | 1 | Code review + unit test | Planned |
-| UAS-OOP-03 | Minimal 2 inheritance | §12.1 | `Car extends Vehicle`, `Motorcycle extends Vehicle` | 1 | Unit test + class diagram | Planned |
-| UAS-OOP-04 | Polymorphism / method overriding | §12.1 | `calculateRentalCost()` di-override; `RentalService` menerima tipe abstrak | 1 | Unit test polimorfik | Planned |
-| UAS-OOP-05 | Abstraction (interface/abstract class) | §12.1 | `App\Contracts\Rentable`; `App\Domain\Vehicles\Vehicle` (abstract) | 1 | Code review + class diagram | Planned |
-| UAS-OOP-06 | Constructor | §12.1 | Constructor domain class + constructor injection service/controller | 1–2 | Code review | Planned |
-| UAS-OOP-07 | Minimal 1 static method | §12.1 | `VehicleFactory::fromModel()`, `DocumentCodeGenerator::rentalCode()`/`paymentCode()` | 1 | Unit test | Planned |
-| UAS-OOP-08 | Namespace (disarankan) | §12.1 | PSR-4 `App\...`, `Database\...` | 1 | `composer dump-autoload` + review | Planned |
-| UAS-OOP-09 | Exception handling minimal try-catch | §12.1 | `VehicleNotAvailableException`, `UnsupportedVehicleTypeException`; try-catch di factory/service | 1 | Unit test + review | Planned |
+| UAS-OOP-01 | Minimal 8 class | §12.1 | `app/Domain/Vehicles/*`, `app/Models/*`, `app/Services/*`, `app/Support/*`, `app/Exceptions/*` | 1–4 | Hitung class + class diagram | Implemented |
+| UAS-OOP-02 | Encapsulation | §12.1 | Private/protected property + getter di domain; `#[Fillable]`, `#[Hidden]` di model; dependency private di service | 1 | Code review + unit test | Implemented |
+| UAS-OOP-03 | Minimal 2 inheritance | §12.1 | `Car extends Vehicle`, `Motorcycle extends Vehicle` | 1 | Unit test + class diagram | Implemented |
+| UAS-OOP-04 | Polymorphism / method overriding | §12.1 | `calculateRentalCost()` di-override; `RentalService` menerima tipe abstrak | 1 | Unit test polimorfik | Implemented |
+| UAS-OOP-05 | Abstraction (interface/abstract class) | §12.1 | `App\Contracts\Rentable`; `App\Domain\Vehicles\Vehicle` (abstract) | 1 | Code review + class diagram | Implemented |
+| UAS-OOP-06 | Constructor | §12.1 | Constructor domain class + constructor injection service/controller | 1–2 | Code review | Implemented |
+| UAS-OOP-07 | Minimal 1 static method | §12.1 | `VehicleFactory::fromModel()`, `DocumentCodeGenerator::rentalCode()`/`paymentCode()` | 1 | Unit test | Implemented |
+| UAS-OOP-08 | Namespace (disarankan) | §12.1 | PSR-4 `App\...`, `Database\...` | 1 | `composer dump-autoload` + review | Implemented |
+| UAS-OOP-09 | Exception handling minimal try-catch | §12.1 | `VehicleNotAvailableException`, `UnsupportedVehicleTypeException`; try-catch di factory/service | 1 | Unit test + review | Implemented |
 | UAS-ARC-01 | MVC sederhana | §12.1 | `routes/`, `app/Http/Controllers`, `app/Models`, `resources/views` | 2–4 | Review struktur + demo | Planned |
 | UAS-ARC-02 | Modular programming | §12.1 | Route per modul, folder controller/request/view per modul | 2–4 | Review struktur | Planned |
 | UAS-ARC-03 | Reusable component | §12.1 | Blade components, Form Requests, service, enum label | 2–4 | Review komponen | Planned |
@@ -88,11 +88,11 @@ Pemetaan dokumentasi UAS:
 | ID | Requirement | PRD | Implementasi (Rencana) | Fase | Verifikasi | Status |
 |---|---|---|---|---|---|---|
 | UAS-INT-01 | Minimal 1000 LOC | NFR-09 | Kode proyek di `app/`, `database/`, `routes/`, `resources/views/` | 1–5 | Hitung LOC di Phase 5 | Planned |
-| UAS-INT-02 | Minimal 8 class | UAS-OOP-01 | Sama dengan UAS-OOP-01 | 1 | Hitung class | Planned |
-| UAS-INT-03 | Minimal 4 tabel | §8, DATABASE_SCHEMA | 5 tabel: users, customers, vehicles, rentals, payments | 1 | Migrasi + `SHOW TABLES` | Planned |
+| UAS-INT-02 | Minimal 8 class | UAS-OOP-01 | Sama dengan UAS-OOP-01 | 1 | Hitung class | Implemented |
+| UAS-INT-03 | Minimal 4 tabel | §8, DATABASE_SCHEMA | 5 tabel: users, customers, vehicles, rentals, payments | 1 | Migrasi + `SHOW TABLES` | Implemented |
 | UAS-INT-04 | Authentication sederhana | FR-AUTH-01–03 | Modul auth Phase 2 | 2 | Feature test | Planned |
 | UAS-INT-05 | CRUD lengkap | FR-CUST/VEH/PAY | Modul pelanggan, kendaraan, pembayaran | 3–4 | Feature test + manual | Planned |
-| UAS-INT-06 | Relasi database | DATABASE_SCHEMA §5 | Foreign key dan relasi Eloquent | 1 | Migrasi + test relasi | Planned |
+| UAS-INT-06 | Relasi database | DATABASE_SCHEMA §5 | Foreign key dan relasi Eloquent | 1 | Migrasi + test relasi | Implemented |
 | UAS-INT-07 | Validasi form | FR-VAL-01 | Form Request di semua modul | 2–4 | Feature test validasi | Planned |
 
 ## 6. Kriteria Penilaian
@@ -139,17 +139,17 @@ Pemetaan dokumentasi UAS:
 
 ## 10. Ringkasan Cakupan
 
-| Kategori | Jumlah ID | Documented | Documented / Planned | Planned | Optional | Not Pursued |
-|---|---:|---:|---:|---:|---:|---:|
-| Umum + OOP + Arsitektur | 16 | 0 | 0 | 16 | 0 | 0 |
-| Fitur + UI + UML | 16 | 3 | 0 | 13 | 0 | 0 |
-| Deliverables | 5 | 1 | 1 | 3 | 0 | 0 |
-| Intermediate | 7 | 0 | 0 | 7 | 0 | 0 |
-| Penilaian | 6 | 0 | 1 | 5 | 0 | 0 |
-| Bonus | 6 | 0 | 0 | 4 | 0 | 2 |
-| Pengurangan nilai | 6 | 0 | 1 | 5 | 0 | 0 |
-| Penilaian individu | 4 | 0 | 0 | 4 | 0 | 0 |
-| **Total** | **66** | **4** | **3** | **57** | **0** | **2** |
+| Kategori | Jumlah ID | Documented | Documented / Planned | Planned | Implemented | Optional | Not Pursued |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Umum + OOP + Arsitektur | 16 | 0 | 0 | 7 | 9 | 0 | 0 |
+| Fitur + UI + UML | 16 | 3 | 0 | 13 | 0 | 0 | 0 |
+| Deliverables | 5 | 1 | 1 | 3 | 0 | 0 | 0 |
+| Intermediate | 7 | 0 | 0 | 4 | 3 | 0 | 0 |
+| Penilaian | 6 | 0 | 1 | 5 | 0 | 0 | 0 |
+| Bonus | 6 | 0 | 0 | 4 | 0 | 0 | 2 |
+| Pengurangan nilai | 6 | 0 | 1 | 5 | 0 | 0 | 0 |
+| Penilaian individu | 4 | 0 | 0 | 4 | 0 | 0 | 0 |
+| **Total** | **66** | **4** | **3** | **45** | **12** | **0** | **2** |
 
 Catatan: beberapa baris dokumentasi berstatus `Documented / Planned` karena dokumen sudah ada,
 tetapi laporan akhir dan screenshot baru dibuat pada Phase 5.

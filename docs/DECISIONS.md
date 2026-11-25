@@ -393,3 +393,22 @@ aman untuk anggota yang sudah menjalankan migrasi.
 **Konsekuensi:** Dokumen dan laporan harus konsisten dengan identitas ini.
 
 **Status:** Accepted.
+
+## ADR-026 — Panjang String Terindeks untuk MySQL Lokal
+
+**Konteks:** MySQL 9.1 lokal menolak unique/index key `VARCHAR(255)` dengan `utf8mb4` karena batas
+key 1000 byte (`SQLSTATE[42000] 1071`). Migration skeleton Laravel memakai panjang default 255 pada
+`users.email`, `sessions.id`, `cache.key`, `jobs.queue`, `job_batches.id`, dan `failed_jobs.uuid`.
+
+**Keputusan:** Batasi string yang diindeks pada migration skeleton: `users.email` dan
+`password_reset_tokens.email` menjadi 150; `sessions.id`, `cache.key`, `cache_locks.key`,
+`jobs.queue`, `job_batches.id`, dan `failed_jobs.uuid` menjadi 191. Schema bisnis tetap mengikuti
+`docs/DATABASE_SCHEMA.md`.
+
+**Alternatif:** Mengubah charset database menjadi `utf8` (mengurangi dukungan Unicode); memakai
+prefix index manual (kurang portabel).
+
+**Konsekuensi:** Schema tetap kompatibel dengan MySQL lokal dan SQLite test. Panjang ini cukup untuk
+email, session ID, cache key, UUID, dan kode dokumen RentalGo.
+
+**Status:** Accepted.
