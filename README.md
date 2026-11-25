@@ -3,8 +3,9 @@
 Aplikasi web sistem informasi **rental kendaraan** yang dibangun dengan Laravel dan PHP OOP untuk
 UAS mata kuliah Pemrograman Berorientasi Objek (SI2WPO084), Program Studi Sistem Informasi.
 
-> **Status:** Phase 0 (Requirements & Planning) selesai. **Implementasi aplikasi belum dimulai.**
-> Repository saat ini berisi skeleton Laravel dan dokumen perencanaan.
+> **Status:** Phase 0 selesai. Phase 1 (Foundation & Architecture) sudah diimplementasikan,
+> di-commit, dan di-push pada branch `phase/01-foundation`; UI/auth/CRUD belum tersedia dan Phase 1
+> belum di-merge.
 
 ## Tentang Proyek
 
@@ -61,9 +62,9 @@ Tidak digunakan: Docker, Breeze/Jetstream, framework SPA.
 - Node.js dan npm.
 - MySQL 9.x via WAMP untuk aplikasi; SQLite hanya untuk automated test.
 
-## Instalasi (Setelah Phase 1)
+## Instalasi
 
-Langkah berikut menjadi acuan setelah implementasi fondasi tersedia:
+Langkah berikut menjadi acuan setelah fondasi Phase 1 tersedia:
 
 ```powershell
 composer install

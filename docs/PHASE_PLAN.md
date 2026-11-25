@@ -19,7 +19,7 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 | Fase | Nama | Pemilik | Branch | Status |
 |---|---|---|---|---|
 | 0 | Requirements & Planning | Anggota 1 | `main` (dokumentasi saja) | Selesai |
-| 1 | Foundation & Architecture | Anggota 1 | `phase/01-foundation` | Belum dimulai |
+| 1 | Foundation & Architecture | Anggota 1 | `phase/01-foundation` | Pushed; belum PR |
 | 2 | Auth, Layout & Dashboard | Anggota 2 | `phase/02-auth-dashboard` | Belum dimulai |
 | 3 | Master Data CRUD | Anggota 3 | `phase/03-master-data` | Belum dimulai |
 | 4 | Rental & Payment Workflow | Anggota 4 | `phase/04-rental-payment` | Belum dimulai |
@@ -67,7 +67,7 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 - [x] Empat pembagian tanggung jawab didefinisikan.
 - [x] Review dan persetujuan manusia.
 
-**Handoff:** Phase 1 dimulai setelah pemilik proyek memberikan instruksi eksplisit.
+**Handoff:** Phase 1 sudah diimplementasikan, di-commit, dan di-push; PR berikutnya.
 
 ---
 
@@ -101,14 +101,14 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 
 **Acceptance criteria:**
 
-- [ ] `php artisan migrate:fresh --seed` berhasil di MySQL dan SQLite test.
-- [ ] 5 tabel bisnis memiliki foreign key dan relasi yang benar.
-- [ ] Domain pricing mobil/motor lulus unit test.
-- [ ] `RentalService` mencegah double booking dan menghitung biaya/denda dengan benar.
-- [ ] Custom exception tertangkap dan pesannya jelas.
-- [ ] Semua test lulus; Pint bersih.
-- [ ] Tidak ada controller/view/auth yang dikerjakan.
-- [ ] Phase report, status, dan contribution log diperbarui.
+- [x] `php artisan migrate:fresh --seed` berhasil di MySQL dan SQLite test.
+- [x] 5 tabel bisnis memiliki foreign key dan relasi yang benar.
+- [x] Domain pricing mobil/motor lulus unit test.
+- [x] `RentalService` mencegah double booking dan menghitung biaya/denda dengan benar.
+- [x] Custom exception tertangkap dan pesannya jelas.
+- [x] Semua test lulus; Pint bersih.
+- [x] Tidak ada controller/view/auth yang dikerjakan.
+- [x] Phase report, status, dan contribution log diperbarui.
 - [ ] PR direview dan digabung.
 
 **Handoff ke Phase 2–4:** schema stabil, model/relasi, seeder, domain/service, route stub.

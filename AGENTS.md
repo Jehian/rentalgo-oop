@@ -54,13 +54,12 @@ Jika terjadi konflik, dokumen UAS menang. Jangan mengarang requirement baru; cat
 
 ## 5. Status Repository Saat Ini
 
-- Phase 0: selesai dan di-commit di `main`.
-- Implementasi aplikasi: belum dimulai.
-- Hanya skeleton Laravel + dokumen.
-- Phase 1 berikutnya: konfigurasi, migration, model, domain OOP, service, seeder, test; menunggu
-  instruksi pemilik proyek.
+- Phase 0: selesai dan di-commit di `main` (`510a309`).
+- Phase 1: committed dan di-push di branch `phase/01-foundation`; belum PR/merge.
+- Fondasi tersedia: konfigurasi, migration, model, domain OOP, service, factory, seeder, test.
+- UI, autentikasi, controller, dan CRUD belum ada; dikerjakan Phase 2–4.
 
-Jangan menganggap kode Phase 1 sudah ada sebelum branch `phase/01-foundation` digabung.
+Jangan menganggap kode Phase 1 sudah tersedia di `main` sebelum branch `phase/01-foundation` digabung.
 
 ## 6. Branching
 

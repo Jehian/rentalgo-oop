@@ -26,24 +26,24 @@ dokumen UAS menang; perbaiki dokumen proyek melalui PR.
 |---|---|
 | Repository | `https://github.com/Jehian/rentalgo-oop` |
 | Branch dokumentasi | `main` |
-| Commit terakhir | Phase 0 documentation (`main`) |
+| Commit terakhir | Phase 0 `510a309` (`main`); Phase 1 `8510ea6..22fb7c5` (branch) |
 | Framework | Laravel 13.44.1 |
 | PHP CLI | 8.4.8 (minimum 8.3); WAMP PHP 8.4.27 tersedia |
 | Node/npm | 22.16.0 / 10.9.2 |
 | Database lokal | MySQL 9.1, `127.0.0.1:3306`, database `rentalgo` |
-| Implementasi aplikasi | Belum dimulai |
-| Migration bisnis | Belum ada |
-| Model/controller/service/view | Belum ada (hanya skeleton) |
-| Test | Baseline 2 test lulus |
+| Implementasi aplikasi | Phase 1 foundation committed dan di-push |
+| Migration bisnis | 5 tabel + role sudah dibuat |
+| Model/controller/service/view | Model/service ada; controller/view belum |
+| Test | 25 test lulus (57 assertions) |
 | Docker | Tidak digunakan |
 
-Phase 0 sudah selesai dan di-commit. Phase 1 belum dimulai sampai pemilik proyek memberikan
-instruksi eksplisit.
+Phase 0 sudah selesai dan di-commit. Phase 1 sudah diimplementasikan, di-commit, dan di-push pada
+branch `phase/01-foundation`, tetapi belum di-PR dan belum digabung.
 
-## 3. Kontrak Phase 1 (Akan Disediakan)
+## 3. Kontrak Phase 1 (Tersedia di Branch)
 
-Anggota 2–4 boleh mulai merencanakan pekerjaan, tetapi **jangan mengandalkan kode Phase 1 sebelum
-branch `phase/01-foundation` digabung**. Kontrak yang direncanakan:
+Anggota 2–4 boleh membaca kode Phase 1 di branch, tetapi **jangan mengandalkan kode tersebut sebelum
+branch `phase/01-foundation` digabung**. Kontrak yang sudah tersedia:
 
 ### 3.1 Database dan Model
 
@@ -104,6 +104,8 @@ return [
     'late_fee_rate_per_day' => 0.50,
     'image_disk' => 'public',
     'image_folder' => 'vehicles',
+    'code_prefixes' => ['rental' => 'RNT', 'payment' => 'PAY'],
+    'demo_password' => env('RENTAL_DEMO_PASSWORD', 'password'),
 ];
 ```
 
@@ -114,8 +116,8 @@ Akun demo (lokal saja):
 - `admin@rentalgo.test` / `password`
 - `staff@rentalgo.test` / `password`
 
-Data pelanggan, kendaraan, rental, dan pembayaran secukupnya untuk dashboard. Seeder hanya dimiliki
-Anggota 1.
+Data demo saat ini: 8 pelanggan, 4 mobil + 4 motor, 12 rental (6 aktif, 6 selesai), dan 12
+pembayaran. Seeder hanya dimiliki Anggota 1.
 
 ### 3.7 Route Stub
 
@@ -320,7 +322,7 @@ Aturan lengkap di `AGENTS.md`. Ringkasan:
 
 ## 9. Pertanyaan Terbuka
 
-1. Waktu mulai Phase 1 (menunggu instruksi pemilik proyek).
+1. Otorisasi commit/push/PR Phase 1 (menunggu instruksi pemilik proyek).
 2. Format final UML (Mermaid/PNG).
 3. Jadwal presentasi.
 
