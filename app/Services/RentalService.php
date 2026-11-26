@@ -32,12 +32,6 @@ class RentalService
         $end = Carbon::parse($endDate)->startOfDay();
 
         $this->ensureValidDateRange($start, $end);
-        $this->ensureVehicleAvailable($vehicle, $start, $end);
-
-        $durationDays = $this->durationInDays($start, $end);
-        $domainVehicle = VehicleFactory::fromModel($vehicle);
-        $dailyRate = (float) $vehicle->daily_rate;
-        $totalAmount = $domainVehicle->calculateRentalCost($durationDays);
 
         return DB::transaction(function () use (
             $customer,
@@ -45,15 +39,21 @@ class RentalService
             $user,
             $start,
             $end,
-            $durationDays,
-            $dailyRate,
-            $totalAmount,
             $notes,
         ): Rental {
+            $lockedVehicle = VehicleModel::query()->lockForUpdate()->findOrFail($vehicle->id);
+
+            $this->ensureVehicleAvailable($lockedVehicle, $start, $end);
+
+            $durationDays = $this->durationInDays($start, $end);
+            $domainVehicle = VehicleFactory::fromModel($lockedVehicle);
+            $dailyRate = (float) $lockedVehicle->daily_rate;
+            $totalAmount = $domainVehicle->calculateRentalCost($durationDays);
+
             $rental = Rental::create([
                 'rental_code' => DocumentCodeGenerator::rentalCode(),
                 'customer_id' => $customer->id,
-                'vehicle_id' => $vehicle->id,
+                'vehicle_id' => $lockedVehicle->id,
                 'user_id' => $user?->id,
                 'start_date' => $start->toDateString(),
                 'end_date' => $end->toDateString(),
@@ -65,7 +65,7 @@ class RentalService
                 'notes' => $notes,
             ]);
 
-            $vehicle->update(['status' => VehicleStatus::Rented]);
+            $lockedVehicle->update(['status' => VehicleStatus::Rented]);
 
             return $rental;
         });
@@ -76,61 +76,74 @@ class RentalService
      */
     public function updateRental(Rental $rental, array $data): Rental
     {
-        $this->ensureRentalActive($rental);
+        return DB::transaction(function () use ($rental, $data): Rental {
+            $freshRental = Rental::query()->lockForUpdate()->findOrFail($rental->id);
+            $this->ensureRentalActive($freshRental);
 
-        $start = Carbon::parse($data['start_date'] ?? $rental->start_date)->startOfDay();
-        $end = Carbon::parse($data['end_date'] ?? $rental->end_date)->startOfDay();
+            $lockedVehicle = VehicleModel::query()->lockForUpdate()->findOrFail($freshRental->vehicle_id);
+            $freshRental->setRelation('vehicle', $lockedVehicle);
 
-        $this->ensureValidDateRange($start, $end);
-        $this->ensureNoOverlap($rental->vehicle_id, $start, $end, $rental->id);
+            $start = Carbon::parse($data['start_date'] ?? $freshRental->start_date)->startOfDay();
+            $end = Carbon::parse($data['end_date'] ?? $freshRental->end_date)->startOfDay();
 
-        $durationDays = $this->durationInDays($start, $end);
-        $totalAmount = $this->domainVehicleFromRental($rental)->calculateRentalCost($durationDays);
+            $this->ensureValidDateRange($start, $end);
+            $this->ensureNoOverlap($freshRental->vehicle_id, $start, $end, $freshRental->id);
 
-        $rental->update([
-            'start_date' => $start->toDateString(),
-            'end_date' => $end->toDateString(),
-            'duration_days' => $durationDays,
-            'total_amount' => $totalAmount,
-            'notes' => $data['notes'] ?? $rental->notes,
-        ]);
+            $durationDays = $this->durationInDays($start, $end);
+            $totalAmount = $this->domainVehicleFromRental($freshRental)->calculateRentalCost($durationDays);
 
-        return $rental->refresh();
+            $freshRental->update([
+                'start_date' => $start->toDateString(),
+                'end_date' => $end->toDateString(),
+                'duration_days' => $durationDays,
+                'total_amount' => $totalAmount,
+                'notes' => array_key_exists('notes', $data) ? $data['notes'] : $freshRental->notes,
+            ]);
+
+            if (round($freshRental->totalBill(), 2) < round($freshRental->paidAmount(), 2)) {
+                throw new InvalidArgumentException('Total biaya baru tidak boleh lebih kecil dari pembayaran yang sudah lunas.');
+            }
+
+            return $freshRental->refresh();
+        });
     }
 
     public function completeRental(Rental $rental, CarbonInterface|string $returnedAt): Rental
     {
-        $this->ensureRentalActive($rental);
-
         $returned = Carbon::parse($returnedAt);
-        $lateFee = $this->calculateLateFee($rental, $returned);
 
-        return DB::transaction(function () use ($rental, $returned, $lateFee): Rental {
-            $rental->update([
+        return DB::transaction(function () use ($rental, $returned): Rental {
+            $freshRental = Rental::query()->lockForUpdate()->findOrFail($rental->id);
+            $this->ensureRentalActive($freshRental);
+
+            $lateFee = $this->calculateLateFee($freshRental, $returned);
+
+            $freshRental->update([
                 'status' => RentalStatus::Completed,
                 'returned_at' => $returned,
                 'late_fee' => $lateFee,
             ]);
 
-            $rental->vehicle->update(['status' => VehicleStatus::Available]);
+            $freshRental->vehicle->update(['status' => VehicleStatus::Available]);
 
-            return $rental->refresh();
+            return $freshRental->refresh();
         });
     }
 
     public function cancelRental(Rental $rental): Rental
     {
-        $this->ensureRentalActive($rental);
-
         return DB::transaction(function () use ($rental): Rental {
-            $rental->update(['status' => RentalStatus::Cancelled]);
-            $rental->vehicle->update(['status' => VehicleStatus::Available]);
+            $freshRental = Rental::query()->lockForUpdate()->findOrFail($rental->id);
+            $this->ensureRentalActive($freshRental);
 
-            $rental->payments()
+            $freshRental->update(['status' => RentalStatus::Cancelled]);
+            $freshRental->vehicle->update(['status' => VehicleStatus::Available]);
+
+            $freshRental->payments()
                 ->where('status', PaymentStatus::Pending->value)
                 ->update(['status' => PaymentStatus::Cancelled->value]);
 
-            return $rental->refresh();
+            return $freshRental->refresh();
         });
     }
 
