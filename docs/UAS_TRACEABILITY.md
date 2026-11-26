@@ -6,9 +6,15 @@ yang direncanakan, fase pengerjaan, dan metode verifikasi.
 > **Penting:** Status `Planned` berarti belum diimplementasikan. Jangan mengubah status menjadi
 > `Verified` tanpa bukti implementasi dan pengujian. Dokumen ini diperbarui pada setiap phase report.
 >
-> **Pembaruan Phase 2 (2026-11-25):** Phase 1 sudah merged (PR #1, `1b5caee`). Requirement login,
-> logout, session, role, layout, dan dashboard berstatus `Implemented` karena sudah lulus test lokal;
-> status `Verified` menunggu review PR Phase 2.
+> **Pembaruan Phase 2 (2026-11-25):** Phase 1 sudah merged (PR #1, `1b5caee`) dan Phase 2 sudah
+> merged (PR #2, `c4847c2`). Requirement login, logout, session, role, layout, dashboard, dan portal
+> pelanggan berstatus `Implemented` karena sudah lulus test lokal dan review/merge Phase 2.
+>
+> **Pembaruan Phase 3 (2026-11-26):** CRUD pelanggan dan kendaraan, search/filter/sort/pagination,
+> validasi Form Request, upload gambar, dan detail riwayat rental sudah diimplementasikan, di-commit
+> oleh Steven (`8336f17`–`80af0a8`), di-push ke `origin/phase/03-master-data`, dan PR-nya menunggu
+> review/merge. Status `Verified` menunggu review PR Phase 3. CRUD pembayaran dan lifecycle rental
+> tetap Phase 4, sehingga requirement CRUD minimal 3 entitas masih `In Progress`.
 
 ## 1. Legenda Status
 
@@ -51,15 +57,15 @@ yang direncanakan, fase pengerjaan, dan metode verifikasi.
 | UAS-FEA-02 | Logout | FR-AUTH-02 | `AuthController@logout`, `CustomerAuthController@logout` | 2 | `AuthTest` logout | Implemented |
 | UAS-FEA-03 | Session user | FR-AUTH-03 | Guard terpisah `auth:web` dan `auth:customer`, session regenerate/invalidate | 2 | `AuthTest` & `CustomerPortalTest` isolasi guard | Implemented |
 | UAS-FEA-04 | Dashboard ringkas/statistik | FR-DASH-01, FR-DASH-02 | `DashboardController`, `DashboardService`, `views/dashboard`, `PortalController`, `views/portal` | 2 | `DashboardTest`, `CustomerPortalTest`, screenshot | Implemented |
-| UAS-FEA-05 | CRUD: tambah data (min. 3 entitas) | FR-CUST-02, FR-VEH-02, FR-PAY-01 | Controller + Form Request + view untuk pelanggan, kendaraan, pembayaran | 3–4 | Feature test create | Planned |
-| UAS-FEA-06 | CRUD: edit data (min. 3 entitas) | FR-CUST-03, FR-VEH-03, FR-PAY-03 | Controller + Form Request + view | 3–4 | Feature test update | Planned |
-| UAS-FEA-07 | CRUD: hapus data (min. 3 entitas) | FR-CUST-04, FR-VEH-04, FR-PAY-04 | Soft delete pelanggan/kendaraan; delete payment pending | 3–4 | Feature test delete + aturan | Planned |
-| UAS-FEA-08 | CRUD: detail data (min. 3 entitas) | FR-CUST-05, FR-VEH-05, FR-PAY-05 | Controller show + view detail | 3–4 | Feature test show | Planned |
-| UAS-FEA-09 | Minimal 2 fitur tambahan | §6.8 | Chart dashboard selesai; search/pagination/sorting/filter/upload menyusul Phase 3–4 | 2–4 | Manual checklist + test | In Progress |
-| UAS-FEA-10 | Daftar fitur tambahan yang dipilih | §6.8 | Lihat pemetaan fitur di PRD §6.8 | 2–4 | Review fitur | In Progress |
+| UAS-FEA-05 | CRUD: tambah data (min. 3 entitas) | FR-CUST-02, FR-VEH-02, FR-PAY-01 | `CustomerController@store`, `VehicleController@store`, Form Request, view pelanggan/kendaraan; pembayaran Phase 4 | 3–4 | `CustomerCrudTest`, `VehicleCrudTest`; pembayaran pending | In Progress |
+| UAS-FEA-06 | CRUD: edit data (min. 3 entitas) | FR-CUST-03, FR-VEH-03, FR-PAY-03 | `CustomerController@update`, `VehicleController@update`, Form Request, view; pembayaran Phase 4 | 3–4 | `CustomerCrudTest`, `VehicleCrudTest`; pembayaran pending | In Progress |
+| UAS-FEA-07 | CRUD: hapus data (min. 3 entitas) | FR-CUST-04, FR-VEH-04, FR-PAY-04 | Soft delete pelanggan/kendaraan via route Admin; delete payment pending Phase 4 | 3–4 | `CustomerCrudTest`, `VehicleCrudTest`; pembayaran pending | In Progress |
+| UAS-FEA-08 | CRUD: detail data (min. 3 entitas) | FR-CUST-05, FR-VEH-05, FR-PAY-05 | `CustomerController@show`, `VehicleController@show`, view detail + riwayat; payment detail Phase 4 | 3–4 | `CustomerCrudTest`, `VehicleCrudTest`; pembayaran pending | In Progress |
+| UAS-FEA-09 | Minimal 2 fitur tambahan | §6.8 | Chart dashboard, search, pagination, sorting, filter, upload gambar | 2–4 | Feature test + screenshot Phase 3 | Implemented |
+| UAS-FEA-10 | Daftar fitur tambahan yang dipilih | §6.8 | Lihat pemetaan fitur di PRD §6.8 | 2–4 | Review fitur + phase report | Implemented |
 | UAS-UI-01 | Bootstrap/Tailwind/admin template | §10 | Tailwind CSS 4 + layout Blade responsif | 2–4 | Review UI + screenshot | Implemented |
 | UAS-UI-02 | Responsive layout | NFR-01 | `resources/views/layouts`, Tailwind breakpoints | 2–4 | Screenshot desktop/mobile | Implemented |
-| UAS-UI-03 | Form validation sederhana | FR-VAL-01, NFR-03 | `LoginRequest` + error dekat field; modul lain menyusul | 2–4 | `AuthTest` validasi | In Progress |
+| UAS-UI-03 | Form validation sederhana | FR-VAL-01, NFR-03 | Auth, pelanggan, kendaraan memakai Form Request + error dekat field; rental/pembayaran menyusul | 2–4 | `AuthTest`, `CustomerCrudTest`, `VehicleCrudTest` | In Progress |
 | UAS-UML-01 | Use case diagram | §11, ARCHITECTURE §7 | `docs/ARCHITECTURE.md` | 0 | Review dokumen | Documented |
 | UAS-UML-02 | Class diagram | §11, ARCHITECTURE §6 | `docs/ARCHITECTURE.md` | 0 | Review dokumen | Documented |
 | UAS-UML-03 | ERD sederhana | §11, DATABASE_SCHEMA §4 | `docs/DATABASE_SCHEMA.md` | 0 | Review dokumen | Documented |
@@ -95,9 +101,9 @@ Pemetaan dokumentasi UAS:
 | UAS-INT-02 | Minimal 8 class | UAS-OOP-01 | Sama dengan UAS-OOP-01 | 1 | Hitung class | Implemented |
 | UAS-INT-03 | Minimal 4 tabel | §8, DATABASE_SCHEMA | 5 tabel: users, customers, vehicles, rentals, payments | 1 | Migrasi + `SHOW TABLES` | Implemented |
 | UAS-INT-04 | Authentication sederhana | FR-AUTH-01–03 | Modul auth Phase 2 | 2 | 9 feature test auth | Implemented |
-| UAS-INT-05 | CRUD lengkap | FR-CUST/VEH/PAY | Modul pelanggan, kendaraan, pembayaran | 3–4 | Feature test + manual | Planned |
+| UAS-INT-05 | CRUD lengkap | FR-CUST/VEH/PAY | Modul pelanggan dan kendaraan selesai lokal; pembayaran Phase 4 | 3–4 | Feature test + manual; pembayaran pending | In Progress |
 | UAS-INT-06 | Relasi database | DATABASE_SCHEMA §5 | Foreign key dan relasi Eloquent | 1 | Migrasi + test relasi | Implemented |
-| UAS-INT-07 | Validasi form | FR-VAL-01 | `LoginRequest` selesai; Form Request modul lain menyusul | 2–4 | `AuthTest` validasi login | In Progress |
+| UAS-INT-07 | Validasi form | FR-VAL-01 | Form Request auth, pelanggan, dan kendaraan; rental/pembayaran menyusul | 2–4 | `AuthTest`, `CustomerCrudTest`, `VehicleCrudTest` | In Progress |
 
 ## 6. Kriteria Penilaian
 
@@ -108,7 +114,7 @@ Pemetaan dokumentasi UAS:
 | UAS-ASM-03 | UI/UX | 10% | Tailwind, konsistensi, responsive | Screenshot + review | In Progress |
 | UAS-ASM-04 | Dokumentasi | 15% | PRD, docs, UML, laporan akhir | Checklist dokumen | Documented / Planned |
 | UAS-ASM-05 | Presentasi | 15% | Demo + penjelasan | Rehearsal | Planned |
-| UAS-ASM-06 | Kontribusi individu | 10% | Contribution log + commit history | Review log + Git | Planned |
+| UAS-ASM-06 | Kontribusi individu | 10% | Contribution log berbasis task + commit history | Review log + Git | In Progress |
 
 ## 7. Bonus Opsional
 
@@ -136,27 +142,28 @@ Pemetaan dokumentasi UAS:
 
 | ID | Faktor | Bukti yang Disiapkan | Verifikasi | Status |
 |---|---|---|---|---|
-| UAS-IND-01 | Kontribusi coding | `docs/CONTRIBUTION_LOG.md`, PR, phase report | Review log + PR | Planned |
-| UAS-IND-02 | Commit GitHub | Commit bermakna per anggota; merge commit mempertahankan histori | `git log --author` | Planned |
+| UAS-IND-01 | Kontribusi coding | `docs/CONTRIBUTION_LOG.md` berbasis histori commit (email Git masing-masing di phase mana saja), PR, phase report | Review log + PR | In Progress |
+| UAS-IND-02 | Commit GitHub | Commit bermakna per anggota memakai email Git masing-masing; merge commit mempertahankan histori | `git log --format="%an <%ae>"` | In Progress |
 | UAS-IND-03 | Presentasi individu | Pembagian bagian presentasi | Rehearsal | Planned |
 | UAS-IND-04 | Pemahaman kode | Code walkthrough tiap anggota | Sesi tanya-jawab internal | Planned |
 
 ## 10. Ringkasan Cakupan
 
-| Kategori | Jumlah ID | Documented | Documented / Planned | Planned | Implemented | Optional | Not Pursued |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| Umum + OOP + Arsitektur | 16 | 0 | 0 | 7 | 9 | 0 | 0 |
-| Fitur + UI + UML | 16 | 3 | 0 | 13 | 0 | 0 | 0 |
-| Deliverables | 5 | 1 | 1 | 3 | 0 | 0 | 0 |
-| Intermediate | 7 | 0 | 0 | 4 | 3 | 0 | 0 |
-| Penilaian | 6 | 0 | 1 | 5 | 0 | 0 | 0 |
-| Bonus | 6 | 0 | 0 | 4 | 0 | 0 | 2 |
-| Pengurangan nilai | 6 | 0 | 1 | 5 | 0 | 0 | 0 |
-| Penilaian individu | 4 | 0 | 0 | 4 | 0 | 0 | 0 |
-| **Total** | **66** | **4** | **3** | **45** | **12** | **0** | **2** |
+| Kategori | Jumlah ID | Documented | Documented / Planned | Planned | In Progress | Implemented | Optional | Not Pursued |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Umum + OOP + Arsitektur | 16 | 0 | 0 | 0 | 5 | 11 | 0 | 0 |
+| Fitur + UI + UML | 16 | 3 | 0 | 0 | 5 | 8 | 0 | 0 |
+| Deliverables | 5 | 1 | 1 | 3 | 0 | 0 | 0 | 0 |
+| Intermediate | 7 | 0 | 0 | 1 | 2 | 4 | 0 | 0 |
+| Penilaian | 6 | 0 | 1 | 2 | 3 | 0 | 0 | 0 |
+| Bonus | 6 | 0 | 0 | 3 | 1 | 0 | 0 | 2 |
+| Pengurangan nilai | 6 | 0 | 1 | 5 | 0 | 0 | 0 | 0 |
+| Penilaian individu | 4 | 0 | 0 | 2 | 2 | 0 | 0 | 0 |
+| **Total** | **66** | **4** | **3** | **16** | **18** | **23** | **0** | **2** |
 
 Catatan: beberapa baris dokumentasi berstatus `Documented / Planned` karena dokumen sudah ada,
-tetapi laporan akhir dan screenshot baru dibuat pada Phase 5.
+tetapi laporan akhir dan screenshot baru dibuat pada Phase 5. UAS-ASM-06 dan UAS-IND-01 menjadi
+`In Progress` karena log kontribusi berbasis task/commit mulai dipelihara; finalisasi di Phase 5.
 
 ## 11. Aturan Pemeliharaan Traceability
 

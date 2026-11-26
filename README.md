@@ -3,10 +3,10 @@
 Aplikasi web sistem informasi **rental kendaraan** yang dibangun dengan Laravel dan PHP OOP untuk
 UAS mata kuliah Pemrograman Berorientasi Objek (SI2WPO084), Program Studi Sistem Informasi.
 
-> **Status:** Phase 0 dan Phase 1 selesai; Phase 1 sudah merged ke `main` melalui PR #1 (`1b5caee`).
-> Phase 2 (Authentication, Layout & Dashboard) sudah diimplementasikan pada branch
-> `phase/02-auth-dashboard` dan menunggu PR/review. CRUD pelanggan/kendaraan, rental, dan pembayaran
-> belum tersedia (Phase 3–4).
+> **Status:** Phase 0, Phase 1, dan Phase 2 selesai dan sudah merged ke `main` (PR #1 `1b5caee`,
+> PR #2 `c4847c2`). Phase 3 (Master Data CRUD pelanggan dan kendaraan) sudah di-commit dan di-push ke
+> branch `phase/03-master-data` dan PR-nya sedang menunggu review/merge di GitHub. Transaksi rental
+> dan pembayaran belum tersedia (Phase 4).
 
 ## Tentang Proyek
 
@@ -17,25 +17,25 @@ autentikasi sederhana, validasi, dan dokumentasi.
 
 ## Fitur
 
-Sudah tersedia (Phase 2):
+Sudah tersedia (Phase 2–3):
 
 - Portal pelanggan publik: katalog kendaraan (`/`), pencarian, filter tipe/status, sorting tarif, detail kendaraan, dan estimasi biaya otomatis.
-- Registrasi pelanggan publik (`/register`), login, logout, session, serta pemisahan akses Admin, Staff (`operator`), dan Pelanggan (`customer`).
+- Registrasi pelanggan publik (`/customer/register`), login, logout, session, serta pemisahan akses Admin, Staff (`operator`), dan Pelanggan (`customer`).
 - Booking mandiri pelanggan, riwayat dan detail pesanan pribadi, pembatalan rental aktif pribadi, serta pengelolaan profil pelanggan.
 - Layout responsif operator (`app.blade.php`) dan layout publik/pelanggan (`public.blade.php`).
 - Dashboard Admin/Staff: ringkasan, grafik pendapatan enam bulan, komposisi status kendaraan, dan rental terbaru.
+- CRUD pelanggan: daftar dengan pencarian/sorting/pagination, tambah, edit, detail + riwayat rental, dan soft delete khusus Admin.
+- CRUD kendaraan: daftar dengan pencarian/filter tipe-status/sorting/pagination, tambah, edit, detail + riwayat rental, upload/ganti gambar, dan soft delete khusus Admin.
 - Komponen Blade reusable dan halaman error 403 berbahasa Indonesia.
 
-Direncanakan (Phase 3–4):
+Direncanakan (Phase 4):
 
-- CRUD pelanggan dengan pencarian, pagination, sorting, dan riwayat rental.
-- CRUD kendaraan dengan filter, upload gambar, dan riwayat rental.
 - Transaksi rental: cek ketersediaan, perhitungan biaya, pengembalian, denda, pembatalan.
 - Pembayaran: catat, ubah status, edit/hapus selama pending.
 - Bonus yang direncanakan: REST API read-only kendaraan/rental dan export PDF invoice/laporan.
 
-Fitur tambahan yang ditargetkan: search, pagination, sorting, filter, upload gambar, dan dashboard
-chart (UAS mewajibkan minimal dua). Dashboard chart sudah selesai pada Phase 2.
+Fitur tambahan yang sudah tersedia: search, pagination, sorting, filter, upload gambar, dan dashboard
+chart (UAS mewajibkan minimal dua).
 
 ## OOP yang Diterapkan
 
@@ -68,7 +68,7 @@ Tidak digunakan: Docker, Breeze/Jetstream, framework SPA.
 - PHP >= 8.3 dengan ekstensi standar Laravel.
 - Composer.
 - Node.js dan npm.
-- MySQL 9.x via WAMP untuk aplikasi; SQLite hanya untuk automated test.
+- MySQL 8.4 (Laragon) untuk aplikasi; SQLite hanya untuk automated test.
 
 ## Instalasi
 
@@ -134,6 +134,8 @@ php artisan test
 |---|---|---|
 | Login | [login-desktop.png](docs/assets/phase-02/login-desktop.png) | [login-mobile.png](docs/assets/phase-02/login-mobile.png) |
 | Dashboard | [dashboard-desktop.png](docs/assets/phase-02/dashboard-desktop.png) | [dashboard-mobile.png](docs/assets/phase-02/dashboard-mobile.png) |
+| Pelanggan | [customers-desktop.png](docs/assets/phase-03/customers-desktop.png) | [customers-mobile.png](docs/assets/phase-03/customers-mobile.png) |
+| Kendaraan | [vehicles-desktop.png](docs/assets/phase-03/vehicles-desktop.png) | [vehicles-mobile.png](docs/assets/phase-03/vehicles-mobile.png) |
 
 ## Dokumentasi
 
@@ -159,15 +161,24 @@ Dokumen UAS asli ada di `docs/reference/` dan tidak diubah.
 - Commit memakai Conventional Commits.
 - Setiap fase memperbarui laporan di `docs/progress/`, `PROJECT_STATUS.md`, `UAS_TRACEABILITY.md`,
   dan `CONTRIBUTION_LOG.md`.
+- Pembagian kerja bersifat fleksibel: setiap anggota boleh mengerjakan task pada fase mana saja
+  selama commit menggunakan **email Git masing-masing**. Kontribusi dicatat berdasarkan histori
+  commit, review PR, dan dokumentasi di `docs/CONTRIBUTION_LOG.md`, lalu difinalkan pada Phase 5.
 
 ## Tim
 
-| Anggota | Nama / NIM | Tanggung Jawab |
-|---|---|---|
-| Anggota 1 | Benny Anderson / 422024008 | Phase 0 (planning) + Phase 1 (foundation) |
-| Anggota 2 | Steven Credentia Ivanemaga Zega / 422024020 | Phase 2 (auth, layout, dashboard, portal pelanggan) |
-| Anggota 3 | Jason / 422024004 | Phase 3 (master data) |
-| Anggota 4 | Steven / 422024001 | Phase 4 (rental & payment) |
+| Nama | NIM | Email Git | Kontribusi Tercatat (`git log`) |
+|---|---|---|---|
+| Benny Anderson | 422024008 | `benanderson2nds@gmail.com` | Phase 0, Phase 1, merge PR#1 & PR#2 |
+| Steven Credentia Ivanemaga Zega | 422024020 | `steven.422024020@civitas.ukrida.ac.id` | Phase 2 |
+| Jason | 422024004 | *(konfirmasi email Git)* | — |
+| Steven | 422024001 | `steven.422024001@civitas.ukrida.ac.id` | Phase 3 |
+
+> **Catatan kontribusi:** Pembagian kerja **tidak dikunci per fase per orang**. Siapa saja boleh
+> mengerjakan task di fase mana pun selama commit memakai **email Git masing-masing**. Kolom
+> "Kontribusi Tercatat" di atas hanya merangkum histori `git log` saat ini dan akan bertambah
+> seiring berjalannya proyek. Rekap lengkap ada di [`docs/CONTRIBUTION_LOG.md`](docs/CONTRIBUTION_LOG.md)
+> dan difinalkan pada Phase 5.
 
 ## Lisensi
 

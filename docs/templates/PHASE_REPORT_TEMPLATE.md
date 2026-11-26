@@ -6,7 +6,8 @@
 | Item | Keterangan |
 |---|---|
 | Fase | Phase XX — Nama Fase |
-| Pemilik | Anggota X |
+| Pelaksana commit | Anggota X (`email Git`), Anggota Y (`email Git`) |
+| Reviewer / Merge | Anggota Z |
 | Branch | `phase/XX-nama` |
 | Pull Request | #XX / link |
 | Tanggal mulai | YYYY-MM-DD |
@@ -105,6 +106,9 @@ Tests: XX passed
 
 ## 12. Catatan Kontribusi
 
-| Anggota | Kontribusi | Commit/PR |
-|---|---|---|
-| ... | ... | ... |
+| Task | Kontributor (Author Email / Pelaksana) | Commit/PR | Bukti |
+|---|---|---|---|
+| ... | Nama (`email@domain`) | ... | ... |
+
+> Kontribusi tidak dikunci per phase secara kaku; pencatatan mengikuti histori commit pada email
+> Git masing-masing anggota dan direkonsiliasi di `docs/CONTRIBUTION_LOG.md` pada Phase 5.

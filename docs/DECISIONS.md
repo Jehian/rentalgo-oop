@@ -12,8 +12,6 @@ manusia ditandai `Proposed`; keputusan yang sudah menjadi baseline proyek ditand
 | ADR-003 | Tailwind CSS 4 sebagai framework UI | Accepted |
 | ADR-004 | Custom authentication, tanpa Breeze/Jetstream | Accepted |
 | ADR-005 | Peran Admin, Staff, dan Customer | Superseded partly by ADR-028 |
-| ADR-027 | Pendapatan dashboard dari pembayaran `paid` | Accepted |
-| ADR-028 | Portal pelanggan dan registrasi publik | Accepted |
 | ADR-006 | Satu tabel `vehicles` + domain subclass | Accepted |
 | ADR-007 | Lima tabel bisnis | Accepted |
 | ADR-008 | Service layer terbatas, tanpa repository pattern | Accepted |
@@ -37,6 +35,8 @@ manusia ditandai `Proposed`; keputusan yang sudah menjadi baseline proyek ditand
 | ADR-026 | Panjang string terindeks untuk MySQL lokal | Accepted |
 | ADR-027 | Pendapatan dashboard dari pembayaran `paid` | Accepted |
 | ADR-028 | Portal pelanggan dan registrasi publik | Accepted |
+| ADR-029 | Aturan CRUD master data, status kendaraan, dan gambar | Accepted (diimplementasikan Phase 3) |
+| ADR-030 | Kolaborasi lintas fase dan kontribusi berbasis email commit Git | Accepted |
 
 ---
 
@@ -467,3 +467,61 @@ dalam satu tabel/guard).
 dan pelanggan.
 
 **Status:** Accepted (keputusan pemilik proyek pada Phase 2).
+
+## ADR-029 — Aturan CRUD Master Data dan Gambar Kendaraan
+
+**Konteks:** Phase 3 menambahkan CRUD pelanggan dan kendaraan. Beberapa aturan perlu disepakati agar
+konsisten dengan role Admin/Staff, alur rental Phase 4, schema Phase 1, dan penyimpanan gambar.
+
+**Keputusan:**
+- Admin dan Staff boleh melihat, menambah, dan mengedit pelanggan/kendaraan. Hapus data master hanya
+  boleh dilakukan Admin melalui middleware `admin`; tombol hapus disembunyikan untuk Staff.
+- Pelanggan yang dibuat Admin tidak memiliki password portal. Email boleh diisi untuk kontak, tetapi
+  akun portal tetap dibuat melalui registrasi pelanggan agar kredensial tidak dikelola dari form admin.
+- Form kendaraan hanya boleh memilih status `available` atau `maintenance`. Status `rented` hanya
+  diatur oleh alur rental Phase 4. Saat kendaraan memiliki rental aktif, tipe dan status dikunci dan
+  nilai status dipertahankan `rented`.
+- Gambar kendaraan menerima JPG/JPEG/PNG/WebP maksimal 2 MB, disimpan di disk `public` folder
+  `vehicles` melalui `VehicleImageService`. Gambar lama dihapus saat gambar diganti atau kendaraan
+  dihapus.
+- Nilai `transmission` mobil dinormalisasi menjadi `manual`/`automatic` sesuai
+  `docs/DATABASE_SCHEMA.md`; factory Phase 1 dan data MySQL lokal disesuaikan.
+- Layout Phase 2 hanya diubah minimal untuk mengaktifkan link sidebar Pelanggan dan Kendaraan; polish
+  UI/UX menyeluruh tetap ditunda ke Phase 5.
+
+**Alternatif:** Memungkinkan Staff menghapus data master (berisiko kehilangan data operasional);
+mengelola password pelanggan dari form Admin (mencampur autentikasi portal dan data master); membiarkan
+status `rented` dapat dipilih manual (berisiko tidak sinkron dengan transaksi rental).
+
+**Konsekuensi:** Data master memakai soft delete; unique value pada baris terhapus tetap dipakai
+sehingga validasi harus memeriksa seluruh tabel. Belum ada fitur restore, dan gambar yang dihapus tidak
+dipulihkan otomatis. Phase 4 bertanggung jawab mengubah status kendaraan saat rental dibuat/diakhiri.
+
+**Status:** Accepted (disetujui pemilik proyek sebelum implementasi Phase 3).
+
+## ADR-030 — Kolaborasi Lintas Fase dan Pencatatan Kontribusi Berbasis Email Commit
+
+**Konteks:** Tim sepakat bahwa pembagian kontribusi tidak boleh berpatokan pada phase secara kaku
+(misalnya menganggap satu phase hanya dikerjakan satu orang tertentu). Siapa saja boleh mengerjakan
+task pada phase mana saja, sementara penilaian UAS membutuhkan bukti histori commit GitHub yang jelas.
+
+**Keputusan:**
+- Tidak ada pembagian kepemilikan phase secara kaku; setiap anggota bebas mengerjakan task pada
+  phase mana saja dengan koordinasi agar tidak terjadi konflik file.
+- **Histori commit Git dengan email masing-masing anggota** menjadi dasar utama pencatatan kontribusi
+  implementasi (`benanderson2nds@gmail.com`, `steven.422024020@civitas.ukrida.ac.id`,
+  `steven.422024001@civitas.ukrida.ac.id`, dan email Git resmi Jason).
+- Peran koordinator (jika disebut pada rencana fase) hanya berfungsi untuk menjaga scope dan alur
+  merge, bukan pembatasan kontribusi.
+- Review PR, dokumentasi, pengujian, dan persiapan presentasi tetap dicatat di `docs/CONTRIBUTION_LOG.md`
+  dan direkonsiliasi dengan `git log --format="%h %an <%ae> %s"` pada Phase 5.
+
+**Alternatif:** Mempertahankan kepemilikan phase secara kaku (menghambat kolaborasi dan tidak sesuai
+kenyataan pengerjaan); mencatat kontribusi hanya dari rencana awal phase tanpa melihat author/email
+commit di Git.
+
+**Konsekuensi:** Setiap anggota wajib memastikan konfigurasi `user.name` dan `user.email` Git sesuai
+identitas masing-masing saat melakukan commit. Satu phase dapat berisi commit dari beberapa anggota,
+atau sebaliknya satu anggota dapat berkontribusi di lebih dari satu phase.
+
+**Status:** Accepted (disepakati tim pada 2026-11-26).

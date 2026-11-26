@@ -209,7 +209,7 @@ use App\Domain\Vehicles\Vehicle;
 | `App\Services\RentalService` | Application | Membuat, mengubah, mengembalikan, membatalkan rental; cek availability; hitung denda | `RentalCodeGenerator`/config | `createRental()`, `completeRental()`, `cancelRental()`, `calculateLateFee()` | Menggunakan `VehicleFactory`, `Rental`, `Customer`, `VehicleModel` | Encapsulation, constructor injection, exception |
 | `App\Services\PaymentService` | Application | Mencatat/mengubah pembayaran pending dan validasi sisa tagihan | — | `record()`, `markPaid()`, `deletePending()` | `Payment`, `Rental` | Service layer, exception |
 | `App\Services\DashboardService` | Application | Menghitung statistik dan data grafik | — | `summary()`, `monthlyRevenue()`, `vehicleStatus()` | `Rental`, `Payment`, `VehicleModel` | Service layer, reusable |
-| `App\Services\VehicleImageService` | Application | Menyimpan/mengganti/menghapus gambar kendaraan | disk, folder | `store()`, `replace()`, `delete()` | `VehicleModel`, Storage | Encapsulation |
+| `App\Services\VehicleImageService` | Application | Menyimpan/menghapus gambar kendaraan | disk, folder | `store()`, `delete()` | `VehicleModel`, Storage | Encapsulation |
 | `App\Support\DocumentCodeGenerator` | Support | Membuat kode rental/pembayaran unik | prefix | static `rentalCode()`, static `paymentCode()` | `Rental`, `Payment` | Static method |
 | `VehicleNotAvailableException` | Exception | Menandai kendaraan tidak tersedia | — | static `forVehicle()` | Dilempar `RentalService` | Exception |
 | `UnsupportedVehicleTypeException` | Exception | Menandai tipe kendaraan tidak dikenal | — | static `forType()` | Dilempar `VehicleFactory` | Exception |
