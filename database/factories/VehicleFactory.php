@@ -26,7 +26,7 @@ class VehicleFactory extends Factory
             'daily_rate' => fake()->numberBetween(250000, 600000),
             'status' => VehicleStatus::Available,
             'seat_count' => 5,
-            'transmission' => fake()->randomElement(['Manual', 'Matic']),
+            'transmission' => fake()->randomElement(['manual', 'automatic']),
             'engine_cc' => null,
             'image_path' => null,
             'description' => fake()->sentence(),
