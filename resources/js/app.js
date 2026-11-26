@@ -118,6 +118,152 @@ if (bookingEstimator) {
     updateEstimate();
 }
 
+const rentalEstimator = document.querySelector('[data-rental-estimator]');
+
+if (rentalEstimator) {
+    const vehicleSelect = rentalEstimator.querySelector('[data-rental-vehicle]');
+    const startInput = rentalEstimator.querySelector('[data-rental-start]');
+    const endInput = rentalEstimator.querySelector('[data-rental-end]');
+    const daysEl = rentalEstimator.querySelector('[data-rental-days]');
+    const rateEl = rentalEstimator.querySelector('[data-rental-rate]');
+    const ruleEl = rentalEstimator.querySelector('[data-rental-rule]');
+    const totalEl = rentalEstimator.querySelector('[data-rental-total]');
+
+    const carInsuranceRate = Number(rentalEstimator.dataset.carInsuranceRate || 0.1);
+    const motorcycleDiscountRate = Number(rentalEstimator.dataset.motorcycleDiscountRate || 0.1);
+    const motorcycleMinDays = Number(rentalEstimator.dataset.motorcycleMinDays || 7);
+
+    const rupiahFormatter = new Intl.NumberFormat('id-ID', {
+        maximumFractionDigits: 0,
+    });
+
+    const getVehicleConfig = () => {
+        if (vehicleSelect) {
+            const option = vehicleSelect.options[vehicleSelect.selectedIndex];
+            return {
+                type: option?.dataset.vehicleType || '',
+                rate: Number(option?.dataset.dailyRate || 0),
+            };
+        }
+
+        return {
+            type: rentalEstimator.dataset.vehicleType || '',
+            rate: Number(rentalEstimator.dataset.dailyRate || 0),
+        };
+    };
+
+    const updateRentalEstimate = () => {
+        if (!daysEl || !totalEl) {
+            return;
+        }
+
+        const { type, rate } = getVehicleConfig();
+
+        if (rateEl) {
+            rateEl.textContent = rate > 0 ? `Rp ${rupiahFormatter.format(Math.round(rate))}` : '—';
+        }
+
+        if (!startInput?.value || !endInput?.value || !type || rate <= 0) {
+            daysEl.textContent = '—';
+            totalEl.textContent = '—';
+            if (ruleEl) {
+                ruleEl.textContent = 'Pilih kendaraan dan rentang tanggal untuk melihat estimasi biaya.';
+            }
+            return;
+        }
+
+        const start = new Date(`${startInput.value}T00:00:00`);
+        const end = new Date(`${endInput.value}T00:00:00`);
+
+        if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime()) || end < start) {
+            daysEl.textContent = 'Tanggal tidak valid';
+            totalEl.textContent = '—';
+            return;
+        }
+
+        const diffDays = Math.round((end - start) / 86400000) + 1;
+        let total = rate * diffDays;
+
+        if (type === 'car') {
+            total += total * carInsuranceRate;
+            if (ruleEl) {
+                ruleEl.textContent = `Termasuk asuransi mobil ${Math.round(carInsuranceRate * 100)}%.`;
+            }
+        } else if (type === 'motorcycle' && diffDays >= motorcycleMinDays) {
+            total -= total * motorcycleDiscountRate;
+            if (ruleEl) {
+                ruleEl.textContent = `Diskon motor mingguan ${Math.round(motorcycleDiscountRate * 100)}% diterapkan (≥ ${motorcycleMinDays} hari).`;
+            }
+        } else if (ruleEl) {
+            ruleEl.textContent = type === 'motorcycle'
+                ? `Tarif standar motor (diskon ${Math.round(motorcycleDiscountRate * 100)}% mulai ${motorcycleMinDays} hari).`
+                : 'Tarif standar.';
+        }
+
+        daysEl.textContent = `${diffDays} hari`;
+        totalEl.textContent = `Rp ${rupiahFormatter.format(Math.round(total))}`;
+    };
+
+    vehicleSelect?.addEventListener('change', updateRentalEstimate);
+    startInput?.addEventListener('change', () => {
+        if (endInput && startInput.value && (!endInput.value || endInput.value < startInput.value)) {
+            endInput.value = startInput.value;
+        }
+        if (endInput && startInput.value) {
+            endInput.min = startInput.value;
+        }
+        updateRentalEstimate();
+    });
+    endInput?.addEventListener('change', updateRentalEstimate);
+    updateRentalEstimate();
+}
+
+const paymentForm = document.querySelector('[data-payment-form]');
+
+if (paymentForm) {
+    const rentalSelect = paymentForm.querySelector('[data-payment-rental-select]');
+    const amountInput = paymentForm.querySelector('[data-payment-amount]');
+    const remainingEl = paymentForm.querySelector('[data-payment-remaining]');
+    const statusSelect = paymentForm.querySelector('[data-payment-status]');
+    const paidAtWrapper = paymentForm.querySelector('[data-paid-at-wrapper]');
+
+    const rupiahFormatter = new Intl.NumberFormat('id-ID', {
+        maximumFractionDigits: 0,
+    });
+
+    const syncPaymentRental = (fillAmount = false) => {
+        if (!rentalSelect) {
+            return;
+        }
+
+        const option = rentalSelect.options[rentalSelect.selectedIndex];
+        const remaining = Number(option?.dataset.remaining || 0);
+
+        if (remainingEl) {
+            remainingEl.textContent = option?.value
+                ? `Sisa tagihan: Rp ${rupiahFormatter.format(Math.round(remaining))}`
+                : 'Pilih transaksi rental untuk melihat sisa tagihan.';
+        }
+
+        if (fillAmount && amountInput && remaining > 0) {
+            amountInput.value = String(Math.round(remaining));
+        }
+    };
+
+    const syncPaidAtVisibility = () => {
+        if (!statusSelect || !paidAtWrapper) {
+            return;
+        }
+
+        paidAtWrapper.classList.toggle('hidden', statusSelect.value !== 'paid');
+    };
+
+    rentalSelect?.addEventListener('change', () => syncPaymentRental(true));
+    statusSelect?.addEventListener('change', syncPaidAtVisibility);
+    syncPaymentRental(false);
+    syncPaidAtVisibility();
+}
+
 const chartDataElement = document.getElementById('dashboard-chart-data');
 
 if (chartDataElement) {

@@ -85,6 +85,7 @@ app/
 │       ├── UpdateVehicleRequest.php     # Phase 3
 │       ├── StoreRentalRequest.php       # Phase 4
 │       ├── UpdateRentalRequest.php      # Phase 4
+│       ├── ReturnRentalRequest.php      # Phase 4
 │       ├── StorePaymentRequest.php      # Phase 4
 │       └── UpdatePaymentRequest.php     # Phase 4
 ├── Models/
@@ -138,7 +139,7 @@ Catatan: file di atas adalah **rencana**. Phase 0 tidak membuat file aplikasi.
 1. Staff mengirim `POST /rentals` dengan pelanggan, kendaraan, tanggal mulai, dan tanggal selesai.
 2. `StoreRentalRequest` memvalidasi input dan tipe data.
 3. `RentalController` memanggil `RentalService::createRental()`.
-4. `RentalService` memeriksa status kendaraan dan benturan tanggal rental aktif.
+4. `RentalService` mengunci baris kendaraan (`lockForUpdate`) dan memeriksa status serta benturan tanggal rental aktif di dalam transaksi.
 5. `VehicleFactory` mengubah Eloquent `Vehicle` menjadi domain `Car` atau `Motorcycle`.
 6. Domain object menghitung biaya melalui `calculateRentalCost()` (polymorphism).
 7. `RentalService` membuat rental dan mengubah status kendaraan dalam satu database transaction.
@@ -206,8 +207,8 @@ use App\Domain\Vehicles\Vehicle;
 | `App\Domain\Vehicles\Car` | Domain | Perilaku dan harga mobil | `seatCount`, `transmission` | override `calculateRentalCost()` | `extends Vehicle` | Inheritance, polymorphism |
 | `App\Domain\Vehicles\Motorcycle` | Domain | Perilaku dan harga motor | `engineCc` | override `calculateRentalCost()` | `extends Vehicle` | Inheritance, polymorphism |
 | `App\Domain\Vehicles\VehicleFactory` | Domain | Membuat domain object dari Eloquent model | — | static `fromModel()`, static `make()` | Membuat `Vehicle`, membaca `VehicleModel` | Static method, factory, exception |
-| `App\Services\RentalService` | Application | Membuat, mengubah, mengembalikan, membatalkan rental; cek availability; hitung denda | `RentalCodeGenerator`/config | `createRental()`, `completeRental()`, `cancelRental()`, `calculateLateFee()` | Menggunakan `VehicleFactory`, `Rental`, `Customer`, `VehicleModel` | Encapsulation, constructor injection, exception |
-| `App\Services\PaymentService` | Application | Mencatat/mengubah pembayaran pending dan validasi sisa tagihan | — | `record()`, `markPaid()`, `deletePending()` | `Payment`, `Rental` | Service layer, exception |
+| `App\Services\RentalService` | Application | Membuat, mengubah, mengembalikan, membatalkan rental; cek availability; hitung denda; transaksi + row lock | `config/rental.php` | `createRental()`, `updateRental()`, `completeRental()`, `cancelRental()`, `calculateLateFee()` | Menggunakan `VehicleFactory`, `Rental`, `Customer`, `VehicleModel` | Encapsulation, constructor injection, exception |
+| `App\Services\PaymentService` | Application | Mencatat/mengubah pembayaran pending, mark paid/failed, hapus pending, validasi sisa tagihan | — | `record()`, `updatePending()`, `markPaid()`, `markFailed()`, `deletePending()`, `remainingBill()` | `Payment`, `Rental` | Service layer, transaction, exception |
 | `App\Services\DashboardService` | Application | Menghitung statistik dan data grafik | — | `summary()`, `monthlyRevenue()`, `vehicleStatus()` | `Rental`, `Payment`, `VehicleModel` | Service layer, reusable |
 | `App\Services\VehicleImageService` | Application | Menyimpan/menghapus gambar kendaraan | disk, folder | `store()`, `delete()` | `VehicleModel`, Storage | Encapsulation |
 | `App\Support\DocumentCodeGenerator` | Support | Membuat kode rental/pembayaran unik | prefix | static `rentalCode()`, static `paymentCode()` | `Rental`, `Payment` | Static method |
@@ -280,8 +281,11 @@ classDiagram
 
     class PaymentService {
         +record(Rental rental, array data) Payment
+        +updatePending(Payment payment, array data) Payment
         +markPaid(Payment payment) Payment
+        +markFailed(Payment payment) Payment
         +deletePending(Payment payment) void
+        +remainingBill(Rental rental) float
     }
 
     class DashboardService {

@@ -5,11 +5,11 @@
 | Fase | Phase 3 — Master Data CRUD (Customers & Vehicles) |
 | Pelaksana commit | Steven (422024001) — `steven.422024001@civitas.ukrida.ac.id` |
 | Branch | `phase/03-master-data` (pushed ke `origin`) |
-| Pull Request | PR dibuat di GitHub (3 commit dari Steven); menunggu review/merge |
+| Pull Request | PR #3 digabung ke `main` (`9a738fb`) |
 | Tanggal mulai | 2026-11-25 |
-| Tanggal selesai | 2026-11-26 (committed & pushed) |
-| Status | PR dibuat — menunggu review/merge |
-| Reviewer | `pending` (Benny review/merge) |
+| Tanggal selesai | 2026-11-26 (merged) |
+| Status | Merged (PR #3, `9a738fb`) |
+| Reviewer | Benny Anderson (`benanderson2nds@gmail.com`) |
 
 ## 1. Ringkasan
 
@@ -32,7 +32,7 @@ smoke test HTTP dan screenshot desktop/mobile.
 | Soft delete hanya Admin dan ditolak saat rental aktif | Tercapai | Route middleware `admin`, guard di controller, feature test |
 | Detail menampilkan riwayat rental | Tercapai | `customers/show`, `vehicles/show`, feature test |
 | UI responsif dan konsisten layout Phase 2 | Tercapai | Screenshot desktop/mobile `docs/assets/phase-03/` |
-| PR, review, merge | Sebagian | Branch sudah di-push dan PR dibuka di GitHub; menunggu review/merge |
+| PR, review, merge | Tercapai | PR #3 digabung ke `main` melalui merge commit `9a738fb` |
 
 ## 3. Scope yang Diselesaikan
 
@@ -50,7 +50,7 @@ smoke test HTTP dan screenshot desktop/mobile.
 - [x] Menu sidebar Pelanggan dan Kendaraan diaktifkan tanpa mengubah desain layout Phase 2.
 - [x] Feature test pelanggan dan kendaraan (27 test pada folder Phase 3).
 - [x] Commit dan push branch `phase/03-master-data` (`8336f17`, `be149f3`, `80af0a8`).
-- [ ] PR di GitHub direview dan di-merge ke `main`.
+- [x] PR di GitHub direview dan di-merge ke `main` (PR #3, `9a738fb`).
 
 ## 4. File yang Dibuat/Diubah
 
@@ -178,9 +178,9 @@ Admin.
 - Gambar kendaraan dihapus saat kendaraan di-soft-delete; belum ada fitur restore, sehingga restore
   data (jika ditambahkan nanti) perlu mempertimbangkan gambar.
 - Tabel pada mobile memakai horizontal scroll; belum diubah menjadi kartu karena polish UI ditunda.
-- Phase 3 sudah di-commit dan di-push (3 commit di email `steven.422024001@civitas.ukrida.ac.id`) dan
-  PR-nya di GitHub menunggu review/merge. Kontribusi dinilai dari histori commit pada email Git
-  masing-masing anggota dan difinalkan di Phase 5.
+- Phase 3 sudah di-commit, di-push, dan digabung ke `main` melalui PR #3 (`9a738fb`). Commit Phase 3
+  tercatat di email `steven.422024001@civitas.ukrida.ac.id`. Kontribusi dinilai dari histori commit
+  pada email Git masing-masing anggota dan difinalkan di Phase 5.
 
 ## 10. Handoff ke Fase Berikutnya
 
@@ -190,8 +190,8 @@ Admin.
   untuk availability/pricing; jangan menduplikasi logika tersebut di controller.
 - **Kontrak penting:** hapus master hanya Admin (`admin` middleware); kendaraan dengan rental aktif tidak
   boleh dihapus/diubah tipe/statusnya; gambar disimpan di disk `public` folder `vehicles`.
-- **Risiko:** Phase 3 sudah di-push tetapi belum di-merge. Jika Phase 4 dimulai sebelum merge, branch
-  Phase 4 harus dibuat dari branch/gabungan yang tepat agar route dan view master tersedia.
+- **Risiko:** Phase 3 sudah di-merge ke `main` melalui PR #3 (`9a738fb`). Branch Phase 4 sudah dibuat
+  dari `main` tersebut sehingga route dan view master tersedia.
 - **Jangan:** mengubah migration/model Phase 1 tanpa koordinasi; menambah dependency; menghapus riwayat
   transaksi.
 
@@ -206,7 +206,7 @@ Admin.
 - [x] Screenshot disertakan.
 - [x] Commit dan push branch `phase/03-master-data`.
 - [x] PR dibuat di GitHub.
-- [ ] PR direview dan merge selesai.
+- [x] PR direview dan merge selesai (PR #3, `9a738fb`).
 
 ## 12. Catatan Kontribusi
 
@@ -215,7 +215,7 @@ Admin.
 | Implementasi CRUD pelanggan/kendaraan, validasi, upload gambar, test, screenshot, dan laporan Phase 3 | Steven (422024001) — `steven.422024001@civitas.ukrida.ac.id` | `8336f17`, `be149f3`, `80af0a8` (PR di GitHub) | Branch pushed; 74 test, Pint, build |
 | Fondasi Phase 1 yang dipakai Phase 3 | Benny Anderson (422024008) — `benanderson2nds@gmail.com` | PR #1 (`1b5caee`) | Phase 1 merged |
 | Layout dan komponen Phase 2 yang dipakai Phase 3 | Steven Credentia Ivanemaga Zega (422024020) — `steven.422024020@civitas.ukrida.ac.id` | PR #2 (`c4847c2`) | Phase 2 merged |
-| Review & merge Phase 3 | `pending` (Benny) | — | Menunggu review PR di GitHub |
+| Review & merge Phase 3 | Benny Anderson (`benanderson2nds@gmail.com`) | PR #3 (`9a738fb`) | Merge commit `9a738fb` |
 
 > Pembagian kerja tidak dikunci per phase secara kaku; kontribusi dicatat berdasarkan histori commit
 > pada email Git masing-masing anggota dan direkonsiliasi di `docs/CONTRIBUTION_LOG.md` pada Phase 5.

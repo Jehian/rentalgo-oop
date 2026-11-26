@@ -81,8 +81,8 @@ class Rental extends Model
         $start = Carbon::parse($startDate)->toDateString();
         $end = Carbon::parse($endDate)->toDateString();
 
-        $query->where('start_date', '<=', $end)
-            ->where('end_date', '>=', $start);
+        $query->whereDate('start_date', '<=', $end)
+            ->whereDate('end_date', '>=', $start);
     }
 
     public function totalBill(): float
