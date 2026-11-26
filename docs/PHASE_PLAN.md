@@ -6,30 +6,35 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 
 ## 1. Prinsip Pembagian Kerja
 
-1. **Satu modul, satu pemilik utama.** File modul tidak diedit anggota lain tanpa koordinasi.
-2. **Fondasi lebih dulu.** Schema, model, enum, domain OOP, dan seeder diselesaikan Phase 1.
-3. **Dependensi ditulis eksplisit.** Tidak ada pekerjaan yang dimulai tanpa memahami prasyarat.
-4. **Commit kecil dan bermakna.** Setiap anggota commit atas namanya sendiri.
-5. **PR untuk implementasi.** Phase 0 adalah pengecualian dokumentasi di `main`.
-6. **Definition of Done wajib.** Fitur dianggap selesai hanya jika kode, test, dan dokumentasi fase
+1. **Kontribusi terbuka lintas phase.** Pembagian kerja tidak berpatokan pada phase secara kaku;
+   siapa saja boleh mengerjakan task pada phase mana saja selama histori commit tercatat memakai
+   **email Git masing-masing anggota**.
+2. **Koordinasi untuk hindari konflik.** Matriks area kerja dipakai untuk koordinasi agar dua orang
+   tidak mengedit file yang sama secara bersamaan, bukan untuk melarang siapa pun berkontribusi.
+3. **Fondasi lebih dulu.** Schema, model, enum, domain OOP, dan seeder diselesaikan Phase 1.
+4. **Dependensi ditulis eksplisit.** Tidak ada pekerjaan yang dimulai tanpa memahami prasyarat.
+5. **Commit kecil dan bermakna.** Setiap anggota commit memakai `user.name` dan `user.email` Git
+   masing-masing; kontribusi direkonsiliasi di `docs/CONTRIBUTION_LOG.md` pada Phase 5.
+6. **PR untuk implementasi.** Phase 0 adalah pengecualian dokumentasi di `main`.
+7. **Definition of Done wajib.** Fitur dianggap selesai hanya jika kode, test, dan dokumentasi fase
    sudah lengkap serta direview.
 
 ## 2. Ringkasan Fase
 
-| Fase | Nama | Pemilik | Branch | Status |
+| Fase | Nama | Pelaksana / Histori Commit | Branch | Status |
 |---|---|---|---|---|
-| 0 | Requirements & Planning | Anggota 1 | `main` (dokumentasi saja) | Selesai |
-| 1 | Foundation & Architecture | Anggota 1 | `phase/01-foundation` | Merged (PR #1, `1b5caee`) |
-| 2 | Auth, Layout & Dashboard | Anggota 2 | `phase/02-auth-dashboard` | Merged (PR #2, `c4847c2`) |
-| 3 | Master Data CRUD | Anggota 3 | `phase/03-master-data` | Implemented — PR pending |
-| 4 | Rental & Payment Workflow | Anggota 4 | `phase/04-rental-payment` | Belum dimulai |
-| 5 | Integration, Testing & Delivery | Semua | `phase/05-integration` | Belum dimulai |
+| 0 | Requirements & Planning | Benny Anderson (`benanderson2nds@gmail.com`) | `main` (dokumentasi saja) | Selesai |
+| 1 | Foundation & Architecture | Benny Anderson (`benanderson2nds@gmail.com`), review Steven Zega | `phase/01-foundation` | Merged (PR #1, `1b5caee`) |
+| 2 | Auth, Layout & Dashboard | Steven Zega (`steven.422024020@civitas.ukrida.ac.id`), merge Benny | `phase/02-auth-dashboard` | Merged (PR #2, `c4847c2`) |
+| 3 | Master Data CRUD | Steven (`steven.422024001@civitas.ukrida.ac.id`) | `phase/03-master-data` | PR dibuat — menunggu review/merge |
+| 4 | Rental & Payment Workflow | Terbuka (siapa saja dengan email Git masing-masing) | `phase/04-rental-payment` | Belum dimulai |
+| 5 | Integration, Testing & Delivery | Semua anggota (commit dengan email Git masing-masing) | `phase/05-integration` | Belum dimulai |
 
 ## 3. Detail Fase
 
 ### Phase 0 — Requirements Analysis & Planning
 
-**Pemilik:** Anggota 1
+**Pelaksana (Histori Commit):** Benny Anderson (`benanderson2nds@gmail.com`)
 **Branch:** `main` (khusus dokumentasi; disetujui pemilik proyek)
 **Dependensi:** —
 
@@ -73,7 +78,7 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 
 ### Phase 1 — Foundation & Architecture
 
-**Pemilik:** Anggota 1
+**Pelaksana (Histori Commit):** Benny Anderson (`benanderson2nds@gmail.com`)
 **Branch:** `phase/01-foundation`
 **Dependensi:** Phase 0 disetujui
 
@@ -117,7 +122,7 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 
 ### Phase 2 — Authentication, Layout & Dashboard
 
-**Pemilik:** Anggota 2
+**Pelaksana (Histori Commit):** Steven Credentia Ivanemaga Zega (`steven.422024020@civitas.ukrida.ac.id`)
 **Branch:** `phase/02-auth-dashboard`
 **Dependensi:** Phase 1 (users role, model, seeder) dan Phase 1 route stub
 
@@ -163,7 +168,7 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 
 ### Phase 3 — Master Data CRUD (Customers & Vehicles)
 
-**Pemilik:** Anggota 3
+**Pelaksana (Histori Commit):** Steven (`steven.422024001@civitas.ukrida.ac.id`)
 **Branch:** `phase/03-master-data`
 **Dependensi:** Phase 1 (model/schema) dan Phase 2 (layout/komponen)
 
@@ -194,8 +199,9 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 - [x] Soft delete ditolak jika ada rental aktif.
 - [x] Detail menampilkan riwayat rental.
 - [x] UI responsif dan konsisten dengan layout Phase 2.
-- [x] Phase report, status, traceability, contribution log diperbarui.
-- [ ] PR direview dan digabung.
+- [x] Phase report, status, traceability, dan contribution log diperbarui.
+- [x] Commit dan push branch `phase/03-master-data` (`8336f17`, `be149f3`, `80af0a8`).
+- [ ] PR di GitHub direview dan digabung.
 
 **Handoff ke Phase 4:** halaman/master data siap dipilih pada form rental.
 
@@ -203,7 +209,7 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 
 ### Phase 4 — Rental & Payment Workflow
 
-**Pemilik:** Anggota 4
+**Pelaksana:** Terbuka untuk anggota mana saja (commit memakai email Git masing-masing)
 **Branch:** `phase/04-rental-payment`
 **Dependensi:** Phase 1 (`RentalService`, domain), Phase 2 (layout), Phase 3 (data pelanggan/kendaraan)
 
@@ -244,7 +250,7 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 
 ### Phase 5 — Integration, Testing & Delivery
 
-**Pemilik:** Semua anggota
+**Koordinator:** Semua anggota
 **Branch:** `phase/05-integration`
 **Dependensi:** Phase 2, 3, 4 selesai
 
@@ -262,7 +268,8 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
   - Export PDF: invoice rental dan laporan rental.
   - Commit rapi dan aktif.
 - Verifikasi traceability, LOC ≥1000, class ≥8, tabel ≥4, fitur tambahan ≥2.
-- Perbarui contribution log.
+- Rekonsiliasi contribution log berbasis task/commit dengan `git log`, phase report, PR, dan reviewer;
+  pastikan semua anggota mengerjakan deliverable akhir.
 
 **Acceptance criteria:**
 
@@ -272,37 +279,43 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 - [ ] Screenshot dan laporan lengkap.
 - [ ] Presentasi diuji (rehearsal) dan demo berjalan.
 - [ ] Semua requirement UAS berstatus `Verified` atau `Not Pursued` dengan alasan.
+- [ ] Contribution log final konsisten dengan `git log` dan phase report.
 - [ ] Tidak ada plagiarisme; setiap anggota bisa menjelaskan kodenya.
 
-## 4. Matriks Kepemilikan File
+## 4. Matriks Area Kerja dan Koordinasi
 
-| Area | Pemilik Utama | Boleh Diubah Oleh | Catatan |
-|---|---|---|---|
-| `app/Contracts`, `app/Domain`, `app/Enums`, `app/Exceptions`, `app/Support` | Anggota 1 | Anggota 1 | Fondasi OOP |
-| `app/Models/*` | Anggota 1 | Anggota 1 | Perubahan relasi via PR ke Anggota 1 |
-| `database/migrations/*`, `database/factories/*`, `database/seeders/*` | Anggota 1 | Anggota 1 | Hindari konflik schema |
-| `app/Services/RentalService.php` | Anggota 1 | Anggota 4 (koordinasi) | Phase 4 dapat menambah method via PR |
-| `app/Services/PaymentService.php` | Anggota 4 | Anggota 4 | Phase 4 |
-| `app/Services/DashboardService.php` | Anggota 2 | Anggota 2 | Phase 2 |
-| `app/Services/VehicleImageService.php` | Anggota 3 | Anggota 3 | Phase 3 |
-| Auth, layout, dashboard, portal pelanggan | Anggota 2 | Anggota 2 | Phase 2 |
-| Pelanggan & kendaraan (admin CRUD) | Anggota 3 | Anggota 3 | Phase 3 |
-| Rental & pembayaran (admin CRUD) | Anggota 4 | Anggota 4 | Phase 4 |
-| `routes/web.php` | Anggota 1 | Anggota 1/2 | Include route modul |
-| `routes/auth.php`, `routes/dashboard.php`, `routes/customer.php` | Anggota 2 | Anggota 2 | Phase 2 |
-| `routes/master.php` | Anggota 3 | Anggota 3 | Phase 3 |
-| `routes/rental.php` | Anggota 4 | Anggota 4 | Phase 4 |
-| `resources/views/layouts`, `components` | Anggota 2 | Anggota 2 | Dipakai semua modul |
-| `config/*`, `composer.json`, `package.json` | Anggota 1 | Koordinasi | Dependency baru harus disetujui |
-| `README.md`, `PRD.md`, `docs/*` | Anggota 1 | Semua (PR) | Traceability/status/log diperbarui tiap fase |
+| Area | Fase Terkait | Catatan Koordinasi |
+|---|---|---|
+| `app/Contracts`, `app/Domain`, `app/Enums`, `app/Exceptions`, `app/Support` | Phase 1 | Fondasi OOP; perubahan lewat koordinasi PR |
+| `app/Models/*` | Phase 1 | Perubahan relasi/cast lewat PR agar tidak mematahkan modul lain |
+| `database/migrations/*`, `database/factories/*`, `database/seeders/*` | Phase 1 | Hindari konflik schema; koordinasikan sebelum mengubah |
+| `app/Services/RentalService.php` | Phase 1 & 4 | Sumber tunggal aturan rental; perubahan lewat PR |
+| `app/Services/PaymentService.php` | Phase 4 | Logika pembayaran |
+| `app/Services/DashboardService.php` | Phase 2 | Statistik dashboard |
+| `app/Services/VehicleImageService.php` | Phase 3 | Upload & hapus gambar kendaraan |
+| Auth, layout, dashboard, portal pelanggan | Phase 2 | Layout dipakai lintas modul |
+| Pelanggan & kendaraan (admin CRUD) | Phase 3 | Master data |
+| Rental & pembayaran (admin CRUD) | Phase 4 | Transaksi rental & pembayaran |
+| `routes/web.php` | Lintas fase | Include route modul |
+| `routes/auth.php`, `routes/dashboard.php`, `routes/customer.php` | Phase 2 | Route auth, dashboard, dan portal pelanggan |
+| `routes/master.php` | Phase 3 | Route master data |
+| `routes/rental.php` | Phase 4 | Route rental & pembayaran |
+| `resources/views/layouts`, `components` | Phase 2 | Dipakai semua modul; koordinasikan perubahan |
+| `config/*`, `composer.json`, `package.json` | Lintas fase | Dependency baru harus disetujui tim |
+| `README.md`, `PRD.md`, `docs/*` | Lintas fase | Traceability/status/log diperbarui tiap fase |
+
+Matriks ini dipakai untuk koordinasi agar tidak terjadi merge conflict, bukan membatasi kontribusi.
+Siapa saja boleh mengerjakan file atau fase mana saja selama histori commit tercatat memakai
+email Git masing-masing dan perubahan lintas modul dikoordinasikan.
 
 Aturan konflik:
 
-1. Jangan mengedit file milik anggota lain tanpa persetujuan di PR/diskusi.
+1. Koordinasikan terlebih dahulu sebelum mengubah file lintas modul/shared (`layouts/`, `models/`,
+   `migrations/`, `RentalService.php`) agar tidak terjadi konflik.
 2. Untuk perubahan lintas modul, buat PR kecil dan sebutkan file yang disentuh.
 3. Rebase branch pada `main` terbaru sebelum membuka PR.
 4. Jangan force-push branch yang sedang direview.
-5. `database/seeders/DatabaseSeeder.php` hanya diedit Anggota 1; fase lain memakai factory/state.
+5. Perubahan `database/seeders/DatabaseSeeder.php` harus dikoordinasikan; test memakai factory/state.
 
 ## 5. Workflow Git dan Pull Request
 
@@ -342,7 +355,8 @@ Ketentuan:
 
 - Commit kecil, satu tujuan.
 - Jangan commit `.env`, kredensial, `vendor/`, `node_modules/`, atau build artifact.
-- Setiap anggota commit dengan identitas Git mereka sendiri.
+- Commit memakai identitas orang yang menjalankan commit. Kontribusi task (utama/pendukung/reviewer)
+  dicatat di `docs/CONTRIBUTION_LOG.md`; finalisasi di Phase 5.
 - Jangan menulis ulang histori branch bersama.
 
 ### 5.3 Pull Request
@@ -350,7 +364,7 @@ Ketentuan:
 Checklist PR:
 
 - [ ] Branch berasal dari `main` terbaru.
-- [ ] Scope sesuai fase; tidak ada file di luar kepemilikan tanpa alasan.
+- [ ] Scope sesuai fase; perubahan file lintas modul sudah dikoordinasikan.
 - [ ] `php artisan test` lulus.
 - [ ] `vendor/bin/pint --test` lulus.
 - [ ] Tidak ada secret/credential.
@@ -387,11 +401,11 @@ rebase ke `main` setelah Phase 2 digabung dan hanya mengedit file modulnya sendi
 ## 7. Integrasi
 
 1. Setiap fase digabung ke `main` melalui PR dan merge commit.
-2. Setelah merge, pemilik fase berikutnya menjalankan `git switch main; git pull`, lalu membuat/
+2. Setelah merge, pelaksana fase berikutnya menjalankan `git switch main; git pull`, lalu membuat/
    memperbarui branch fase.
 3. Konflik route diselesaikan dengan file route terpisah per modul.
-4. Konflik layout diselesaikan oleh Anggota 2 sebagai pemilik layout.
-5. Konflik schema diselesaikan oleh Anggota 1; fase lain tidak menambah migration tanpa diskusi.
+4. Konflik layout diselesaikan melalui koordinasi bersama sebelum merge.
+5. Konflik schema diselesaikan bersama lewat PR; fase lain tidak menambah migration tanpa diskusi.
 6. Phase 5 melakukan regression test seluruh aplikasi sebelum demo.
 
 ## 8. Definition of Done per Fase
@@ -407,7 +421,7 @@ Sebuah fase dianggap selesai jika:
 - [ ] Phase report dibuat dari template.
 - [ ] `PROJECT_STATUS.md` diperbarui.
 - [ ] `UAS_TRACEABILITY.md` diperbarui.
-- [ ] `CONTRIBUTION_LOG.md` diperbarui dengan kontribusi nyata.
+- [ ] `CONTRIBUTION_LOG.md` diperbarui dengan kontribusi nyata berbasis task/commit; finalisasi di Phase 5.
 - [ ] PR direview minimal satu anggota lain.
 - [ ] Merge ke `main` selesai.
 
@@ -424,14 +438,17 @@ Sebuah fase dianggap selesai jika:
 | MySQL berbeda dari SQLite | Bug saat demo | Uji MySQL di Phase 1 dan Phase 5 |
 | LOC kurang dari 1000 | Nilai intermediate berkurang | Pantau di setiap fase; target fitur wajib sudah cukup |
 | Anggota tidak memahami kode | Nilai individu turun | Code walkthrough dan presentasi internal |
+| Kontribusi tidak tercatat konsisten | Penilaian individu | Catat task/commit sejak awal; rekonsiliasi dengan `git log` dan phase report di Phase 5 |
 
 ## 10. Anggota Tim
 
-| Label | Tanggung Jawab | Nama/NIM |
+| Anggota | Nama / NIM | Email Git |
 |---|---|---|
-| Anggota 1 | Phase 0 + Phase 1 (foundation) | Benny Anderson / 422024008 |
-| Anggota 2 | Phase 2 (auth, layout, dashboard) | Steven Credentia Ivanemaga Zega / 422024020 |
-| Anggota 3 | Phase 3 (master data) | Jason / 422024004 |
-| Anggota 4 | Phase 4 (rental & payment) | Steven / 422024001 |
+| Anggota 1 | Benny Anderson / 422024008 | `benanderson2nds@gmail.com` |
+| Anggota 2 | Steven Credentia Ivanemaga Zega / 422024020 | `steven.422024020@civitas.ukrida.ac.id` |
+| Anggota 3 | Jason / 422024004 | Email Git masing-masing |
+| Anggota 4 | Steven / 422024001 | `steven.422024001@civitas.ukrida.ac.id` |
 
-Identitas di atas sudah dikonfirmasi pemilik proyek. Jangan mengarang identitas lain pada laporan.
+Identitas di atas sudah dikonfirmasi pemilik proyek. Pembagian kerja tidak dikunci per fase; setiap
+anggota bebas mengerjakan fase mana saja selama histori commit tercatat pada email Git masing-masing.
+Rekap kontribusi final mengikuti `docs/CONTRIBUTION_LOG.md` dan `git log`.

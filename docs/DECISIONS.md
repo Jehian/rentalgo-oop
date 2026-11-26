@@ -36,6 +36,7 @@ manusia ditandai `Proposed`; keputusan yang sudah menjadi baseline proyek ditand
 | ADR-027 | Pendapatan dashboard dari pembayaran `paid` | Accepted |
 | ADR-028 | Portal pelanggan dan registrasi publik | Accepted |
 | ADR-029 | Aturan CRUD master data, status kendaraan, dan gambar | Accepted (diimplementasikan Phase 3) |
+| ADR-030 | Kolaborasi lintas fase dan kontribusi berbasis email commit Git | Accepted |
 
 ---
 
@@ -497,3 +498,30 @@ sehingga validasi harus memeriksa seluruh tabel. Belum ada fitur restore, dan ga
 dipulihkan otomatis. Phase 4 bertanggung jawab mengubah status kendaraan saat rental dibuat/diakhiri.
 
 **Status:** Accepted (disetujui pemilik proyek sebelum implementasi Phase 3).
+
+## ADR-030 — Kolaborasi Lintas Fase dan Pencatatan Kontribusi Berbasis Email Commit
+
+**Konteks:** Tim sepakat bahwa pembagian kontribusi tidak boleh berpatokan pada phase secara kaku
+(misalnya menganggap satu phase hanya dikerjakan satu orang tertentu). Siapa saja boleh mengerjakan
+task pada phase mana saja, sementara penilaian UAS membutuhkan bukti histori commit GitHub yang jelas.
+
+**Keputusan:**
+- Tidak ada pembagian kepemilikan phase secara kaku; setiap anggota bebas mengerjakan task pada
+  phase mana saja dengan koordinasi agar tidak terjadi konflik file.
+- **Histori commit Git dengan email masing-masing anggota** menjadi dasar utama pencatatan kontribusi
+  implementasi (`benanderson2nds@gmail.com`, `steven.422024020@civitas.ukrida.ac.id`,
+  `steven.422024001@civitas.ukrida.ac.id`, dan email Git resmi Jason).
+- Peran koordinator (jika disebut pada rencana fase) hanya berfungsi untuk menjaga scope dan alur
+  merge, bukan pembatasan kontribusi.
+- Review PR, dokumentasi, pengujian, dan persiapan presentasi tetap dicatat di `docs/CONTRIBUTION_LOG.md`
+  dan direkonsiliasi dengan `git log --format="%h %an <%ae> %s"` pada Phase 5.
+
+**Alternatif:** Mempertahankan kepemilikan phase secara kaku (menghambat kolaborasi dan tidak sesuai
+kenyataan pengerjaan); mencatat kontribusi hanya dari rencana awal phase tanpa melihat author/email
+commit di Git.
+
+**Konsekuensi:** Setiap anggota wajib memastikan konfigurasi `user.name` dan `user.email` Git sesuai
+identitas masing-masing saat melakukan commit. Satu phase dapat berisi commit dari beberapa anggota,
+atau sebaliknya satu anggota dapat berkontribusi di lebih dari satu phase.
+
+**Status:** Accepted (disepakati tim pada 2026-11-26).

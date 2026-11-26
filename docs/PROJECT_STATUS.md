@@ -2,12 +2,12 @@
 
 | Item | Nilai |
 |---|---|
-| Fase saat ini | Phase 3 — Master Data CRUD (implemented; PR pending) |
-| Status fase | Implementasi lokal selesai; 74 test lulus (293 assertions); menunggu review/merge |
-| Branch | `phase/03-master-data` |
+| Fase saat ini | Phase 3 — Master Data CRUD (PR dibuat di GitHub; menunggu review/merge) |
+| Status fase | Implementasi selesai; 3 commit oleh Steven (`8336f17`–`80af0a8`) di-push; 74 test lulus (293 assertions); menunggu review/merge PR |
+| Branch | `phase/03-master-data` (pushed ke `origin`, PR dibuka di GitHub) |
 | Implementasi aplikasi | Auth, layout, dashboard, portal pelanggan, CRUD pelanggan, dan CRUD kendaraan selesai; rental/pembayaran belum (Phase 4) |
-| Terakhir diperbarui | 25 November 2026 |
-| Diperbarui oleh | Tim Phase 3 (pemilik fase: Jason / 422024004) |
+| Terakhir diperbarui | 26 November 2026 |
+| Diperbarui oleh | Tim RentalGo (branch `phase/03-master-data`) |
 
 ## 1. Ringkasan Status
 
@@ -19,8 +19,9 @@ Blade sudah tersedia di `main`.
 Phase 3 sudah diimplementasikan pada branch `phase/03-master-data`: CRUD pelanggan dan kendaraan,
 pencarian, sorting, filter, pagination, upload/ganti gambar kendaraan, detail dengan riwayat rental,
 validasi Form Request, serta soft delete khusus Admin dengan perlindungan rental aktif. Tidak ada
-perubahan schema atau dependency baru. Phase 3 belum di-commit, di-push, atau dibuatkan PR. Transaksi
-rental dan pembayaran tetap menjadi scope Phase 4.
+perubahan schema atau dependency baru. Tiga commit oleh `steven.422024001@civitas.ukrida.ac.id`
+(`8336f17`, `be149f3`, `80af0a8`) sudah di-push ke `origin/phase/03-master-data` dan PR di GitHub
+menunggu review/merge. `main` belum berubah; transaksi rental dan pembayaran menjadi scope Phase 4.
 
 ## 2. Status Fase
 
@@ -29,7 +30,7 @@ rental dan pembayaran tetap menjadi scope Phase 4.
 | 0 — Requirements & Planning | Selesai | Dokumen dibuat dan di-commit di `main` |
 | 1 — Foundation & Architecture | Merged | PR #1, merge commit `1b5caee`; 25 test saat itu |
 | 2 — Auth, Layout & Dashboard | Merged | PR #2, merge commit `c4847c2`; termasuk portal pelanggan; 47 test saat itu |
-| 3 — Master Data CRUD | Implemented — PR pending | CRUD pelanggan/kendaraan, upload gambar, 27 test fase; 74 test total |
+| 3 — Master Data CRUD | PR dibuat — menunggu review/merge | CRUD pelanggan/kendaraan, upload gambar, 27 test fase; 74 test total; commit `8336f17`–`80af0a8` |
 | 4 — Rental & Payment Workflow | Belum dimulai | Dependensi: Phase 1–3 |
 | 5 — Integration & Delivery | Belum dimulai | Dependensi: Phase 2–4 |
 
@@ -38,7 +39,7 @@ rental dan pembayaran tetap menjadi scope Phase 4.
 | Area | Status |
 |---|---|
 | Requirement UAS diekstrak | Selesai (66 ID) |
-| Traceability matrix | Diperbarui; requirement Phase 1–3 berstatus `Implemented`; `Verified` menunggu review |
+| Traceability matrix | Diperbarui; item selesai Phase 1–2 berstatus `Implemented`, item lintas Phase 3–4 `In Progress`; `Verified` menunggu review |
 | PRD | Selesai |
 | Arsitektur dan UML | Selesai (dokumen) |
 | Database schema dan ERD | Selesai (dokumen) |
@@ -50,8 +51,8 @@ rental dan pembayaran tetap menjadi scope Phase 4.
 | Layout dan komponen UI | Implemented & merged (Phase 2); link master diaktifkan Phase 3 |
 | Portal pelanggan | Implemented & merged (Phase 2) |
 | Dashboard | Implemented & merged (Phase 2) |
-| CRUD pelanggan | Implemented lokal (Phase 3) — list/search/sort/pagination/create/edit/detail/delete |
-| CRUD kendaraan | Implemented lokal (Phase 3) — list/filter/create/edit/detail/upload/delete |
+| CRUD pelanggan | Implemented & pushed (Phase 3) — list/search/sort/pagination/create/edit/detail/delete |
+| CRUD kendaraan | Implemented & pushed (Phase 3) — list/filter/create/edit/detail/upload/delete |
 | Rental dan pembayaran | 0% (Phase 4) |
 | Test | 74 passed (293 assertions) |
 | SQL dump | 0% |
@@ -90,7 +91,7 @@ rental dan pembayaran tetap menjadi scope Phase 4.
 - [x] Feature test auth, dashboard, dan portal pelanggan (47 test total saat itu).
 - [x] PR #2 digabung ke `main` melalui merge commit `c4847c2`.
 
-### 4.4 Phase 3 — Master Data CRUD (implementasi lokal)
+### 4.4 Phase 3 — Master Data CRUD (committed & pushed)
 
 - [x] CRUD pelanggan: daftar, pencarian nama/email/telepon/NIK/SIM, sorting, pagination.
 - [x] Tambah/edit pelanggan dengan validasi wajib, unik, dan pesan Bahasa Indonesia.
@@ -108,7 +109,8 @@ rental dan pembayaran tetap menjadi scope Phase 4.
 - [x] Feature test Phase 3 (27 test) termasuk validasi, unik terhadap data soft-deleted, upload, role, dan aturan hapus.
 - [x] Screenshot desktop/mobile daftar pelanggan dan kendaraan.
 - [x] Dokumentasi Phase 3, status, traceability, contribution log, phase plan, AI handoff, ADR-029, dan README diperbarui.
-- [ ] Commit, push, PR, review, dan merge.
+- [x] Commit dan push branch `phase/03-master-data` (`8336f17`, `be149f3`, `80af0a8`).
+- [ ] PR, review, dan merge.
 
 ### 4.5 Verifikasi Phase 3
 
@@ -127,17 +129,15 @@ rental dan pembayaran tetap menjadi scope Phase 4.
 
 ## 5. Yang Sedang Dikerjakan
 
-Tidak ada pekerjaan implementasi lain yang berjalan. Phase 3 selesai secara lokal dan menunggu
-commit/push/PR/review. Phase 4 belum dimulai.
+Tidak ada pekerjaan implementasi lain yang berjalan. Phase 3 sudah di-commit dan di-push; menunggu
+PR/review. Phase 4 belum dimulai.
 
 ## 6. Langkah Berikutnya
 
-1. Tunjukkan ringkasan perubahan dan hasil verifikasi Phase 3 kepada pemilik proyek.
-2. Setelah disetujui: commit dengan Conventional Commits, push branch `phase/03-master-data`.
-3. Buat PR ke `main`, minta reviewer anggota lain (bukan pemilik branch).
-4. Review, lalu merge memakai merge commit (bukan squash).
-5. Setelah merge, mulai Phase 4 dari `main` terbaru: rental dan pembayaran.
-6. Phase 5: integrasi, SQL dump, screenshot final, laporan, dan presentasi.
+1. Commit pembaruan dokumentasi lokal ke `phase/03-master-data` dan push agar PR di GitHub memuat dokumentasi terbaru (atau buat PR dokumentasi terpisah bila PR Phase 3 sudah telanjur di-merge).
+2. Review dan merge PR Phase 3 oleh Benny (atau reviewer lain) memakai merge commit (bukan squash).
+3. Setelah merge, mulai Phase 4 dari `main` terbaru: rental dan pembayaran (dapat dikerjakan oleh anggota mana saja dengan email Git masing-masing).
+4. Phase 5: integrasi, SQL dump, screenshot final, laporan, presentasi, dan finalisasi contribution log berdasarkan `git log`.
 
 ## 7. Metrik Rencana
 
@@ -149,18 +149,19 @@ commit/push/PR/review. Phase 4 belum dimulai.
 | Tabel bisnis | ≥ 4 | 5 | Tercapai |
 | Fitur tambahan | ≥ 2 | 6 | Tercapai: chart, search, pagination, sorting, filter, upload gambar |
 | LOC | ≥ 1000 | Target ≥ 1000 | Belum dihitung final |
-| Entitas CRUD | ≥ 3 | Pelanggan, kendaraan, pembayaran (+ lifecycle rental) | 2 dari 3 selesai lokal; pembayaran Phase 4 |
+| Entitas CRUD | ≥ 3 | Pelanggan, kendaraan, pembayaran (+ lifecycle rental) | 2 dari 3 selesai (committed & pushed); pembayaran Phase 4 |
 | Test suite | Wajib berjalan | Unit + feature | 74 passed (293 assertions) |
 
 ## 8. Pertanyaan Terbuka / Blockers
 
 | No | Hal | Dampak | Status |
 |---|---|---|---|
-| 1 | Commit/push/PR Phase 3 | Review dan merge | Implementasi selesai; belum ada commit/PR |
-| 2 | Reviewer Phase 3 | Syarat Definition of Done | Perlu anggota selain pemilik branch |
+| 1 | PR Phase 3 | Review dan merge | 3 commit sudah di-push (`8336f17`–`80af0a8`) & PR dibuka di GitHub; perubahan doc lokal menunggu commit/push sebelum merge |
+| 2 | Reviewer Phase 3 | Syarat Definition of Done | Menunggu review dan merge oleh Benny (atau anggota lain selain committer) |
 | 3 | Format UML final (Mermaid/PNG) | Presentasi/dokumen | Default: Mermaid + PNG jika diminta |
 | 4 | Tanggal/format presentasi | Phase 5 | Menunggu informasi |
 | 5 | Polish UI/UX dan tampilan tabel mobile | Kenyamanan demo | Ditunda ke Phase 5 sesuai arahan pemilik proyek |
+| 6 | Finalisasi kontribusi | Penilaian individu | Log berbasis task/commit disiapkan; final di Phase 5 |
 
 Tidak ada blocker teknis untuk review Phase 3.
 
@@ -184,3 +185,4 @@ Tidak ada blocker teknis untuk review Phase 3.
 3. Jangan menulis "100%" untuk implementasi yang belum diuji.
 4. Catat blocker dan pertanyaan terbuka secara eksplisit.
 5. Sertakan tanggal dan nama pembaru.
+6. Kontribusi dicatat berbasis task/commit di `docs/CONTRIBUTION_LOG.md`; rekap final dilakukan pada Phase 5.

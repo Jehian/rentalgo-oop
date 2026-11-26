@@ -3,7 +3,7 @@
 | Item | Keterangan |
 |---|---|
 | Fase | Phase 2 — Authentication, Layout & Dashboard |
-| Pemilik | Steven Credentia Ivanemaga Zega (422024020) |
+| Pelaksana commit | Steven Credentia Ivanemaga Zega (422024020) — `steven.422024020@civitas.ukrida.ac.id` |
 | Branch | `phase/02-auth-dashboard` |
 | Pull Request | #2 (`c4847c2`) |
 | Tanggal mulai | 2026-11-25 |
@@ -176,7 +176,7 @@ Screenshot diambil dari aplikasi yang berjalan dengan data seeder MySQL melalui 
 - **Stabil:** auth, session, middleware `auth`/`admin`, layout responsif, komponen Blade, dashboard,
   Chart.js, dan pola controller tipis + service.
 - **Phase 3:** gunakan `x-card`, `x-input`, `x-button`, `x-alert`, `x-pagination`, `x-status-badge`;
-  aktifkan link sidebar Pelanggan/Kendaraan bersama pemilik layout; gunakan model/factory Phase 1.
+  aktifkan link sidebar Pelanggan/Kendaraan bersama koordinator layout; gunakan model/factory Phase 1.
 - **Phase 4:** gunakan layout dan komponen yang sama; `RentalService` tetap satu-satunya tempat logika
   availability/pricing; middleware `admin` untuk aksi hapus.
 - **Jangan:** mengubah migration/model/seeder; menambah dependency selain yang disetujui; membuat
@@ -186,7 +186,7 @@ Screenshot diambil dari aplikasi yang berjalan dengan data seeder MySQL melalui 
 
 ## 11. Checklist
 
-- [x] Scope selesai (implementasi lokal).
+- [x] Scope selesai (merged).
 - [x] Test ditambahkan dan lulus.
 - [x] Pint lulus.
 - [x] Build Vite lulus.
@@ -202,3 +202,6 @@ Screenshot diambil dari aplikasi yang berjalan dengan data seeder MySQL melalui 
 |---|---|---|
 | Steven Credentia Ivanemaga Zega (422024020) | Auth operator & pelanggan terpisah, middleware role, layout, komponen, dashboard, Chart.js, portal pelanggan, test, dokumentasi Phase 2 | `da691a8`, `963c356`, `f68f1e9`, `d670468`, `ee5a754` |
 | Benny Anderson (422024008) | Fondasi Phase 1 yang dipakai Phase 2 | PR #1 (`1b5caee`) |
+
+> Rekap kontribusi final digabung di `docs/CONTRIBUTION_LOG.md` pada Phase 5 dan mengikuti author
+> commit di Git.

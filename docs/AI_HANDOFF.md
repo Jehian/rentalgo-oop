@@ -26,20 +26,21 @@ dokumen UAS menang; perbaiki dokumen proyek melalui PR.
 |---|---|
 | Repository | `https://github.com/Jehian/rentalgo-oop` |
 | Branch dokumentasi | `main` |
-| Commit terakhir | `main`: merge PR #2 `c4847c2`; Phase 3 ada di branch lokal `phase/03-master-data` |
+| Commit terakhir | `main`: merge PR #2 `c4847c2`; Phase 3 di `origin/phase/03-master-data` (`80af0a8`) |
 | Framework | Laravel 13.44.1 |
 | PHP CLI | 8.4.12 (minimum 8.3) |
 | Node/npm | 22.23.4 / npm terpasang |
 | Database lokal | MySQL 8.4.3 Laragon, `127.0.0.1:3306`, database `rentalgo` |
-| Implementasi aplikasi | Phase 1–2 merged; Phase 3 (CRUD pelanggan/kendaraan) implemented lokal, PR pending; rental/pembayaran belum |
+| Implementasi aplikasi | Phase 1–2 merged; Phase 3 (CRUD pelanggan/kendaraan) pushed & PR dibuat di GitHub, menunggu review/merge; rental/pembayaran belum |
 | Migration bisnis | 5 tabel + role + auth kolom `customers` + `rentals.user_id` nullable |
 | Model/controller/service/view | Model/service/auth/dashboard/portal pelanggan/master data ada; rental/payment Phase 4 |
 | Test | 74 test lulus (293 assertions) |
 | Docker | Tidak digunakan |
 
 Phase 0, Phase 1, dan Phase 2 sudah selesai. Phase 2 digabung ke `main` melalui PR #2 (`c4847c2`).
-Phase 3 (CRUD pelanggan dan kendaraan) sudah diimplementasikan pada branch `phase/03-master-data` dan
-menunggu commit/PR/review. Transaksi rental dan pembayaran belum tersedia (Phase 4).
+Phase 3 (CRUD pelanggan dan kendaraan) sudah di-commit oleh `steven.422024001@civitas.ukrida.ac.id`,
+di-push ke `origin/phase/03-master-data`, dan PR-nya di GitHub menunggu review/merge. Transaksi
+rental dan pembayaran belum tersedia (Phase 4).
 
 ## 3. Kontrak Phase 1 (Tersedia di Main)
 
@@ -161,7 +162,7 @@ File route modul:
 
 **Serahkan ke Phase 3/4:** layout, komponen, navigasi, pola controller/request/view.
 
-### Phase 3 — Anggota 3 (implemented lokal)
+### Phase 3 — Master Data CRUD (PR dibuat, menunggu review/merge)
 
 **Baca:** PRD §6.3–6.4, ARCHITECTURE §3, DATABASE_SCHEMA §3.2–3.3, PHASE_PLAN Phase 3.
 
@@ -169,7 +170,8 @@ File route modul:
 
 **Status:** CRUD pelanggan/kendaraan, search/filter/sort/pagination, upload/ganti gambar, detail
 riwayat rental, validasi, dan soft delete guard sudah diimplementasikan pada branch
-`phase/03-master-data`. Test Phase 3 lulus. Commit/PR/review belum dibuat.
+`phase/03-master-data`. Test Phase 3 lulus. Branch sudah di-push (3 commit oleh Steven /
+`steven.422024001@civitas.ukrida.ac.id`) dan PR di GitHub menunggu review/merge.
 
 **Kontrak untuk Phase 4:**
 
@@ -185,7 +187,7 @@ riwayat rental, validasi, dan soft delete guard sudah diimplementasikan pada bra
 - Menduplikasi logika availability/pricing di controller.
 - Menghapus data master yang punya rental aktif.
 
-### Phase 4 — Anggota 4
+### Phase 4 — Rental & Payment (Terbuka untuk Anggota Mana Saja)
 
 **Baca:** PRD §6.5–6.6, ARCHITECTURE §4–5, DATABASE_SCHEMA §8, PHASE_PLAN Phase 4.
 
@@ -227,7 +229,7 @@ npm install
 
 ### 5.2 Database MySQL
 
-Pastikan service MySQL WAMP berjalan. Database `rentalgo` sudah dibuat di MySQL port 3306.
+Pastikan MySQL Laragon berjalan. Database `rentalgo` sudah dibuat di MySQL port 3306.
 
 Jika perlu membuat ulang dari phpMyAdmin atau MySQL client:
 
@@ -280,19 +282,19 @@ git pull
 git switch -c phase/03-master-data
 ```
 
-Branch Phase 3 saat ini: `phase/03-master-data`. Phase 4 menggunakan `phase/04-rental-payment` dari
-`main` setelah Phase 3 digabung.
+Branch Phase 3 saat ini: `phase/03-master-data` (sudah di-push ke `origin`). Phase 4 menggunakan
+`phase/04-rental-payment` dari `main` setelah Phase 3 digabung.
 
 ## 6. Gotcha Environment
 
 1. **PHP `ext/curl` warning** — pada mesin ini PHP CLI menampilkan peringatan startup karena
    `php_curl.dll` diblokir Application Control. Artisan tetap berjalan. Jangan menganggapnya bug kode;
    catat di troubleshooting laporan jika muncul saat demo.
-2. **WAMP service** — MySQL harus berjalan sebelum migrasi. Saat ini MySQL 9.1 (3306) dan MariaDB
-   11.5 (3307) aktif; proyek memakai MySQL 3306, bukan MariaDB.
+2. **MySQL Laragon** — MySQL harus berjalan sebelum migrasi. Environment aktif memakai MySQL 8.4.3
+   Laragon di `127.0.0.1:3306` (bukan MariaDB).
 3. **SQLite vs MySQL** — test memakai SQLite in-memory; demo memakai MySQL. Hindari SQL manual yang
    hanya valid di salah satu.
-4. **Ekstensi `intl`** — belum aktif di PHP CLI 8.4.8. Gunakan `number_format` untuk nominal uang;
+4. **Ekstensi `intl`** — belum aktif di PHP CLI. Gunakan `number_format` untuk nominal uang;
    jangan memakai `Number::format`/`Number::currency` tanpa mengaktifkan `intl`.
 5. **Laravel 13 attributes** — model skeleton memakai `#[Fillable]`/`#[Hidden]`, bukan `$fillable`
    array. Ikuti gaya yang ada.
@@ -312,7 +314,10 @@ Aturan lengkap di `AGENTS.md`. Ringkasan:
 - Jangan mengubah file milik anggota lain tanpa koordinasi.
 - Jangan menambah dependency tanpa persetujuan.
 - Jangan mengklaim selesai tanpa test/verifikasi.
-- Perbarui phase report, status, traceability, contribution log.
+- Pembagian kerja tidak dikunci per phase: siapa saja boleh mengerjakan phase mana pun selama commit
+  memakai email Git masing-masing anggota.
+- Commit memakai identitas dan email Git milik anggota yang menjalankan commit; rekap dicatat di
+  `docs/CONTRIBUTION_LOG.md`.
 - Jangan commit rahasia/`.env`.
 - Jangan menyalin kode dari internet tanpa atribusi; proyek harus orisinal.
 - Jika requirement ambigu, tanyakan; jangan mengarang.
@@ -330,7 +335,7 @@ Aturan lengkap di `AGENTS.md`. Ringkasan:
 
 ## 9. Pertanyaan Terbuka
 
-1. Otorisasi commit/push/PR Phase 3 (menunggu instruksi pemilik proyek).
+1. PR Phase 3: 3 commit sudah di-push dan PR dibuka di GitHub; menunggu review/merge Benny (atau reviewer lain).
 2. Format final UML (Mermaid/PNG).
 3. Jadwal presentasi.
 

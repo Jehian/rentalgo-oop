@@ -27,6 +27,7 @@ Dokumen UAS di `docs/reference/` adalah sumber kebenaran utama dan tidak boleh d
 
 - Fase sebelumnya: {{PHASE_PREVIOUS}} — {{STATUS}}
 - Branch kerja: `{{BRANCH}}`
+- Pelaksana: {{CONTRIBUTORS}} (siapa saja boleh mengerjakan selama commit memakai email Git sendiri)
 - Dependency yang sudah tersedia: {{DEPENDENCIES}}
 - Yang belum tersedia: {{NOT_AVAILABLE}}
 
@@ -55,8 +56,8 @@ Dokumen UAS di `docs/reference/` adalah sumber kebenaran utama dan tidak boleh d
 ## 6. File yang Tidak Boleh Diubah
 
 - `docs/reference/**`
-- Migration/model/seeder (kecuali fase ini pemiliknya)
-- File modul anggota lain: {{PROTECTED_PATHS}}
+- Migration/model/seeder (kecuali sudah dikoordinasikan agar tidak konflik)
+- File modul lain tanpa koordinasi: {{PROTECTED_PATHS}}
 - `.env` atau secret
 
 ## 7. Requirement dan Acceptance Criteria
@@ -98,7 +99,7 @@ Manual check:
 - [ ] `docs/progress/phase-{{PHASE_NUMBER}}-{{SLUG}}.md` (dari template)
 - [ ] `docs/PROJECT_STATUS.md`
 - [ ] `docs/UAS_TRACEABILITY.md`
-- [ ] `docs/CONTRIBUTION_LOG.md`
+- [ ] `docs/CONTRIBUTION_LOG.md` (catat task/commit; finalisasi di Phase 5)
 - [ ] `README.md` jika setup/fitur berubah
 - [ ] `docs/DECISIONS.md` jika ada keputusan baru
 
@@ -107,6 +108,8 @@ Manual check:
 - Jangan bekerja di `main`.
 - Jangan commit/push/PR kecuali manusia meminta secara eksplisit.
 - Jika diminta commit, gunakan Conventional Commits dan jangan commit secret.
+- Commit memakai identitas orang yang menjalankan commit; kontribusi task dicatat di
+  `docs/CONTRIBUTION_LOG.md`.
 - PR harus menyertakan ringkasan, file, verifikasi, dan screenshot (jika UI).
 
 ## 12. Format Laporan Akhir

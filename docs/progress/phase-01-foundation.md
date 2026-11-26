@@ -3,7 +3,7 @@
 | Item | Keterangan |
 |---|---|
 | Fase | Phase 1 — Foundation & Architecture |
-| Pemilik | Benny Anderson (422024008) |
+| Pelaksana commit | Benny Anderson (422024008) — `benanderson2nds@gmail.com` |
 | Branch | `phase/01-foundation` |
 | Pull Request | [#1](https://github.com/Jehian/rentalgo-oop/pull/1) (merged) |
 | Tanggal mulai | 2026-11-25 |
@@ -179,7 +179,7 @@ Tidak ada; Phase 1 tidak membuat UI.
 
 ## 11. Checklist
 
-- [x] Scope selesai (implementasi lokal).
+- [x] Scope selesai (merged).
 - [x] Test ditambahkan dan lulus.
 - [x] Pint lulus.
 - [x] Tidak ada secret di file yang diubah.
@@ -196,3 +196,6 @@ Tidak ada; Phase 1 tidak membuat UI.
 |---|---|---|
 | Benny Anderson (422024008) | Konfigurasi, migration, model, domain, service, factory, seeder, test, dokumentasi Phase 1 | `8510ea6`, `72490c1`, `c9ac1b7`, `c6c4dc8`, `eea47e9`, `22fb7c5`; PR #1 |
 | Steven Credentia Ivanemaga Zega (422024020) | Review PR #1 dan merge ke `main` | `1b5caee` |
+
+> Rekap kontribusi final digabung di `docs/CONTRIBUTION_LOG.md` pada Phase 5 dan mengikuti author
+> commit di Git.

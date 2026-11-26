@@ -10,11 +10,11 @@ yang direncanakan, fase pengerjaan, dan metode verifikasi.
 > merged (PR #2, `c4847c2`). Requirement login, logout, session, role, layout, dashboard, dan portal
 > pelanggan berstatus `Implemented` karena sudah lulus test lokal dan review/merge Phase 2.
 >
-> **Pembaruan Phase 3 (2026-11-25):** CRUD pelanggan dan kendaraan, search/filter/sort/pagination,
-> validasi Form Request, upload gambar, dan detail riwayat rental sudah diimplementasikan pada branch
-> `phase/03-master-data` dan lulus test lokal. Status `Verified` menunggu review PR Phase 3. CRUD
-> pembayaran dan lifecycle rental tetap Phase 4, sehingga requirement CRUD minimal 3 entitas masih
-> `In Progress`.
+> **Pembaruan Phase 3 (2026-11-26):** CRUD pelanggan dan kendaraan, search/filter/sort/pagination,
+> validasi Form Request, upload gambar, dan detail riwayat rental sudah diimplementasikan, di-commit
+> oleh Steven (`8336f17`–`80af0a8`), di-push ke `origin/phase/03-master-data`, dan PR-nya menunggu
+> review/merge. Status `Verified` menunggu review PR Phase 3. CRUD pembayaran dan lifecycle rental
+> tetap Phase 4, sehingga requirement CRUD minimal 3 entitas masih `In Progress`.
 
 ## 1. Legenda Status
 
@@ -114,7 +114,7 @@ Pemetaan dokumentasi UAS:
 | UAS-ASM-03 | UI/UX | 10% | Tailwind, konsistensi, responsive | Screenshot + review | In Progress |
 | UAS-ASM-04 | Dokumentasi | 15% | PRD, docs, UML, laporan akhir | Checklist dokumen | Documented / Planned |
 | UAS-ASM-05 | Presentasi | 15% | Demo + penjelasan | Rehearsal | Planned |
-| UAS-ASM-06 | Kontribusi individu | 10% | Contribution log + commit history | Review log + Git | Planned |
+| UAS-ASM-06 | Kontribusi individu | 10% | Contribution log berbasis task + commit history | Review log + Git | In Progress |
 
 ## 7. Bonus Opsional
 
@@ -142,8 +142,8 @@ Pemetaan dokumentasi UAS:
 
 | ID | Faktor | Bukti yang Disiapkan | Verifikasi | Status |
 |---|---|---|---|---|
-| UAS-IND-01 | Kontribusi coding | `docs/CONTRIBUTION_LOG.md`, PR, phase report | Review log + PR | Planned |
-| UAS-IND-02 | Commit GitHub | Commit bermakna per anggota; merge commit mempertahankan histori | `git log --author` | Planned |
+| UAS-IND-01 | Kontribusi coding | `docs/CONTRIBUTION_LOG.md` berbasis histori commit (email Git masing-masing di phase mana saja), PR, phase report | Review log + PR | In Progress |
+| UAS-IND-02 | Commit GitHub | Commit bermakna per anggota memakai email Git masing-masing; merge commit mempertahankan histori | `git log --format="%an <%ae>"` | In Progress |
 | UAS-IND-03 | Presentasi individu | Pembagian bagian presentasi | Rehearsal | Planned |
 | UAS-IND-04 | Pemahaman kode | Code walkthrough tiap anggota | Sesi tanya-jawab internal | Planned |
 
@@ -155,14 +155,15 @@ Pemetaan dokumentasi UAS:
 | Fitur + UI + UML | 16 | 3 | 0 | 0 | 5 | 8 | 0 | 0 |
 | Deliverables | 5 | 1 | 1 | 3 | 0 | 0 | 0 | 0 |
 | Intermediate | 7 | 0 | 0 | 1 | 2 | 4 | 0 | 0 |
-| Penilaian | 6 | 0 | 1 | 3 | 2 | 0 | 0 | 0 |
+| Penilaian | 6 | 0 | 1 | 2 | 3 | 0 | 0 | 0 |
 | Bonus | 6 | 0 | 0 | 3 | 1 | 0 | 0 | 2 |
 | Pengurangan nilai | 6 | 0 | 1 | 5 | 0 | 0 | 0 | 0 |
-| Penilaian individu | 4 | 0 | 0 | 4 | 0 | 0 | 0 | 0 |
-| **Total** | **66** | **4** | **3** | **19** | **15** | **23** | **0** | **2** |
+| Penilaian individu | 4 | 0 | 0 | 2 | 2 | 0 | 0 | 0 |
+| **Total** | **66** | **4** | **3** | **16** | **18** | **23** | **0** | **2** |
 
 Catatan: beberapa baris dokumentasi berstatus `Documented / Planned` karena dokumen sudah ada,
-tetapi laporan akhir dan screenshot baru dibuat pada Phase 5.
+tetapi laporan akhir dan screenshot baru dibuat pada Phase 5. UAS-ASM-06 dan UAS-IND-01 menjadi
+`In Progress` karena log kontribusi berbasis task/commit mulai dipelihara; finalisasi di Phase 5.
 
 ## 11. Aturan Pemeliharaan Traceability
 

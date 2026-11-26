@@ -42,8 +42,8 @@ Jika terjadi konflik, dokumen UAS menang. Jangan mengarang requirement baru; cat
 1. **Jangan bekerja langsung di `main` untuk implementasi.** Phase 0 dokumentasi adalah pengecualian
    yang disetujui pemilik proyek.
 2. **Jangan mengubah dokumen UAS** di `docs/reference/`.
-3. **Jangan mengedit file milik anggota lain** tanpa koordinasi; lihat matriks kepemilikan di
-   `docs/PHASE_PLAN.md`.
+3. **Koordinasi sebelum mengedit file lintas modul** agar tidak terjadi konflik merge; tidak ada
+   larangan kaku per orang karena siapa saja dapat mengerjakan phase mana pun (lihat `docs/PHASE_PLAN.md`).
 4. **Jangan menambah dependency** (`composer require`, `npm install <paket>`) tanpa persetujuan.
 5. **Jangan commit** `.env`, kredensial, token, `vendor/`, `node_modules/`, atau build artifact.
 6. **Jangan mengklaim fitur selesai** tanpa implementasi dan verifikasi nyata.
@@ -59,8 +59,9 @@ Jika terjadi konflik, dokumen UAS menang. Jangan mengarang requirement baru; cat
   service, factory, seeder, test) tersedia di `main`.
 - Phase 2: merged ke `main` melalui PR #2 (`c4847c2`). Auth, layout, dashboard, dan portal pelanggan
   tersedia.
-- Phase 3: diimplementasikan pada branch `phase/03-master-data`; CRUD pelanggan/kendaraan, upload
-  gambar, dan test sudah lulus lokal, menunggu commit/PR/review.
+- Phase 3: sudah di-commit dan di-push ke `origin/phase/03-master-data` (commit `8336f17`, `be149f3`,
+  `80af0a8` oleh `steven.422024001@civitas.ukrida.ac.id`); PR di GitHub sudah dibuat dan menunggu
+  review/merge dari Benny. `main` belum berubah.
 - Transaksi rental dan pembayaran belum ada; dikerjakan Phase 4.
 
 ## 6. Branching
@@ -98,7 +99,9 @@ chore(config): add rental config
 Aturan:
 
 - Commit kecil, satu tujuan, pesan jelas.
-- Setiap anggota commit dengan identitas Git sendiri.
+- Commit memakai **identitas dan email Git milik anggota yang mengerjakan**. Siapa pun dapat
+  berkontribusi pada phase mana saja selama histori commit tercatat pada email masing-masing; rekap
+  dicatat di `docs/CONTRIBUTION_LOG.md` dan difinalkan pada Phase 5.
 - PR wajib untuk fase implementasi; merge memakai merge commit agar histori individu terlihat.
 - PR harus menyertakan: ringkasan, file yang diubah, cara verifikasi, screenshot UI (jika ada),
   phase report, dan status dokumentasi.
@@ -177,7 +180,7 @@ Aturan:
 - Lima tabel bisnis: `users`, `customers`, `vehicles`, `rentals`, `payments`.
 - Uang `DECIMAL(12,2)`; jangan `FLOAT`.
 - Foreign key dan index wajib sesuai dokumen.
-- Migration hanya diedit Anggota 1/Phase 1; fase lain mengajukan perubahan.
+- Migration dikelola mulai Phase 1; fase lain yang membutuhkan perubahan schema wajib mengajukan via PR dan koordinasi.
 - Jangan mengubah data produksi; gunakan `migrate:fresh --seed` di lokal.
 - Soft delete pelanggan/kendaraan; rental memakai status; payment pending boleh dihapus.
 - MySQL untuk demo; SQLite untuk test; hindari SQL khusus vendor.
@@ -248,7 +251,8 @@ mysql -u root -p -e "CREATE DATABASE rentalgo CHARACTER SET utf8mb4 COLLATE utf8
 - [ ] `vendor/bin/pint --test` lulus.
 - [ ] Tidak ada error kritis.
 - [ ] UI responsif (jika ada UI).
-- [ ] Phase report, status, traceability, contribution log diperbarui.
+- [ ] Phase report, status, traceability, dan contribution log berbasis task/commit diperbarui; finalisasi di Phase 5.
+- [ ] Kontribusi setiap anggota tercatat sesuai histori commit (email Git) dan bukti task/review.
 - [ ] PR direview minimal satu anggota lain.
 - [ ] Merge ke `main` selesai.
 

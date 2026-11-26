@@ -9,10 +9,10 @@
 | Dosen | Cynthia Hayat |
 | Semester | 2025/2026 |
 | Repository | https://github.com/Jehian/rentalgo-oop |
-| Branch dokumentasi | `main` (Phase 0); implementasi Phase 1 di `phase/01-foundation` |
-| Versi Dokumen | 1.1 — Phase 0 + catatan Phase 1 |
-| Status | Perencanaan selesai; fondasi Phase 1 committed dan di-push, belum merge |
-| Terakhir Diperbarui | 25 November 2026 |
+| Branch dokumentasi | `main` (Phase 0); implementasi aktif di branch per fase |
+| Versi Dokumen | 1.2 — Phase 0 + status Phase 1–3 |
+| Status | Phase 0–2 merged; Phase 3 pushed (PR dibuat, menunggu review/merge); Phase 4 belum dimulai |
+| Terakhir Diperbarui | 26 November 2026 |
 
 > Dokumen ini adalah sumber kebutuhan produk. Sumber kebenaran utama tetap dokumen UAS resmi di
 > `docs/reference/`. Setiap keputusan teknis yang tidak diatur UAS dicatat di `docs/DECISIONS.md`.

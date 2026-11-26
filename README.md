@@ -4,9 +4,9 @@ Aplikasi web sistem informasi **rental kendaraan** yang dibangun dengan Laravel 
 UAS mata kuliah Pemrograman Berorientasi Objek (SI2WPO084), Program Studi Sistem Informasi.
 
 > **Status:** Phase 0, Phase 1, dan Phase 2 selesai dan sudah merged ke `main` (PR #1 `1b5caee`,
-> PR #2 `c4847c2`). Phase 3 (Master Data CRUD pelanggan dan kendaraan) sudah diimplementasikan pada
-> branch `phase/03-master-data` dan menunggu PR/review. Transaksi rental dan pembayaran belum tersedia
-> (Phase 4).
+> PR #2 `c4847c2`). Phase 3 (Master Data CRUD pelanggan dan kendaraan) sudah di-commit dan di-push ke
+> branch `phase/03-master-data` dan PR-nya sedang menunggu review/merge di GitHub. Transaksi rental
+> dan pembayaran belum tersedia (Phase 4).
 
 ## Tentang Proyek
 
@@ -20,7 +20,7 @@ autentikasi sederhana, validasi, dan dokumentasi.
 Sudah tersedia (Phase 2–3):
 
 - Portal pelanggan publik: katalog kendaraan (`/`), pencarian, filter tipe/status, sorting tarif, detail kendaraan, dan estimasi biaya otomatis.
-- Registrasi pelanggan publik (`/register`), login, logout, session, serta pemisahan akses Admin, Staff (`operator`), dan Pelanggan (`customer`).
+- Registrasi pelanggan publik (`/customer/register`), login, logout, session, serta pemisahan akses Admin, Staff (`operator`), dan Pelanggan (`customer`).
 - Booking mandiri pelanggan, riwayat dan detail pesanan pribadi, pembatalan rental aktif pribadi, serta pengelolaan profil pelanggan.
 - Layout responsif operator (`app.blade.php`) dan layout publik/pelanggan (`public.blade.php`).
 - Dashboard Admin/Staff: ringkasan, grafik pendapatan enam bulan, komposisi status kendaraan, dan rental terbaru.
@@ -161,15 +161,22 @@ Dokumen UAS asli ada di `docs/reference/` dan tidak diubah.
 - Commit memakai Conventional Commits.
 - Setiap fase memperbarui laporan di `docs/progress/`, `PROJECT_STATUS.md`, `UAS_TRACEABILITY.md`,
   dan `CONTRIBUTION_LOG.md`.
+- Pembagian kerja bersifat fleksibel: setiap anggota boleh mengerjakan task pada fase mana saja
+  selama commit menggunakan **email Git masing-masing**. Kontribusi dicatat berdasarkan histori
+  commit, review PR, dan dokumentasi di `docs/CONTRIBUTION_LOG.md`, lalu difinalkan pada Phase 5.
 
 ## Tim
 
-| Anggota | Nama / NIM | Tanggung Jawab |
+| Anggota | Nama / NIM | Email Git |
 |---|---|---|
-| Anggota 1 | Benny Anderson / 422024008 | Phase 0 (planning) + Phase 1 (foundation) |
-| Anggota 2 | Steven Credentia Ivanemaga Zega / 422024020 | Phase 2 (auth, layout, dashboard, portal pelanggan) |
-| Anggota 3 | Jason / 422024004 | Phase 3 (master data) |
-| Anggota 4 | Steven / 422024001 | Phase 4 (rental & payment) |
+| Anggota 1 | Benny Anderson / 422024008 | `benanderson2nds@gmail.com` |
+| Anggota 2 | Steven Credentia Ivanemaga Zega / 422024020 | `steven.422024020@civitas.ukrida.ac.id` |
+| Anggota 3 | Jason / 422024004 | Email Git masing-masing (belum ada commit tercatat) |
+| Anggota 4 | Steven / 422024001 | `steven.422024001@civitas.ukrida.ac.id` |
+
+> Pembagian kontribusi tidak berpatokan pada fase secara kaku. Setiap anggota dapat mengerjakan
+> fase mana saja selama riwayat commit-nya tercatat pada email Git masing-masing. Rekap kontribusi
+> lengkap dicatat di `docs/CONTRIBUTION_LOG.md`.
 
 ## Lisensi
 
