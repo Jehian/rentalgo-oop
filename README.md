@@ -167,16 +167,18 @@ Dokumen UAS asli ada di `docs/reference/` dan tidak diubah.
 
 ## Tim
 
-| Anggota | Nama / NIM | Email Git |
-|---|---|---|
-| Anggota 1 | Benny Anderson / 422024008 | `benanderson2nds@gmail.com` |
-| Anggota 2 | Steven Credentia Ivanemaga Zega / 422024020 | `steven.422024020@civitas.ukrida.ac.id` |
-| Anggota 3 | Jason / 422024004 | Email Git masing-masing (belum ada commit tercatat) |
-| Anggota 4 | Steven / 422024001 | `steven.422024001@civitas.ukrida.ac.id` |
+| Nama | NIM | Email Git | Kontribusi Tercatat (`git log`) |
+|---|---|---|---|
+| Benny Anderson | 422024008 | `benanderson2nds@gmail.com` | Phase 0, Phase 1, merge PR#1 & PR#2 |
+| Steven Credentia Ivanemaga Zega | 422024020 | `steven.422024020@civitas.ukrida.ac.id` | Phase 2 |
+| Jason | 422024004 | *(konfirmasi email Git)* | — |
+| Steven | 422024001 | `steven.422024001@civitas.ukrida.ac.id` | Phase 3 |
 
-> Pembagian kontribusi tidak berpatokan pada fase secara kaku. Setiap anggota dapat mengerjakan
-> fase mana saja selama riwayat commit-nya tercatat pada email Git masing-masing. Rekap kontribusi
-> lengkap dicatat di `docs/CONTRIBUTION_LOG.md`.
+> **Catatan kontribusi:** Pembagian kerja **tidak dikunci per fase per orang**. Siapa saja boleh
+> mengerjakan task di fase mana pun selama commit memakai **email Git masing-masing**. Kolom
+> "Kontribusi Tercatat" di atas hanya merangkum histori `git log` saat ini dan akan bertambah
+> seiring berjalannya proyek. Rekap lengkap ada di [`docs/CONTRIBUTION_LOG.md`](docs/CONTRIBUTION_LOG.md)
+> dan difinalkan pada Phase 5.
 
 ## Lisensi
 
