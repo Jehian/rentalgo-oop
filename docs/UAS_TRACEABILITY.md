@@ -19,7 +19,8 @@ yang direncanakan, fase pengerjaan, dan metode verifikasi.
 > `views/payments/*`) sudah diimplementasikan pada branch `phase/04-rental-payment` (commit
 > `448993f` implementasi, `9a6073d` test). Verifikasi lokal: 96 test lulus (499 assertions), Pint,
 > Vite build, MySQL `migrate:fresh --seed`, smoke test browser (rental motor 7 hari, pembayaran,
-> pengembalian + denda, pembatalan), dan 11 screenshot di `docs/assets/phase-04/`.
+> pengembalian + denda, pembatalan), dan 11 screenshot di `docs/assets/phase-04/`. Branch sudah
+> di-push dan PR #4 (https://github.com/Jehian/rentalgo-oop/pull/4) menunggu review.
 > Status `Verified` tetap menunggu review PR Phase 4 dan verifikasi E2E Phase 5.
 
 ## 1. Legenda Status

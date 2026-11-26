@@ -5,8 +5,8 @@ UAS mata kuliah Pemrograman Berorientasi Objek (SI2WPO084), Program Studi Sistem
 
 > **Status:** Phase 0–3 selesai dan sudah merged ke `main` (PR #1 `1b5caee`, PR #2 `c4847c2`,
 > PR #3 `9a738fb`). Phase 4 (transaksi rental dan CRUD pembayaran) sudah diimplementasikan dan
-> diverifikasi lokal pada branch `phase/04-rental-payment` (commit `448993f`, `9a6073d`; 96 test
-> lulus; MySQL + browser smoke test; 11 screenshot). Branch menunggu push, PR, dan review.
+> diverifikasi lokal pada branch `phase/04-rental-payment` (commit `448993f`, `9a6073d`, `ce5ae7d`;
+> 96 test lulus; MySQL + browser smoke test; 11 screenshot). PR #4 sudah dibuka dan menunggu review.
 
 ## Tentang Proyek
 
@@ -177,7 +177,7 @@ Dokumen UAS asli ada di `docs/reference/` dan tidak diubah.
 |---|---|---|---|
 | Benny Anderson | 422024008 | `benanderson2nds@gmail.com` | Phase 0, Phase 1, merge PR#1 & PR#2 |
 | Steven Credentia Ivanemaga Zega | 422024020 | `steven.422024020@civitas.ukrida.ac.id` | Phase 2 |
-| Jason | 422024004 | `jason.422024004@civitas.ukrida.ac.id` | Phase 4 (branch lokal, siap PR) |
+| Jason | 422024004 | `jason.422024004@civitas.ukrida.ac.id` | Phase 4 (PR #4) |
 | Steven | 422024001 | `steven.422024001@civitas.ukrida.ac.id` | Phase 3 |
 
 > **Catatan kontribusi:** Pembagian kerja **tidak dikunci per fase per orang**. Siapa saja boleh

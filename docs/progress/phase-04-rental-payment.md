@@ -5,13 +5,14 @@
 | Fase | Phase 4 — Transaksi Rental & Pembayaran |
 | Pelaksana commit | Jason (`jason.422024004@civitas.ukrida.ac.id`) |
 | Reviewer / Merge | Menunggu reviewer (Benny atau Steven) |
-| Branch | `phase/04-rental-payment` |
-| Pull Request | Belum dibuat — branch siap di-push |
+| Branch | `phase/04-rental-payment` (pushed ke `origin`) |
+| Pull Request | PR #4 — https://github.com/Jehian/rentalgo-oop/pull/4 |
 | Commit implementasi | `448993f` — `feat(rental-payment): implement rental and payment workflow` |
 | Commit test | `9a6073d` — `test(rental-payment): cover rental lifecycle and payment workflow` |
+| Commit dokumentasi | `ce5ae7d` — `docs(phase-4): document rental and payment verification` |
 | Tanggal mulai | 2026-11-26 |
 | Tanggal selesai | 2026-11-26 |
-| Status | Implementasi dan verifikasi lokal selesai; menunggu push, PR, dan review |
+| Status | PR dibuat — menunggu review |
 
 ---
 
@@ -330,8 +331,8 @@ Semua screenshot diambil dari aplikasi lokal dengan data seeder MySQL dan disimp
 - [x] Screenshot desktop/mobile disertakan (11 file).
 - [x] Dokumentasi status/traceability/contribution log diperbarui.
 - [x] Tidak ada secret.
-- [ ] Branch di-push.
-- [ ] PR dibuat.
+- [x] Branch di-push.
+- [x] PR dibuat (PR #4).
 - [ ] PR direview oleh minimal satu anggota lain.
 - [ ] Merge ke `main` selesai.
 
@@ -348,7 +349,7 @@ Semua screenshot diambil dari aplikasi lokal dengan data seeder MySQL dan disimp
 | Routes, sidebar, JS | Jason (`jason.422024004@civitas.ukrida.ac.id`) | `448993f` | `routes/rental.php`, `app.blade.php`, `app.js` |
 | 22 feature test | Jason (`jason.422024004@civitas.ukrida.ac.id`) | `9a6073d` | `tests/Feature/{Rentals,Payments}/*` |
 | Fix `scopeOverlapping`, locking, guard service | Jason (`jason.422024004@civitas.ukrida.ac.id`) | `448993f` | `app/Models/Rental.php`, `app/Services/RentalService.php` |
-| Dokumentasi & screenshot Phase 4 | Jason (`jason.422024004@civitas.ukrida.ac.id`) | commit dokumentasi | `docs/*`, `docs/assets/phase-04/*` |
+| Dokumentasi & screenshot Phase 4 | Jason (`jason.422024004@civitas.ukrida.ac.id`) | `ce5ae7d` | `docs/*`, `docs/assets/phase-04/*` |
 
 > Kontribusi tidak dikunci per phase secara kaku; pencatatan mengikuti histori commit pada email
 > Git masing-masing anggota dan direkonsiliasi di `docs/CONTRIBUTION_LOG.md` pada Phase 5.

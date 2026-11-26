@@ -26,12 +26,12 @@ dokumen UAS menang; perbaiki dokumen proyek melalui PR.
 |---|---|
 | Repository | `https://github.com/Jehian/rentalgo-oop` |
 | Branch dokumentasi | `main` |
-| Commit terakhir | `main`: merge PR #3 `9a738fb`; Phase 4 di branch lokal `phase/04-rental-payment` (`448993f`, `9a6073d`) |
+| Commit terakhir | `main`: merge PR #3 `9a738fb`; Phase 4 di `origin/phase/04-rental-payment` (`448993f`, `9a6073d`, `ce5ae7d`) |
 | Framework | Laravel 13.44.1 |
 | PHP CLI | 8.4.15 (minimum 8.3) |
 | Node/npm | 22.16.0 / npm terpasang |
 | Database lokal | MySQL 8.4.7 WAMP, `127.0.0.1:3306`, database `rentalgo` |
-| Implementasi aplikasi | Phase 1–3 merged; Phase 4 (rental & pembayaran) implemented + verified locally, menunggu push/PR/review |
+| Implementasi aplikasi | Phase 1–3 merged; Phase 4 (rental & pembayaran) implemented + verified locally, PR #4 menunggu review |
 | Migration bisnis | 5 tabel + role + auth kolom `customers` + `rentals.user_id` nullable |
 | Model/controller/service/view | Model/service/auth/dashboard/portal pelanggan/master data/rental/payment tersedia |
 | Test | 96 test lulus (499 assertions) |
@@ -39,9 +39,10 @@ dokumen UAS menang; perbaiki dokumen proyek melalui PR.
 
 Phase 0, Phase 1, Phase 2, dan Phase 3 sudah selesai dan digabung ke `main`. Phase 3 melalui PR #3
 (`9a738fb`). Phase 4 (transaksi rental dan pembayaran) sudah diimplementasikan dan diverifikasi lokal
-pada branch `phase/04-rental-payment` dengan commit `448993f` (implementasi) dan `9a6073d` (test):
-96 test lulus, Pint/build lulus, MySQL `migrate:fresh --seed` berhasil, smoke test browser lulus, dan
-11 screenshot tersedia di `docs/assets/phase-04/`. Branch belum di-push dan PR belum dibuat.
+pada branch `phase/04-rental-payment` dengan commit `448993f` (implementasi), `9a6073d` (test), dan
+`ce5ae7d` (dokumentasi): 96 test lulus, Pint/build lulus, MySQL `migrate:fresh --seed` berhasil,
+smoke test browser lulus, dan 11 screenshot tersedia di `docs/assets/phase-04/`. Branch sudah di-push
+dan PR #4 (https://github.com/Jehian/rentalgo-oop/pull/4) menunggu review.
 
 ## 3. Kontrak Phase 1 (Tersedia di Main)
 
@@ -195,11 +196,11 @@ melalui PR #3 (`9a738fb`). Commit Phase 3 tercatat pada email
 **Prasyarat:** Phase 1 (`RentalService`/domain), Phase 2 (layout), Phase 3 (halaman master).
 
 **Status:** Selesai diimplementasikan pada branch `phase/04-rental-payment` oleh Jason
-(`jason.422024004@civitas.ukrida.ac.id`), commit `448993f` (implementasi) dan `9a6073d` (test).
-`RentalController`, `PaymentController`, `PaymentService`, 5 Form Request, 8 view, routes, sidebar,
-dan JS estimator/sisa tagihan tersedia. Total suite 96 passed (499 assertions); Pint dan Vite build
-lulus; MySQL `migrate:fresh --seed`, smoke test browser, dan 11 screenshot Phase 4 selesai.
-Branch belum di-push dan PR belum dibuat.
+(`jason.422024004@civitas.ukrida.ac.id`), commit `448993f` (implementasi), `9a6073d` (test), dan
+`ce5ae7d` (dokumentasi). `RentalController`, `PaymentController`, `PaymentService`, 5 Form Request,
+8 view, routes, sidebar, dan JS estimator/sisa tagihan tersedia. Total suite 96 passed (499
+assertions); Pint dan Vite build lulus; MySQL `migrate:fresh --seed`, smoke test browser, dan 11
+screenshot Phase 4 selesai. Branch sudah di-push dan PR #4 menunggu review.
 
 **Lakukan (histori rencana):**
 
@@ -291,8 +292,8 @@ git switch -c phase/04-rental-payment
 ```
 
 Branch Phase 3 (`phase/03-master-data`) sudah merged ke `main` melalui PR #3 (`9a738fb`).
-Branch aktif Phase 4 adalah `phase/04-rental-payment` (lokal, belum di-push) dan sudah berbasis
-`main` terbaru.
+Branch aktif Phase 4 adalah `phase/04-rental-payment` (sudah di-push) dan sudah berbasis `main`
+terbaru. PR #4 menunggu review.
 
 ## 6. Gotcha Environment
 
@@ -344,7 +345,7 @@ Aturan lengkap di `AGENTS.md`. Ringkasan:
 
 ## 9. Pertanyaan Terbuka
 
-1. Phase 4: branch sudah siap, menunggu push, PR, review, dan merge.
+1. Phase 4: PR #4 sudah dibuka, menunggu review dan merge.
 2. Format final UML (Mermaid/PNG).
 3. Jadwal presentasi.
 
