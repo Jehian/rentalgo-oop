@@ -26,8 +26,8 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 | 0 | Requirements & Planning | Benny Anderson (`benanderson2nds@gmail.com`) | `main` (dokumentasi saja) | Selesai |
 | 1 | Foundation & Architecture | Benny Anderson (`benanderson2nds@gmail.com`), review Steven Zega | `phase/01-foundation` | Merged (PR #1, `1b5caee`) |
 | 2 | Auth, Layout & Dashboard | Steven Zega (`steven.422024020@civitas.ukrida.ac.id`), merge Benny | `phase/02-auth-dashboard` | Merged (PR #2, `c4847c2`) |
-| 3 | Master Data CRUD | Steven (`steven.422024001@civitas.ukrida.ac.id`) | `phase/03-master-data` | PR dibuat — menunggu review/merge |
-| 4 | Rental & Payment Workflow | Terbuka (siapa saja dengan email Git masing-masing) | `phase/04-rental-payment` | Belum dimulai |
+| 3 | Master Data CRUD | Steven (`steven.422024001@civitas.ukrida.ac.id`) | `phase/03-master-data` | Merged (PR #3, `9a738fb`) |
+| 4 | Rental & Payment Workflow | Jason (`jason.422024004@civitas.ukrida.ac.id`) | `phase/04-rental-payment` | Implementasi + verifikasi lokal selesai (menunggu push/PR) |
 | 5 | Integration, Testing & Delivery | Semua anggota (commit dengan email Git masing-masing) | `phase/05-integration` | Belum dimulai |
 
 ## 3. Detail Fase
@@ -201,7 +201,7 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 - [x] UI responsif dan konsisten dengan layout Phase 2.
 - [x] Phase report, status, traceability, dan contribution log diperbarui.
 - [x] Commit dan push branch `phase/03-master-data` (`8336f17`, `be149f3`, `80af0a8`).
-- [ ] PR di GitHub direview dan digabung.
+- [x] PR di GitHub direview dan digabung (PR #3, `9a738fb`).
 
 **Handoff ke Phase 4:** halaman/master data siap dipilih pada form rental.
 
@@ -227,7 +227,7 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 
 - `app/Http/Controllers/RentalController.php`, `PaymentController.php`
 - `app/Http/Requests/StoreRentalRequest.php`, `UpdateRentalRequest.php`,
-  `StorePaymentRequest.php`, `UpdatePaymentRequest.php`
+  `ReturnRentalRequest.php`, `StorePaymentRequest.php`, `UpdatePaymentRequest.php`
 - `app/Services/PaymentService.php`
 - `resources/views/rentals/`, `payments/`
 - `routes/rental.php`
@@ -235,13 +235,13 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 
 **Acceptance criteria:**
 
-- [ ] Rental tidak dapat dibuat jika kendaraan tidak tersedia/overlap.
-- [ ] Biaya mobil/motor sesuai aturan dan snapshot tarif tersimpan.
-- [ ] Return menghitung denda dan membebaskan kendaraan.
-- [ ] Cancel membebaskan kendaraan dan membatalkan pembayaran pending.
-- [ ] Pembayaran melebihi tagihan ditolak; paid terkunci.
-- [ ] Filter/pagination berfungsi; detail lengkap.
-- [ ] Phase report, status, traceability, contribution log diperbarui.
+- [x] Rental tidak dapat dibuat jika kendaraan tidak tersedia/overlap.
+- [x] Biaya mobil/motor sesuai aturan dan snapshot tarif tersimpan.
+- [x] Return menghitung denda dan membebaskan kendaraan.
+- [x] Cancel membebaskan kendaraan dan membatalkan pembayaran pending.
+- [x] Pembayaran melebihi tagihan ditolak; paid terkunci.
+- [x] Filter/pagination berfungsi; detail lengkap.
+- [x] Phase report, status, traceability, contribution log diperbarui.
 - [ ] PR direview dan digabung.
 
 **Handoff ke Phase 5:** seluruh alur bisnis siap diuji end-to-end.
@@ -446,7 +446,7 @@ Sebuah fase dianggap selesai jika:
 |---|---|---|
 | Anggota 1 | Benny Anderson / 422024008 | `benanderson2nds@gmail.com` |
 | Anggota 2 | Steven Credentia Ivanemaga Zega / 422024020 | `steven.422024020@civitas.ukrida.ac.id` |
-| Anggota 3 | Jason / 422024004 | Email Git masing-masing |
+| Anggota 3 | Jason / 422024004 | `jason.422024004@civitas.ukrida.ac.id` |
 | Anggota 4 | Steven / 422024001 | `steven.422024001@civitas.ukrida.ac.id` |
 
 Identitas di atas sudah dikonfirmasi pemilik proyek. Pembagian kerja tidak dikunci per fase; setiap

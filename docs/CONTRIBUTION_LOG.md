@@ -30,12 +30,13 @@ pada **email Git masing-masing anggota**. Log final direkonsiliasi dengan `git l
 | 2026-11-25 | Phase 1 review | Review PR #1 | Steven Credentia Ivanemaga Zega (`422024020`) | PR #1 (`1b5caee`) | PR Phase 1 | PR #1 merged | — |
 | 2026-11-25 | Phase 2 | Auth operator & pelanggan, layout, dashboard, portal pelanggan, test, dokumentasi Phase 2 | Steven Credentia Ivanemaga Zega (`steven.422024020@civitas.ukrida.ac.id`) | `da691a8`, `963c356`, `f68f1e9`, `d670468`, `ee5a754`, `5257642` | `app/Http/*`, `app/Services/*`, `config/auth.php`, `resources/views/*`, `routes/*`, `tests/*`, `docs/*` | 47 passed (153 assertions); Pint passed; `npm run build` passed | Benny Anderson (`422024008`) |
 | 2026-11-25 | Phase 2 merge | Review dan merge PR #2 ke `main` | Benny Anderson (`benanderson2nds@gmail.com`) | PR #2 (`c4847c2`) | PR Phase 2 | Merge commit `c4847c2` | — |
-| 2026-11-26 | Phase 3 | Implementasi CRUD pelanggan & kendaraan, validasi Form Request, upload gambar, test, screenshot, dan laporan Phase 3 | Steven (`steven.422024001@civitas.ukrida.ac.id`) | `8336f17`, `be149f3`, `80af0a8` (PR di GitHub menunggu review/merge) | `app/Http/Controllers/*`, `app/Http/Requests/*`, `app/Services/VehicleImageService.php`, `resources/views/customers/*`, `resources/views/vehicles/*`, `routes/master.php`, `tests/Feature/*`, `docs/*` | 74 passed (293 assertions); Pint passed; build passed; smoke test + screenshot | `pending` (Benny review/merge) |
-| 2026-11-26 | Phase 3 | Pembaruan dokumentasi sinkronisasi status, kebijakan kontribusi berbasis email commit (ADR-030), dan konsistensi dokumen | Steven (`steven.422024001@civitas.ukrida.ac.id`) | Commit dokumentasi pada `phase/03-master-data` | `AGENTS.md`, `README.md`, `PRD.md`, `docs/*` | `git diff --check` | `pending` |
+| 2026-11-26 | Phase 3 | Implementasi CRUD pelanggan & kendaraan, validasi Form Request, upload gambar, test, screenshot, dan laporan Phase 3 | Steven (`steven.422024001@civitas.ukrida.ac.id`) | `8336f17`, `be149f3`, `80af0a8`, `25f0193`; merge PR #3 (`9a738fb`) | `app/Http/Controllers/*`, `app/Http/Requests/*`, `app/Services/VehicleImageService.php`, `resources/views/customers/*`, `resources/views/vehicles/*`, `routes/master.php`, `tests/Feature/*`, `docs/*` | 74 passed (293 assertions); Pint passed; build passed; smoke test + screenshot | Benny Anderson (`benanderson2nds@gmail.com`) |
+| 2026-11-26 | Phase 4 | Implementasi transaksi rental & CRUD pembayaran (`PaymentService`, `RentalController`, `PaymentController`, 5 Form Request, 8 view, routes, sidebar, JS, test, screenshot, dan laporan Phase 4) | Jason (`jason.422024004@civitas.ukrida.ac.id`) | `448993f` (implementasi), `9a6073d` (test); commit dokumentasi menyusul | `app/Services/PaymentService.php`, `app/Services/RentalService.php`, `app/Models/Rental.php`, `app/Http/Controllers/RentalController.php`, `app/Http/Controllers/PaymentController.php`, `app/Http/Requests/*`, `resources/views/rentals/*`, `resources/views/payments/*`, `resources/views/layouts/app.blade.php`, `resources/js/app.js`, `routes/rental.php`, `tests/Feature/Rentals/*`, `tests/Feature/Payments/*`, `docs/assets/phase-04/*`, `docs/*` | 96 passed (499 assertions); Pint passed; build passed; MySQL `migrate:fresh --seed`; browser smoke test; 11 screenshot | `pending` (menunggu PR) |
 
-> Catatan: tidak ada penguncian anggota pada phase tertentu. Phase 3 saat ini seluruh commit-nya
-> tercatat di email `steven.422024001@civitas.ukrida.ac.id`. Anggota lain (termasuk Jason /
-> `422024004`) bebas mengerjakan task pada phase mana saja dengan commit memakai email Git masing-masing.
+> Catatan: tidak ada penguncian anggota pada phase tertentu. Commit Phase 3 tercatat di email
+> `steven.422024001@civitas.ukrida.ac.id`, sedangkan commit Phase 4 tercatat di email Jason
+> (`jason.422024004@civitas.ukrida.ac.id`). Anggota lain bebas mengerjakan task pada phase mana saja
+> dengan commit memakai email Git masing-masing.
 
 ## 4. Rekap per Anggota (Berdasarkan `git log` Saat Ini)
 
@@ -43,8 +44,8 @@ pada **email Git masing-masing anggota**. Log final direkonsiliasi dengan `git l
 |---|---|---:|---|---|
 | Benny Anderson (422024008) | `benanderson2nds@gmail.com` | 11 commit (init, Phase 0, Phase 1, merge PR #1 & #2) | Review PR #2 | Merged di `main` |
 | Steven Credentia Ivanemaga Zega (422024020) | `steven.422024020@civitas.ukrida.ac.id` | 6 commit (Phase 2) | Review PR #1 | Merged di `main` |
-| Steven (422024001) | `steven.422024001@civitas.ukrida.ac.id` | 4 commit (`8336f17`, `be149f3`, `80af0a8` + commit dokumentasi di Phase 3) | — | Branch `phase/03-master-data` / PR menunggu review & merge |
-| Jason (422024004) | Belum ada commit di `git log` | 0 commit | — | Dapat berkontribusi di phase berikutnya memakai email Git sendiri |
+| Steven (422024001) | `steven.422024001@civitas.ukrida.ac.id` | 5 commit (`8336f17`, `be149f3`, `80af0a8`, `9a07789`, `25f0193`) | — | Merged di `main` (PR #3 `9a738fb`) |
+| Jason (422024004) | `jason.422024004@civitas.ukrida.ac.id` | 2 commit (`448993f`, `9a6073d`) + commit dokumentasi | Smoke test MySQL, browser, dan 11 screenshot | Branch lokal selesai, menunggu push/PR/review |
 
 Rekap final diperbarui pada Phase 5 setelah semua deliverable selesai dan direkonsiliasi dengan
 `git log --all --format="%h %an <%ae> %s"`.

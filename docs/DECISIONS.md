@@ -37,6 +37,7 @@ manusia ditandai `Proposed`; keputusan yang sudah menjadi baseline proyek ditand
 | ADR-028 | Portal pelanggan dan registrasi publik | Accepted |
 | ADR-029 | Aturan CRUD master data, status kendaraan, dan gambar | Accepted (diimplementasikan Phase 3) |
 | ADR-030 | Kolaborasi lintas fase dan kontribusi berbasis email commit Git | Accepted |
+| ADR-031 | Aturan transaksi rental, pembayaran 1:N, dan validasi overlap | Accepted (diimplementasikan Phase 4) |
 
 ---
 
@@ -525,3 +526,43 @@ identitas masing-masing saat melakukan commit. Satu phase dapat berisi commit da
 atau sebaliknya satu anggota dapat berkontribusi di lebih dari satu phase.
 
 **Status:** Accepted (disepakati tim pada 2026-11-26).
+
+## ADR-031 — Aturan Transaksi Rental, Pembayaran 1:N, dan Validasi Overlap
+
+**Konteks:** Phase 4 menghubungkan data pelanggan/kendaraan menjadi transaksi rental dan pembayaran.
+Diperlukan aturan yang konsisten untuk lifecycle rental, ketersediaan kendaraan, perhitungan denda,
+pembatasan pembayaran, dan konkurensi agar dua request tidak dapat memesan kendaraan yang sama.
+
+**Keputusan:**
+- Rental memakai status `active`, `completed`, dan `cancelled`. Rental tidak dihapus permanen; cancel
+  membebaskan kendaraan dan membatalkan pembayaran yang masih `pending`. Hanya rental `active` yang
+  dapat diubah, dikembalikan, atau dibatalkan.
+- Pembuatan dan perubahan rental dijalankan di dalam `DB::transaction`. `createRental()` mengunci
+  baris kendaraan dengan `lockForUpdate()` lalu memeriksa ketersediaan di dalam transaksi;
+  `updateRental()`, `completeRental()`, dan `cancelRental()` juga mengunci baris rental yang diproses.
+- Pengecekan overlap memakai rentang tanggal inklusif dan `whereDate()` agar konsisten antara SQLite
+  (test) dan MySQL (demo). Rental yang bersinggungan dengan rental `active` lain untuk kendaraan yang
+  sama ditolak.
+- Biaya rental dihitung oleh domain object melalui `calculateRentalCost()` (polimorfisme). Tarif harian
+  disimpan sebagai snapshot pada rental. Denda keterlambatan = 50% tarif harian per hari setelah
+  `end_date`, dan ikut dihitung dalam `totalBill()`.
+- Pembayaran bersifat 1:N per rental. Status awal hanya `pending` atau `paid`; pembayaran `pending`
+  boleh diedit/dihapus, sedangkan `paid`/`failed`/`cancelled` terkunci.
+- Nominal satu pembayaran tidak boleh melebihi sisa tagihan berdasarkan pembayaran `paid`. Aturan ini
+  juga diterapkan pada pembayaran `pending` sebagai guard UX; total pembayaran `paid` tetap tidak boleh
+  melebihi `totalBill()` (total rental + denda).
+- Guard “total biaya baru tidak boleh lebih kecil dari pembayaran yang sudah lunas” berada di
+  `RentalService::updateRental()`, bukan di controller, agar aturan bisnis tetap satu sumber.
+- Tidak ada perubahan schema pada Phase 4; seluruh kolom yang dibutuhkan sudah tersedia dari Phase 1.
+
+**Alternatif:** Memeriksa ketersediaan di controller (menduplikasi aturan bisnis); memakai
+`where()` pada kolom DATE (gagal di SQLite); mengizinkan pembayaran pending melebihi tagihan
+(berisiko pembayaran ganda); menghapus rental permanen (kehilangan riwayat).
+
+**Konsekuensi:** Transaksi lebih aman terhadap double booking, tetapi query ketersediaan harus selalu
+memakai scope `overlapping`/`whereDate`. Pembayaran pending yang sudah dibuat dapat gagal dilunasi
+jika pembayaran lain lebih dulu menghabiskan sisa tagihan; kasus ini ditampilkan sebagai pesan
+validasi, bukan error server. Test otomatis tetap memakai SQLite, sedangkan verifikasi MySQL dilakukan
+manual melalui `migrate:fresh --seed` dan smoke test browser.
+
+**Status:** Accepted (diimplementasikan Phase 4, 2026-11-26).

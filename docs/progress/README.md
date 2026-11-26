@@ -19,8 +19,8 @@ Direktori ini menyimpan laporan penyelesaian setiap fase.
 | Phase 0 | Belum ada (dokumentasi Phase 0 ada di root dan `docs/`) | — |
 | Phase 1 | [`phase-01-foundation.md`](phase-01-foundation.md) | Merged (PR #1) |
 | Phase 2 | [`phase-02-auth-dashboard.md`](phase-02-auth-dashboard.md) | Merged (PR #2) |
-| Phase 3 | [`phase-03-master-data.md`](phase-03-master-data.md) | PR dibuat — menunggu review/merge |
-| Phase 4 | `phase-04-rental-payment.md` | Belum dibuat |
+| Phase 3 | [`phase-03-master-data.md`](phase-03-master-data.md) | Merged (PR #3, `9a738fb`) |
+| Phase 4 | [`phase-04-rental-payment.md`](phase-04-rental-payment.md) | Implementasi + verifikasi lokal selesai — menunggu PR/review |
 | Phase 5 | `phase-05-integration.md` | Belum dibuat |
 
 Catatan: dokumen Phase 0 bukan laporan penyelesaian implementasi; Phase 0 hanya dokumentasi.

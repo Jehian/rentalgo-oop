@@ -59,10 +59,12 @@ Jika terjadi konflik, dokumen UAS menang. Jangan mengarang requirement baru; cat
   service, factory, seeder, test) tersedia di `main`.
 - Phase 2: merged ke `main` melalui PR #2 (`c4847c2`). Auth, layout, dashboard, dan portal pelanggan
   tersedia.
-- Phase 3: sudah di-commit dan di-push ke `origin/phase/03-master-data` (commit `8336f17`, `be149f3`,
-  `80af0a8` oleh `steven.422024001@civitas.ukrida.ac.id`); PR di GitHub sudah dibuat dan menunggu
-  review/merge dari Benny. `main` belum berubah.
-- Transaksi rental dan pembayaran belum ada; dikerjakan Phase 4.
+- Phase 3: merged ke `main` melalui PR #3 (`9a738fb`). CRUD pelanggan dan kendaraan tersedia.
+- Phase 4: diimplementasikan dan diverifikasi lokal pada branch `phase/04-rental-payment`
+  (commit `448993f` implementasi, `9a6073d` test; 96 test lulus, 499 assertions). MySQL
+  `migrate:fresh --seed`, smoke test browser, dan 11 screenshot sudah selesai. Branch belum di-push;
+  PR, review, dan merge masih menunggu.
+- Transaksi rental dan pembayaran sudah tersedia di branch Phase 4; `main` masih di `9a738fb`.
 
 ## 6. Branching
 

@@ -3,10 +3,10 @@
 Aplikasi web sistem informasi **rental kendaraan** yang dibangun dengan Laravel dan PHP OOP untuk
 UAS mata kuliah Pemrograman Berorientasi Objek (SI2WPO084), Program Studi Sistem Informasi.
 
-> **Status:** Phase 0, Phase 1, dan Phase 2 selesai dan sudah merged ke `main` (PR #1 `1b5caee`,
-> PR #2 `c4847c2`). Phase 3 (Master Data CRUD pelanggan dan kendaraan) sudah di-commit dan di-push ke
-> branch `phase/03-master-data` dan PR-nya sedang menunggu review/merge di GitHub. Transaksi rental
-> dan pembayaran belum tersedia (Phase 4).
+> **Status:** Phase 0–3 selesai dan sudah merged ke `main` (PR #1 `1b5caee`, PR #2 `c4847c2`,
+> PR #3 `9a738fb`). Phase 4 (transaksi rental dan CRUD pembayaran) sudah diimplementasikan dan
+> diverifikasi lokal pada branch `phase/04-rental-payment` (commit `448993f`, `9a6073d`; 96 test
+> lulus; MySQL + browser smoke test; 11 screenshot). Branch menunggu push, PR, dan review.
 
 ## Tentang Proyek
 
@@ -17,7 +17,7 @@ autentikasi sederhana, validasi, dan dokumentasi.
 
 ## Fitur
 
-Sudah tersedia (Phase 2–3):
+Sudah tersedia (Phase 2–4):
 
 - Portal pelanggan publik: katalog kendaraan (`/`), pencarian, filter tipe/status, sorting tarif, detail kendaraan, dan estimasi biaya otomatis.
 - Registrasi pelanggan publik (`/customer/register`), login, logout, session, serta pemisahan akses Admin, Staff (`operator`), dan Pelanggan (`customer`).
@@ -26,13 +26,14 @@ Sudah tersedia (Phase 2–3):
 - Dashboard Admin/Staff: ringkasan, grafik pendapatan enam bulan, komposisi status kendaraan, dan rental terbaru.
 - CRUD pelanggan: daftar dengan pencarian/sorting/pagination, tambah, edit, detail + riwayat rental, dan soft delete khusus Admin.
 - CRUD kendaraan: daftar dengan pencarian/filter tipe-status/sorting/pagination, tambah, edit, detail + riwayat rental, upload/ganti gambar, dan soft delete khusus Admin.
+- Transaksi rental: buat rental (cek ketersediaan & hitung biaya via `RentalService`), daftar dengan pencarian/filter status-tanggal/sorting/pagination, edit rental aktif, proses pengembalian + denda keterlambatan, dan pembatalan.
+- CRUD pembayaran: catat pembayaran (`pending`/`paid`) dengan validasi sisa tagihan, daftar dengan pencarian/filter status-metode/sorting/pagination, edit/hapus selama `pending`, detail, serta aksi tandai lunas/gagal via `PaymentService`.
 - Komponen Blade reusable dan halaman error 403 berbahasa Indonesia.
 
-Direncanakan (Phase 4):
+Direncanakan (Phase 5):
 
-- Transaksi rental: cek ketersediaan, perhitungan biaya, pengembalian, denda, pembatalan.
-- Pembayaran: catat, ubah status, edit/hapus selama pending.
 - Bonus yang direncanakan: REST API read-only kendaraan/rental dan export PDF invoice/laporan.
+- Integrasi E2E MySQL, SQL dump, screenshot final, dan laporan akhir.
 
 Fitur tambahan yang sudah tersedia: search, pagination, sorting, filter, upload gambar, dan dashboard
 chart (UAS mewajibkan minimal dua).
@@ -68,7 +69,7 @@ Tidak digunakan: Docker, Breeze/Jetstream, framework SPA.
 - PHP >= 8.3 dengan ekstensi standar Laravel.
 - Composer.
 - Node.js dan npm.
-- MySQL 8.4 (Laragon) untuk aplikasi; SQLite hanya untuk automated test.
+- MySQL 8.4 (WAMP/Laragon/XAMPP) untuk aplikasi; SQLite hanya untuk automated test.
 
 ## Instalasi
 
@@ -136,6 +137,11 @@ php artisan test
 | Dashboard | [dashboard-desktop.png](docs/assets/phase-02/dashboard-desktop.png) | [dashboard-mobile.png](docs/assets/phase-02/dashboard-mobile.png) |
 | Pelanggan | [customers-desktop.png](docs/assets/phase-03/customers-desktop.png) | [customers-mobile.png](docs/assets/phase-03/customers-mobile.png) |
 | Kendaraan | [vehicles-desktop.png](docs/assets/phase-03/vehicles-desktop.png) | [vehicles-mobile.png](docs/assets/phase-03/vehicles-mobile.png) |
+| Rental | [rentals-desktop.png](docs/assets/phase-04/rentals-desktop.png) | [rentals-mobile.png](docs/assets/phase-04/rentals-mobile.png) |
+| Buat Rental | [rental-create-desktop.png](docs/assets/phase-04/rental-create-desktop.png) | — |
+| Detail Rental | [rental-show-desktop.png](docs/assets/phase-04/rental-show-desktop.png) | — |
+| Pembayaran | [payments-desktop.png](docs/assets/phase-04/payments-desktop.png) | [payments-mobile.png](docs/assets/phase-04/payments-mobile.png) |
+| Detail Pembayaran | [payment-show-desktop.png](docs/assets/phase-04/payment-show-desktop.png) | — |
 
 ## Dokumentasi
 
@@ -171,7 +177,7 @@ Dokumen UAS asli ada di `docs/reference/` dan tidak diubah.
 |---|---|---|---|
 | Benny Anderson | 422024008 | `benanderson2nds@gmail.com` | Phase 0, Phase 1, merge PR#1 & PR#2 |
 | Steven Credentia Ivanemaga Zega | 422024020 | `steven.422024020@civitas.ukrida.ac.id` | Phase 2 |
-| Jason | 422024004 | *(konfirmasi email Git)* | — |
+| Jason | 422024004 | `jason.422024004@civitas.ukrida.ac.id` | Phase 4 (branch lokal, siap PR) |
 | Steven | 422024001 | `steven.422024001@civitas.ukrida.ac.id` | Phase 3 |
 
 > **Catatan kontribusi:** Pembagian kerja **tidak dikunci per fase per orang**. Siapa saja boleh
