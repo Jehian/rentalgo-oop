@@ -20,8 +20,8 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 |---|---|---|---|---|
 | 0 | Requirements & Planning | Anggota 1 | `main` (dokumentasi saja) | Selesai |
 | 1 | Foundation & Architecture | Anggota 1 | `phase/01-foundation` | Merged (PR #1, `1b5caee`) |
-| 2 | Auth, Layout & Dashboard | Anggota 2 | `phase/02-auth-dashboard` | Implemented — PR pending |
-| 3 | Master Data CRUD | Anggota 3 | `phase/03-master-data` | Belum dimulai |
+| 2 | Auth, Layout & Dashboard | Anggota 2 | `phase/02-auth-dashboard` | Merged (PR #2, `c4847c2`) |
+| 3 | Master Data CRUD | Anggota 3 | `phase/03-master-data` | Implemented — PR pending |
 | 4 | Rental & Payment Workflow | Anggota 4 | `phase/04-rental-payment` | Belum dimulai |
 | 5 | Integration, Testing & Delivery | Semua | `phase/05-integration` | Belum dimulai |
 
@@ -155,7 +155,7 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 - [x] Dashboard menampilkan angka yang sesuai data seeder dan grafik tampil.
 - [x] Tidak ada akses halaman operasional tanpa login.
 - [x] Phase report, status, traceability, contribution log diperbarui.
-- [ ] PR direview dan digabung.
+- [x] PR direview dan digabung (PR #2, `c4847c2`).
 
 **Handoff ke Phase 3–4:** layout, komponen, navigasi, pola controller/request/view.
 
@@ -188,13 +188,13 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 
 **Acceptance criteria:**
 
-- [ ] CRUD pelanggan dan kendaraan lulus feature test.
-- [ ] Search, pagination, sorting, filter berfungsi.
-- [ ] Upload gambar tervalidasi dan tampil; gambar lama dihapus saat replace.
-- [ ] Soft delete ditolak jika ada rental aktif.
-- [ ] Detail menampilkan riwayat rental.
-- [ ] UI responsif dan konsisten dengan layout Phase 2.
-- [ ] Phase report, status, traceability, contribution log diperbarui.
+- [x] CRUD pelanggan dan kendaraan lulus feature test.
+- [x] Search, pagination, sorting, filter berfungsi.
+- [x] Upload gambar tervalidasi dan tampil; gambar lama dihapus saat replace.
+- [x] Soft delete ditolak jika ada rental aktif.
+- [x] Detail menampilkan riwayat rental.
+- [x] UI responsif dan konsisten dengan layout Phase 2.
+- [x] Phase report, status, traceability, contribution log diperbarui.
 - [ ] PR direview dan digabung.
 
 **Handoff ke Phase 4:** halaman/master data siap dipilih pada form rental.

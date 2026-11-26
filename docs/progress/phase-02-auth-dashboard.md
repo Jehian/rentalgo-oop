@@ -5,11 +5,11 @@
 | Fase | Phase 2 — Authentication, Layout & Dashboard |
 | Pemilik | Steven Credentia Ivanemaga Zega (422024020) |
 | Branch | `phase/02-auth-dashboard` |
-| Pull Request | Belum dibuat |
+| Pull Request | #2 (`c4847c2`) |
 | Tanggal mulai | 2026-11-25 |
-| Tanggal selesai | 2026-11-25 (implementasi lokal) |
-| Status | Implemented — menunggu PR/review |
-| Reviewer | `pending` |
+| Tanggal selesai | 2026-11-25 |
+| Status | Merged |
+| Reviewer | Benny Anderson (422024008) |
 
 ## 1. Ringkasan
 
@@ -32,7 +32,7 @@ suite, Pint, dan build Vite lulus.
 | Chart.js via npm | Tercapai | `package.json` (`chart.js` 4.6.2), `resources/js/app.js` |
 | Feature test auth dan dashboard | Tercapai | `tests/Feature/Auth/AuthTest.php`, `tests/Feature/Dashboard/DashboardTest.php` |
 | Isi `routes/auth.php` dan `dashboard.php` | Tercapai | Route login, logout, dashboard |
-| PR/review/merge | Belum | Branch belum di-push/PR |
+| PR/review/merge | Tercapai | PR #2 digabung ke `main` melalui merge commit `c4847c2` |
 
 ## 3. Scope yang Diselesaikan
 
@@ -48,7 +48,7 @@ suite, Pint, dan build Vite lulus.
 - [x] Chart.js melalui npm dan inisialisasi chart dari JSON yang disiapkan controller.
 - [x] Halaman 403 berbahasa Indonesia.
 - [x] Feature test auth, registrasi, isolasi guard, dashboard, dan portal pelanggan (47 test lulus, 153 assertions).
-- [ ] PR, review anggota lain, dan merge ke `main`.
+- [x] PR #2, review anggota lain, dan merge ke `main` (`c4847c2`).
 
 ## 4. File yang Dibuat/Diubah
 
@@ -161,8 +161,9 @@ Screenshot diambil dari aplikasi yang berjalan dengan data seeder MySQL melalui 
   pada fase ini: PR #1 sudah merged (`1b5caee`) dan reviewer adalah Steven Credentia Ivanemaga Zega.
 - `package-lock.json` sebelumnya untracked; sekarang ikut dipertahankan karena `npm install chart.js`
   mengubah lockfile. Dependency baru hanya Chart.js sesuai persetujuan.
-- Menu Pelanggan, Kendaraan, Rental, dan Pembayaran ditampilkan sebagai "Segera" karena route-nya
-  belum dibuat Phase 3/4. Aktivasi link dilakukan saat fase terkait digabung.
+- Menu Pelanggan, Kendaraan, Rental, dan Pembayaran awalnya ditampilkan sebagai "Segera" karena
+  route-nya belum dibuat. Link Pelanggan dan Kendaraan sudah diaktifkan pada Phase 3; link Rental dan
+  Pembayaran menunggu Phase 4.
 - Pendapatan dashboard didefinisikan sebagai jumlah pembayaran berstatus `paid` berdasarkan `paid_at`,
   bukan total tagihan rental. Keputusan dicatat di `docs/DECISIONS.md`.
 - Chart.js memakai `chart.js/auto`; belum ada pemisahan bundle khusus dashboard karena scope masih
@@ -192,8 +193,8 @@ Screenshot diambil dari aplikasi yang berjalan dengan data seeder MySQL melalui 
 - [x] Tidak ada secret.
 - [x] Dokumentasi status/traceability/contribution log diperbarui.
 - [x] Screenshot disertakan.
-- [ ] PR dibuat dan direview.
-- [ ] Merge selesai.
+- [x] PR dibuat dan direview (PR #2).
+- [x] Merge selesai (`c4847c2`).
 
 ## 12. Catatan Kontribusi
 

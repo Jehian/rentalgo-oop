@@ -57,9 +57,11 @@ Jika terjadi konflik, dokumen UAS menang. Jangan mengarang requirement baru; cat
 - Phase 0: selesai dan di-commit di `main` (`510a309`).
 - Phase 1: merged ke `main` melalui PR #1 (`1b5caee`). Fondasi (migration, model, domain OOP,
   service, factory, seeder, test) tersedia di `main`.
-- Phase 2: diimplementasikan pada branch `phase/02-auth-dashboard`; sudah lulus test lokal dan
-  menunggu PR/review.
-- CRUD pelanggan/kendaraan, rental, dan pembayaran belum ada; dikerjakan Phase 3–4.
+- Phase 2: merged ke `main` melalui PR #2 (`c4847c2`). Auth, layout, dashboard, dan portal pelanggan
+  tersedia.
+- Phase 3: diimplementasikan pada branch `phase/03-master-data`; CRUD pelanggan/kendaraan, upload
+  gambar, dan test sudah lulus lokal, menunggu commit/PR/review.
+- Transaksi rental dan pembayaran belum ada; dikerjakan Phase 4.
 
 ## 6. Branching
 

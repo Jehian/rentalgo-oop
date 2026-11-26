@@ -12,8 +12,6 @@ manusia ditandai `Proposed`; keputusan yang sudah menjadi baseline proyek ditand
 | ADR-003 | Tailwind CSS 4 sebagai framework UI | Accepted |
 | ADR-004 | Custom authentication, tanpa Breeze/Jetstream | Accepted |
 | ADR-005 | Peran Admin, Staff, dan Customer | Superseded partly by ADR-028 |
-| ADR-027 | Pendapatan dashboard dari pembayaran `paid` | Accepted |
-| ADR-028 | Portal pelanggan dan registrasi publik | Accepted |
 | ADR-006 | Satu tabel `vehicles` + domain subclass | Accepted |
 | ADR-007 | Lima tabel bisnis | Accepted |
 | ADR-008 | Service layer terbatas, tanpa repository pattern | Accepted |
@@ -37,6 +35,7 @@ manusia ditandai `Proposed`; keputusan yang sudah menjadi baseline proyek ditand
 | ADR-026 | Panjang string terindeks untuk MySQL lokal | Accepted |
 | ADR-027 | Pendapatan dashboard dari pembayaran `paid` | Accepted |
 | ADR-028 | Portal pelanggan dan registrasi publik | Accepted |
+| ADR-029 | Aturan CRUD master data, status kendaraan, dan gambar | Accepted (diimplementasikan Phase 3) |
 
 ---
 
@@ -467,3 +466,34 @@ dalam satu tabel/guard).
 dan pelanggan.
 
 **Status:** Accepted (keputusan pemilik proyek pada Phase 2).
+
+## ADR-029 — Aturan CRUD Master Data dan Gambar Kendaraan
+
+**Konteks:** Phase 3 menambahkan CRUD pelanggan dan kendaraan. Beberapa aturan perlu disepakati agar
+konsisten dengan role Admin/Staff, alur rental Phase 4, schema Phase 1, dan penyimpanan gambar.
+
+**Keputusan:**
+- Admin dan Staff boleh melihat, menambah, dan mengedit pelanggan/kendaraan. Hapus data master hanya
+  boleh dilakukan Admin melalui middleware `admin`; tombol hapus disembunyikan untuk Staff.
+- Pelanggan yang dibuat Admin tidak memiliki password portal. Email boleh diisi untuk kontak, tetapi
+  akun portal tetap dibuat melalui registrasi pelanggan agar kredensial tidak dikelola dari form admin.
+- Form kendaraan hanya boleh memilih status `available` atau `maintenance`. Status `rented` hanya
+  diatur oleh alur rental Phase 4. Saat kendaraan memiliki rental aktif, tipe dan status dikunci dan
+  nilai status dipertahankan `rented`.
+- Gambar kendaraan menerima JPG/JPEG/PNG/WebP maksimal 2 MB, disimpan di disk `public` folder
+  `vehicles` melalui `VehicleImageService`. Gambar lama dihapus saat gambar diganti atau kendaraan
+  dihapus.
+- Nilai `transmission` mobil dinormalisasi menjadi `manual`/`automatic` sesuai
+  `docs/DATABASE_SCHEMA.md`; factory Phase 1 dan data MySQL lokal disesuaikan.
+- Layout Phase 2 hanya diubah minimal untuk mengaktifkan link sidebar Pelanggan dan Kendaraan; polish
+  UI/UX menyeluruh tetap ditunda ke Phase 5.
+
+**Alternatif:** Memungkinkan Staff menghapus data master (berisiko kehilangan data operasional);
+mengelola password pelanggan dari form Admin (mencampur autentikasi portal dan data master); membiarkan
+status `rented` dapat dipilih manual (berisiko tidak sinkron dengan transaksi rental).
+
+**Konsekuensi:** Data master memakai soft delete; unique value pada baris terhapus tetap dipakai
+sehingga validasi harus memeriksa seluruh tabel. Belum ada fitur restore, dan gambar yang dihapus tidak
+dipulihkan otomatis. Phase 4 bertanggung jawab mengubah status kendaraan saat rental dibuat/diakhiri.
+
+**Status:** Accepted (disetujui pemilik proyek sebelum implementasi Phase 3).

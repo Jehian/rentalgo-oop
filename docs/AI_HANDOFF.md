@@ -26,20 +26,20 @@ dokumen UAS menang; perbaiki dokumen proyek melalui PR.
 |---|---|
 | Repository | `https://github.com/Jehian/rentalgo-oop` |
 | Branch dokumentasi | `main` |
-| Commit terakhir | `main`: merge PR #1 `1b5caee`; Phase 2 belum commit |
+| Commit terakhir | `main`: merge PR #2 `c4847c2`; Phase 3 ada di branch lokal `phase/03-master-data` |
 | Framework | Laravel 13.44.1 |
-| PHP CLI | 8.4.8 (minimum 8.3); WAMP PHP 8.4.27 tersedia |
-| Node/npm | 22.16.0 / 10.9.2 |
-| Database lokal | MySQL 9.1, `127.0.0.1:3306`, database `rentalgo` |
-| Implementasi aplikasi | Phase 1 merged; Phase 2 (termasuk portal pelanggan) implemented, PR pending |
+| PHP CLI | 8.4.12 (minimum 8.3) |
+| Node/npm | 22.23.4 / npm terpasang |
+| Database lokal | MySQL 8.4.3 Laragon, `127.0.0.1:3306`, database `rentalgo` |
+| Implementasi aplikasi | Phase 1–2 merged; Phase 3 (CRUD pelanggan/kendaraan) implemented lokal, PR pending; rental/pembayaran belum |
 | Migration bisnis | 5 tabel + role + auth kolom `customers` + `rentals.user_id` nullable |
-| Model/controller/service/view | Model/service/auth/dashboard/portal pelanggan ada; CRUD admin Phase 3–4 belum |
-| Test | 47 test lulus (153 assertions) |
+| Model/controller/service/view | Model/service/auth/dashboard/portal pelanggan/master data ada; rental/payment Phase 4 |
+| Test | 74 test lulus (293 assertions) |
 | Docker | Tidak digunakan |
 
-Phase 0 dan Phase 1 sudah selesai; Phase 1 digabung ke `main` melalui PR #1 (`1b5caee`). Phase 2
-(auth, layout, dashboard) sudah diimplementasikan pada branch `phase/02-auth-dashboard` dan menunggu
-PR/review. CRUD pelanggan/kendaraan, rental, dan pembayaran belum tersedia.
+Phase 0, Phase 1, dan Phase 2 sudah selesai. Phase 2 digabung ke `main` melalui PR #2 (`c4847c2`).
+Phase 3 (CRUD pelanggan dan kendaraan) sudah diimplementasikan pada branch `phase/03-master-data` dan
+menunggu commit/PR/review. Transaksi rental dan pembayaran belum tersedia (Phase 4).
 
 ## 3. Kontrak Phase 1 (Tersedia di Main)
 
@@ -135,8 +135,8 @@ require __DIR__.'/rental.php';
 File route modul:
 
 - `auth.php`, `customer.php`, `dashboard.php` — Anggota 2
-- `master.php` — Anggota 3
-- `rental.php` — Anggota 4
+- `master.php` — Anggota 3 (sudah berisi route CRUD pelanggan/kendaraan Phase 3)
+- `rental.php` — Anggota 4 (masih stub)
 
 ## 4. Handoff per Fase
 
@@ -161,24 +161,28 @@ File route modul:
 
 **Serahkan ke Phase 3/4:** layout, komponen, navigasi, pola controller/request/view.
 
-### Phase 3 — Anggota 3
+### Phase 3 — Anggota 3 (implemented lokal)
 
 **Baca:** PRD §6.3–6.4, ARCHITECTURE §3, DATABASE_SCHEMA §3.2–3.3, PHASE_PLAN Phase 3.
 
 **Prasyarat:** Phase 1 merged (model/schema) dan Phase 2 merged (layout).
 
-**Lakukan:**
+**Status:** CRUD pelanggan/kendaraan, search/filter/sort/pagination, upload/ganti gambar, detail
+riwayat rental, validasi, dan soft delete guard sudah diimplementasikan pada branch
+`phase/03-master-data`. Test Phase 3 lulus. Commit/PR/review belum dibuat.
 
-- CRUD pelanggan dan kendaraan.
-- Search, pagination, sorting, filter tipe/status.
-- Upload/ganti gambar via `VehicleImageService`.
-- Detail dengan riwayat rental.
-- Feature test CRUD/upload/hapus.
+**Kontrak untuk Phase 4:**
+
+- Route `customers.*` dan `vehicles.*` memakai `auth:web`; hapus memakai middleware `admin`.
+- Form/route pelanggan dan kendaraan dapat dipakai untuk memilih data pada transaksi rental.
+- `VehicleImageService` menangani simpan/hapus gambar; jangan menyimpan file langsung dari controller.
+- Kendaraan dengan rental aktif tidak boleh dihapus atau diubah tipe/statusnya.
+- Status `rented` hanya diatur alur rental; form master hanya menampilkan `available`/`maintenance`.
 
 **Jangan:**
 
 - Mengubah schema; jika butuh kolom baru, ajukan ke Anggota 1.
-- Mengedit layout tanpa koordinasi Anggota 2.
+- Menduplikasi logika availability/pricing di controller.
 - Menghapus data master yang punya rental aktif.
 
 ### Phase 4 — Anggota 4
@@ -273,8 +277,11 @@ php artisan storage:link
 ```powershell
 git switch main
 git pull
-git switch -c phase/02-auth-dashboard
+git switch -c phase/03-master-data
 ```
+
+Branch Phase 3 saat ini: `phase/03-master-data`. Phase 4 menggunakan `phase/04-rental-payment` dari
+`main` setelah Phase 3 digabung.
 
 ## 6. Gotcha Environment
 
@@ -323,7 +330,7 @@ Aturan lengkap di `AGENTS.md`. Ringkasan:
 
 ## 9. Pertanyaan Terbuka
 
-1. Otorisasi commit/push/PR Phase 2 (menunggu instruksi pemilik proyek).
+1. Otorisasi commit/push/PR Phase 3 (menunggu instruksi pemilik proyek).
 2. Format final UML (Mermaid/PNG).
 3. Jadwal presentasi.
 
