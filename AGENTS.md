@@ -107,7 +107,6 @@ Aturan:
 - PR wajib untuk fase implementasi; merge memakai merge commit agar histori individu terlihat.
 - PR harus menyertakan: ringkasan, file yang diubah, cara verifikasi, screenshot UI (jika ada),
   phase report, dan status dokumentasi.
-- Review anggota lain disarankan. Jika tidak ada reviewer, tulis alasannya di phase report (lihat ADR-032).
 - **AI agent tidak boleh menjalankan `git commit`, `git push`, atau membuat PR kecuali manusia
   secara eksplisit meminta.** Manusia pemilik tugas yang mengotorisasi commit/submission.
 

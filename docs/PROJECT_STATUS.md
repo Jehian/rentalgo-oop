@@ -207,7 +207,7 @@ Tidak ada pekerjaan implementasi lain yang berjalan.
 | 4 | Tanggal/format presentasi | Phase 5 | Menunggu informasi |
 | 5 | Polish UI/UX dan tampilan tabel mobile | Kenyamanan demo | Ditunda ke Phase 5 sesuai arahan pemilik proyek |
 | 6 | Finalisasi kontribusi | Penilaian individu | Log berbasis task/commit disiapkan; final di Phase 5 |
-| 7 | Review PR #1–#4 tidak tercatat di GitHub | Bukti review untuk penilaian individu; review kini disarankan (ADR-032) | Keputusan tim: catat review yang terjadi di luar GitHub, atau minta review sebagai komentar pada PR |
+| 7 | Review PR #1–#4 tidak tercatat di GitHub | Bukti review untuk penilaian individu | Selesai: aturan review dihapus (ADR-032); konfirmasi tim lewat WhatsApp |
 | 8 | Commit `1fd5f7b` (dokumentasi) langsung ke `main` tanpa PR | Menyimpang dari aturan PR (ADR-014 hanya untuk Phase 0) | Keputusan tim: terima, atau buat PR susulan |
 | 9 | Urutan fase: PHASE_PLAN §6 mengizinkan paralel, AGENTS §6 mewajibkan prasyarat merged dulu | Dua aturan tidak sama | Keputusan tim: pilih satu aturan dan perbarui dokumen |
 
@@ -229,7 +229,7 @@ Tidak ada blocker teknis untuk review Phase 4.
 ## 10. Aturan Pembaruan Status
 
 1. Setiap fase wajib memperbarui file ini setelah pekerjaan selesai dan diverifikasi.
-2. Jangan menandai fase selesai sebelum PR digabung. Review anggota lain dicatat jika ada (ADR-032).
+2. Jangan menandai fase selesai sebelum PR digabung.
 3. Jangan menulis "100%" untuk implementasi yang belum diuji.
 4. Catat blocker dan pertanyaan terbuka secara eksplisit.
 5. Sertakan tanggal dan nama pembaru.

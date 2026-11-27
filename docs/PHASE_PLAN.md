@@ -17,7 +17,7 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
    masing-masing; kontribusi direkonsiliasi di `docs/CONTRIBUTION_LOG.md` pada Phase 5.
 6. **PR untuk implementasi.** Phase 0 adalah pengecualian dokumentasi di `main`.
 7. **Definition of Done wajib.** Fitur dianggap selesai hanya jika kode, test, dan dokumentasi fase
-   sudah lengkap; review anggota lain disarankan.
+   sudah lengkap.
 
 ## 2. Ringkasan Fase
 
@@ -371,7 +371,6 @@ Checklist PR:
 - [ ] Phase report dibuat di `docs/progress/`.
 - [ ] `PROJECT_STATUS.md`, `UAS_TRACEABILITY.md`, `CONTRIBUTION_LOG.md` diperbarui.
 - [ ] Screenshot disertakan untuk perubahan UI.
-- [ ] Reviewer anggota lain disarankan (jika tidak ada, tulis alasannya di phase report).
 - [ ] Merge memakai **merge commit** untuk mempertahankan commit individu.
 
 Setelah merge: hapus branch, tarik `main` terbaru, mulai fase berikutnya.
@@ -422,7 +421,6 @@ Sebuah fase dianggap selesai jika:
 - [ ] `PROJECT_STATUS.md` diperbarui.
 - [ ] `UAS_TRACEABILITY.md` diperbarui.
 - [ ] `CONTRIBUTION_LOG.md` diperbarui dengan kontribusi nyata berbasis task/commit; finalisasi di Phase 5.
-- [ ] PR direview anggota lain disarankan (jika tidak ada, tulis alasannya di phase report).
 - [ ] Merge ke `main` selesai.
 
 ## 9. Risiko dan Mitigasi

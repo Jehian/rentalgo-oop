@@ -31,7 +31,7 @@ yang direncanakan, fase pengerjaan, dan metode verifikasi.
 | `Planned` | Direncanakan pada fase yang tercantum; belum dikerjakan |
 | `In Progress` | Sedang dikerjakan pada branch fase |
 | `Implemented` | Kode sudah ada dan lolos test lokal; belum diverifikasi reviewer |
-| `Verified` | Sudah diverifikasi dengan bukti (test/manual/SQL/screenshot); review anggota lain dicatat jika ada |
+| `Verified` | Sudah diverifikasi dengan bukti (test/manual/SQL/screenshot) |
 | `Optional` | Hanya dikerjakan jika waktu memungkinkan |
 | `Not Pursued` | Secara sadar tidak dikerjakan |
 
@@ -175,7 +175,7 @@ tetapi laporan akhir dan screenshot baru dibuat pada Phase 5. UAS-ASM-06 dan UAS
 ## 11. Aturan Pemeliharaan Traceability
 
 1. Setiap phase report wajib memperbarui status ID yang dikerjakan.
-2. Status `Verified` hanya boleh diberikan setelah test/manual check dengan bukti. Review anggota lain dicatat jika ada (ADR-032).
+2. Status `Verified` hanya boleh diberikan setelah test/manual check dengan bukti.
 3. Jika requirement berubah, ubah `docs/UAS_REQUIREMENTS.md`, PRD, dan dokumen ini dalam PR yang sama.
 4. Jangan menghapus ID; gunakan status `Not Pursued` dengan alasan.
 5. Verifikasi LOC, jumlah class, dan jumlah tabel dilakukan ulang di Phase 5 sebelum presentasi.
