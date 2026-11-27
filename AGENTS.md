@@ -63,8 +63,8 @@ Jika terjadi konflik, dokumen UAS menang. Jangan mengarang requirement baru; cat
 - Phase 4: diimplementasikan dan diverifikasi lokal pada branch `phase/04-rental-payment`
   (commit `448993f` implementasi, `9a6073d` test, `ce5ae7d` dokumentasi; 96 test lulus, 499
   assertions). MySQL `migrate:fresh --seed`, smoke test browser, dan 11 screenshot sudah selesai.
-  Branch sudah di-push dan PR #4 (https://github.com/Jehian/rentalgo-oop/pull/4) menunggu review.
-- Transaksi rental dan pembayaran sudah tersedia di branch Phase 4; `main` masih di `9a738fb`.
+  PR #4 (https://github.com/Jehian/rentalgo-oop/pull/4) sudah di-merge ke `main` (merge commit `9bcdf98`).
+- Transaksi rental dan pembayaran sudah tersedia di `main` (sejak `9bcdf98`).
 
 ## 6. Branching
 

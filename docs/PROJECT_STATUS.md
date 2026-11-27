@@ -2,8 +2,8 @@
 
 | Item | Nilai |
 |---|---|
-| Fase saat ini | Phase 4 — Transaksi Rental & Pembayaran (PR #4 menunggu review) |
-| Status fase | Implementasi dan verifikasi lokal selesai oleh Jason (`phase/04-rental-payment`); 96 test lulus (499 assertions); Pint passed; Vite build passed; MySQL `migrate:fresh --seed` dan smoke test browser passed; 11 screenshot tersedia; PR #4 dibuka dan menunggu review |
+| Fase saat ini | Phase 4 — Transaksi Rental & Pembayaran (sudah di-merge, PR #4) |
+| Status fase | Implementasi dan verifikasi lokal selesai oleh Jason (`phase/04-rental-payment`); 96 test lulus (499 assertions); Pint passed; Vite build passed; MySQL `migrate:fresh --seed` dan smoke test browser passed; 11 screenshot tersedia; PR #4 sudah di-merge ke `main` (`9bcdf98`) |
 | Branch | `phase/04-rental-payment` (pushed; commit `448993f`, `9a6073d`, `ce5ae7d`) |
 | Implementasi aplikasi | Auth, layout, dashboard, portal pelanggan, CRUD pelanggan, CRUD kendaraan, transaksi rental (create/edit/return/cancel), dan CRUD pembayaran (record/edit/delete pending/mark-paid/mark-failed) selesai |
 | Terakhir diperbarui | 26 November 2026 |
@@ -26,9 +26,9 @@ Total suite: **96 passed, 499 assertions**. Pint dan Vite build lulus. Verifikas
 `migrate:fresh --seed` dan smoke test browser (rental motor 7 hari, pembayaran DP, pelunasan,
 pengembalian terlambat, pembatalan) juga lulus; 11 screenshot disimpan di `docs/assets/phase-04/`.
 
-Branch sudah di-push dan PR #4 sudah dibuat:
+PR #4 sudah di-merge ke `main` (merge commit `9bcdf98`). Link PR:
 https://github.com/Jehian/rentalgo-oop/pull/4. Reviewer (`StevenZega`, `Steven-422024001`) sudah
-diminta; mereka perlu menjalankan ulang test dan memeriksa screenshot sebelum merge.
+diminta untuk review. Catatan review di repo belum ada.
 
 ## 2. Status Fase
 
@@ -38,7 +38,7 @@ diminta; mereka perlu menjalankan ulang test dan memeriksa screenshot sebelum me
 | 1 — Foundation & Architecture | Merged | PR #1, merge commit `1b5caee`; 25 test saat itu |
 | 2 — Auth, Layout & Dashboard | Merged | PR #2, merge commit `c4847c2`; termasuk portal pelanggan; 47 test saat itu |
 | 3 — Master Data CRUD | Merged | PR #3, merge commit `9a738fb`; CRUD pelanggan/kendaraan, upload gambar, 74 test saat itu |
-| 4 — Rental & Payment Workflow | PR #4 — menunggu review | Commit `448993f`, `9a6073d`, `ce5ae7d`; 96 test; MySQL + browser smoke test; 11 screenshot |
+| 4 — Rental & Payment Workflow | Merged (PR #4, `9bcdf98`) | Commit `448993f`, `9a6073d`, `ce5ae7d`; 96 test; MySQL + browser smoke test; 11 screenshot |
 | 5 — Integration & Delivery | Belum dimulai | Dependensi: Phase 2–4 |
 
 ## 3. Progres Requirement
@@ -46,21 +46,21 @@ diminta; mereka perlu menjalankan ulang test dan memeriksa screenshot sebelum me
 | Area | Status |
 |---|---|
 | Requirement UAS diekstrak | Selesai (66 ID) |
-| Traceability matrix | Diperbarui; requirement Phase 1–4 berstatus `Implemented`; `Verified` menunggu review PR Phase 4 |
+| Traceability matrix | Diperbarui; requirement Phase 1–4 berstatus `Implemented`; `Verified` menunggu bukti review PR #4 |
 | PRD | Selesai |
 | Arsitektur dan UML | Selesai (dokumen) |
 | Database schema dan ERD | Selesai (dokumen) |
 | Phase plan dan pembagian tim | Selesai |
 | Workflow Git dan AI handoff | Selesai |
 | Implementasi OOP | Domain/service, dashboard, `VehicleImageService`, `PaymentService`, dan `RentalService` |
-| Database/migration | 5 tabel bisnis + role selesai (Phase 1); tidak ada perubahan Phase 3/4 |
+| Database/migration | 5 tabel bisnis + role (Phase 1) + kolom auth pelanggan dan `rentals.user_id` nullable (Phase 2); tidak ada perubahan Phase 3/4 |
 | Autentikasi | Implemented & merged (Phase 2) |
 | Layout dan komponen UI | Implemented & merged (Phase 2); link master/transaksi aktif |
 | Portal pelanggan | Implemented & merged (Phase 2) |
 | Dashboard | Implemented & merged (Phase 2) |
 | CRUD pelanggan | Implemented & merged (Phase 3) |
 | CRUD kendaraan | Implemented & merged (Phase 3) |
-| Rental dan pembayaran | Implemented + verified locally (Phase 4); menunggu PR/review |
+| Rental dan pembayaran | Implemented + merged (Phase 4) |
 | Test | 96 passed (499 assertions) |
 | SQL dump | 0% (Phase 5) |
 | Screenshot | Login/dashboard (Phase 2), pelanggan/kendaraan (Phase 3), rental/pembayaran (Phase 4) tersedia |
@@ -152,7 +152,7 @@ diminta; mereka perlu menjalankan ulang test dan memeriksa screenshot sebelum me
 - [x] Dokumentasi Phase 4, status, traceability, contribution log, phase plan, AI handoff, ADR-031, dan README diperbarui.
 - [x] Commit implementasi `448993f`, test `9a6073d`, dan dokumentasi `ce5ae7d`.
 - [x] Push branch dan buat PR #4.
-- [ ] Review dan merge PR #4.
+- [x] Merge PR #4 ke `main` (`9bcdf98`); catatan review di repo belum ada.
 
 ### 4.7 Verifikasi Phase 4
 
@@ -168,19 +168,19 @@ diminta; mereka perlu menjalankan ulang test dan memeriksa screenshot sebelum me
 | Error console browser | Tidak ada `Runtime.exceptionThrown` atau `Log.entryAdded` level error |
 | Verifikasi database | Rental `#13` completed + denda Rp 120.931; payment `#13` paid Rp 100.000; rental `#14` cancelled; kendaraan kembali `available` |
 | Responsif | Screenshot 1440px dan 390px di `docs/assets/phase-04/` |
-| Reviewer | Belum — menunggu PR |
+| Reviewer | Merged (`9bcdf98`); catatan review di repo belum ada |
 
 ## 5. Yang Sedang Dikerjakan
 
-Implementasi Phase 4 selesai, sudah diverifikasi lokal, dan sudah dikirim melalui PR #4. Pekerjaan
-yang tersisa adalah review oleh Steven/Benny, perbaikan bila ada temuan, lalu merge memakai merge
-commit. Tidak ada pekerjaan implementasi lain yang berjalan.
+Phase 4 sudah di-merge ke `main` (`9bcdf98`). Pekerjaan
+yang tersisa hanya catatan review PR #4 di repo, jika ada.
+Tidak ada pekerjaan implementasi lain yang berjalan.
 
 ## 6. Langkah Berikutnya
 
-1. Review PR #4 oleh minimal satu anggota lain; reviewer menjalankan `php artisan test`, Pint, dan
+1. Catat review PR #4 di repo jika sudah dilakukan (`php artisan test`, Pint, dan
    memeriksa screenshot/smoke test.
-2. Merge PR #4 memakai merge commit (bukan squash) agar histori Jason terlihat.
+2. Merge PR #4 sudah selesai (`9bcdf98`).
 3. Mulai Phase 5 dari `main` terbaru: E2E, SQL dump, screenshot final, laporan akhir, presentasi, dan
    finalisasi contribution log berdasarkan `git log`.
 
@@ -201,7 +201,7 @@ commit. Tidak ada pekerjaan implementasi lain yang berjalan.
 
 | No | Hal | Dampak | Status |
 |---|---|---|---|
-| 1 | PR Phase 4 | Review dan merge | PR #4 dibuka: https://github.com/Jehian/rentalgo-oop/pull/4 |
+| 1 | PR Phase 4 | Catatan review | PR #4 sudah di-merge ke `main` (`9bcdf98`); catatan review di repo belum ada |
 | 2 | Reviewer Phase 4 | Syarat Definition of Done | `StevenZega` dan `Steven-422024001` sudah diminta review |
 | 3 | Format UML final (Mermaid/PNG) | Presentasi/dokumen | Default: Mermaid + PNG jika diminta |
 | 4 | Tanggal/format presentasi | Phase 5 | Menunggu informasi |

@@ -26,12 +26,12 @@ dokumen UAS menang; perbaiki dokumen proyek melalui PR.
 |---|---|
 | Repository | `https://github.com/Jehian/rentalgo-oop` |
 | Branch dokumentasi | `main` |
-| Commit terakhir | `main`: merge PR #3 `9a738fb`; Phase 4 di `origin/phase/04-rental-payment` (`448993f`, `9a6073d`, `ce5ae7d`) |
+| Commit terakhir | `main`: merge PR #4 `9bcdf98` |
 | Framework | Laravel 13.44.1 |
 | PHP CLI | 8.4.15 (minimum 8.3) |
 | Node/npm | 22.16.0 / npm terpasang |
 | Database lokal | MySQL 8.4.7 WAMP, `127.0.0.1:3306`, database `rentalgo` |
-| Implementasi aplikasi | Phase 1–3 merged; Phase 4 (rental & pembayaran) implemented + verified locally, PR #4 menunggu review |
+| Implementasi aplikasi | Phase 1–3 merged; Phase 4 (rental & pembayaran) merged ke `main` (PR #4) |
 | Migration bisnis | 5 tabel + role + auth kolom `customers` + `rentals.user_id` nullable |
 | Model/controller/service/view | Model/service/auth/dashboard/portal pelanggan/master data/rental/payment tersedia |
 | Test | 96 test lulus (499 assertions) |
@@ -42,7 +42,7 @@ Phase 0, Phase 1, Phase 2, dan Phase 3 sudah selesai dan digabung ke `main`. Pha
 pada branch `phase/04-rental-payment` dengan commit `448993f` (implementasi), `9a6073d` (test), dan
 `ce5ae7d` (dokumentasi): 96 test lulus, Pint/build lulus, MySQL `migrate:fresh --seed` berhasil,
 smoke test browser lulus, dan 11 screenshot tersedia di `docs/assets/phase-04/`. Branch sudah di-push
-dan PR #4 (https://github.com/Jehian/rentalgo-oop/pull/4) menunggu review.
+dan sudah di-merge ke `main` (PR #4, `9bcdf98`).
 
 ## 3. Kontrak Phase 1 (Tersedia di Main)
 
@@ -189,7 +189,7 @@ melalui PR #3 (`9a738fb`). Commit Phase 3 tercatat pada email
 - Menduplikasi logika availability/pricing di controller.
 - Menghapus data master yang punya rental aktif.
 
-### Phase 4 — Rental & Payment (implemented + verified locally; menunggu PR)
+### Phase 4 — Rental & Payment (implemented + verified locally; sudah merged ke `main`)
 
 **Baca:** PRD §6.5–6.6, ARCHITECTURE §4–5, DATABASE_SCHEMA §8, PHASE_PLAN Phase 4.
 
@@ -200,7 +200,7 @@ melalui PR #3 (`9a738fb`). Commit Phase 3 tercatat pada email
 `ce5ae7d` (dokumentasi). `RentalController`, `PaymentController`, `PaymentService`, 5 Form Request,
 8 view, routes, sidebar, dan JS estimator/sisa tagihan tersedia. Total suite 96 passed (499
 assertions); Pint dan Vite build lulus; MySQL `migrate:fresh --seed`, smoke test browser, dan 11
-screenshot Phase 4 selesai. Branch sudah di-push dan PR #4 menunggu review.
+screenshot Phase 4 selesai. PR #4 sudah di-merge ke `main`.
 
 **Lakukan (histori rencana):**
 
@@ -292,8 +292,8 @@ git switch -c phase/04-rental-payment
 ```
 
 Branch Phase 3 (`phase/03-master-data`) sudah merged ke `main` melalui PR #3 (`9a738fb`).
-Branch aktif Phase 4 adalah `phase/04-rental-payment` (sudah di-push) dan sudah berbasis `main`
-terbaru. PR #4 menunggu review.
+Phase 4 sudah di-merge ke `main`. Branch berikutnya untuk Phase 5:
+`phase/05-integration`, dibuat dari `main` terbaru.
 
 ## 6. Gotcha Environment
 
@@ -345,7 +345,7 @@ Aturan lengkap di `AGENTS.md`. Ringkasan:
 
 ## 9. Pertanyaan Terbuka
 
-1. Phase 4: PR #4 sudah dibuka, menunggu review dan merge.
+1. Phase 4: PR #4 sudah di-merge ke `main`; catatan review di repo belum ada.
 2. Format final UML (Mermaid/PNG).
 3. Jadwal presentasi.
 

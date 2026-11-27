@@ -4,7 +4,7 @@
 |---|---|
 | Fase | Phase 4 — Transaksi Rental & Pembayaran |
 | Pelaksana commit | Jason (`jason.422024004@civitas.ukrida.ac.id`) |
-| Reviewer / Merge | Menunggu reviewer (Benny atau Steven) |
+| Reviewer / Merge | Merged ke `main` (`9bcdf98`); catatan review di repo belum ada |
 | Branch | `phase/04-rental-payment` (pushed ke `origin`) |
 | Pull Request | PR #4 — https://github.com/Jehian/rentalgo-oop/pull/4 |
 | Commit implementasi | `448993f` — `feat(rental-payment): implement rental and payment workflow` |
@@ -12,7 +12,7 @@
 | Commit dokumentasi | `ce5ae7d` — `docs(phase-4): document rental and payment verification` |
 | Tanggal mulai | 2026-11-26 |
 | Tanggal selesai | 2026-11-26 |
-| Status | PR dibuat — menunggu review |
+| Status | Merged ke `main` (PR #4, `9bcdf98`) |
 
 ---
 

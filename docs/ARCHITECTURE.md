@@ -209,7 +209,7 @@ use App\Domain\Vehicles\Vehicle;
 | `App\Domain\Vehicles\VehicleFactory` | Domain | Membuat domain object dari Eloquent model | — | static `fromModel()`, static `make()` | Membuat `Vehicle`, membaca `VehicleModel` | Static method, factory, exception |
 | `App\Services\RentalService` | Application | Membuat, mengubah, mengembalikan, membatalkan rental; cek availability; hitung denda; transaksi + row lock | `config/rental.php` | `createRental()`, `updateRental()`, `completeRental()`, `cancelRental()`, `calculateLateFee()` | Menggunakan `VehicleFactory`, `Rental`, `Customer`, `VehicleModel` | Encapsulation, constructor injection, exception |
 | `App\Services\PaymentService` | Application | Mencatat/mengubah pembayaran pending, mark paid/failed, hapus pending, validasi sisa tagihan | — | `record()`, `updatePending()`, `markPaid()`, `markFailed()`, `deletePending()`, `remainingBill()` | `Payment`, `Rental` | Service layer, transaction, exception |
-| `App\Services\DashboardService` | Application | Menghitung statistik dan data grafik | — | `summary()`, `monthlyRevenue()`, `vehicleStatus()` | `Rental`, `Payment`, `VehicleModel` | Service layer, reusable |
+| `App\Services\DashboardService` | Application | Menghitung statistik dan data grafik | — | `summary()`, `monthlyRevenue()`, `vehicleStatusComposition()`, `latestRentals()` | `Rental`, `Payment`, `VehicleModel` | Service layer, reusable |
 | `App\Services\VehicleImageService` | Application | Menyimpan/menghapus gambar kendaraan | disk, folder | `store()`, `delete()` | `VehicleModel`, Storage | Encapsulation |
 | `App\Support\DocumentCodeGenerator` | Support | Membuat kode rental/pembayaran unik | prefix | static `rentalCode()`, static `paymentCode()` | `Rental`, `Payment` | Static method |
 | `VehicleNotAvailableException` | Exception | Menandai kendaraan tidak tersedia | — | static `forVehicle()` | Dilempar `RentalService` | Exception |
@@ -291,7 +291,8 @@ classDiagram
     class DashboardService {
         +summary() array
         +monthlyRevenue(int months) array
-        +vehicleStatus() array
+        +vehicleStatusComposition() array
+        +latestRentals(int limit) array
     }
 
     class DocumentCodeGenerator {

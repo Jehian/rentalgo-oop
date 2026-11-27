@@ -27,7 +27,7 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 | 1 | Foundation & Architecture | Benny Anderson (`benanderson2nds@gmail.com`), review Steven Zega | `phase/01-foundation` | Merged (PR #1, `1b5caee`) |
 | 2 | Auth, Layout & Dashboard | Steven Zega (`steven.422024020@civitas.ukrida.ac.id`), merge Benny | `phase/02-auth-dashboard` | Merged (PR #2, `c4847c2`) |
 | 3 | Master Data CRUD | Steven (`steven.422024001@civitas.ukrida.ac.id`) | `phase/03-master-data` | Merged (PR #3, `9a738fb`) |
-| 4 | Rental & Payment Workflow | Jason (`jason.422024004@civitas.ukrida.ac.id`) | `phase/04-rental-payment` | PR #4 — menunggu review |
+| 4 | Rental & Payment Workflow | Jason (`jason.422024004@civitas.ukrida.ac.id`) | `phase/04-rental-payment` | Merged (PR #4, `9bcdf98`) |
 | 5 | Integration, Testing & Delivery | Semua anggota (commit dengan email Git masing-masing) | `phase/05-integration` | Belum dimulai |
 
 ## 3. Detail Fase
@@ -242,7 +242,7 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 - [x] Pembayaran melebihi tagihan ditolak; paid terkunci.
 - [x] Filter/pagination berfungsi; detail lengkap.
 - [x] Phase report, status, traceability, contribution log diperbarui.
-- [ ] PR direview dan digabung.
+- [x] PR #4 di-merge ke `main` (`9bcdf98`); catatan review di repo belum ada.
 
 **Handoff ke Phase 5:** seluruh alur bisnis siap diuji end-to-end.
 
