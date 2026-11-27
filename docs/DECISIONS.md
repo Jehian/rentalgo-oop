@@ -21,7 +21,7 @@ manusia ditandai `Proposed`; keputusan yang sudah menjadi baseline proyek ditand
 | ADR-012 | Enam fitur tambahan | Accepted |
 | ADR-013 | Soft delete data master; rental tidak dihapus | Accepted |
 | ADR-014 | Dokumentasi Phase 0 langsung di `main` | Accepted (keputusan pemilik proyek) |
-| ADR-015 | Implementasi memakai branch + PR | Accepted |
+| ADR-015 | Implementasi memakai branch + PR (review diubah oleh ADR-032) | Accepted |
 | ADR-016 | UML memakai Mermaid di Markdown | Accepted |
 | ADR-017 | Docker tidak digunakan | Accepted (keputusan pemilik proyek) |
 | ADR-018 | Dokumentasi/UI Indonesia; kode Inggris | Accepted |
@@ -38,6 +38,7 @@ manusia ditandai `Proposed`; keputusan yang sudah menjadi baseline proyek ditand
 | ADR-029 | Aturan CRUD master data, status kendaraan, dan gambar | Accepted (diimplementasikan Phase 3) |
 | ADR-030 | Kolaborasi lintas fase dan kontribusi berbasis email commit Git | Accepted |
 | ADR-031 | Aturan transaksi rental, pembayaran 1:N, dan validasi overlap | Accepted (diimplementasikan Phase 4) |
+| ADR-032 | Aturan kolaborasi lebih fleksibel (review disarankan, docs kecil ke main, fase paralel) | Proposed |
 
 ---
 
@@ -566,3 +567,20 @@ validasi, bukan error server. Test otomatis tetap memakai SQLite, sedangkan veri
 manual melalui `migrate:fresh --seed` dan smoke test browser.
 
 **Status:** Accepted (diimplementasikan Phase 4, 2026-11-26).
+
+## ADR-032 — Aturan Kolaborasi Lebih Fleksibel
+
+**Konteks:** Aturan sebelumnya mewajibkan review anggota lain untuk setiap PR, memulai branch hanya setelah fase prasyarat digabung, dan mewajibkan PR untuk semua perubahan kecuali Phase 0. Requirement UAS tidak mewajibkan review PR. Pada PR #1–#4 tidak ada review yang tercatat di GitHub, sehingga aturan wajib tidak bisa dibuktikan dari repositori.
+
+**Keputusan (Proposed):**
+- Review anggota lain disarankan, bukan wajib. Jika tidak ada reviewer, alasannya dicatat di phase report.
+- Perubahan dokumentasi kecil boleh langsung ke `main`. Perubahan kode tetap lewat branch dan pull request.
+- Fase boleh berjalan paralel jika file yang disentuh tidak bertabrakan. Branch dibuat dari `main` terbaru.
+- Status `Verified` tetap membutuhkan bukti (test, manual check, SQL, atau screenshot). Review anggota lain dicatat jika ada.
+- Yang tidak berubah: requirement UAS, commit atas nama email Git masing-masing, dan larangan membuat review atau bukti palsu.
+
+**Alternatif:** Tetap mewajibkan review (lebih ketat, tetapi aturan tidak dapat dipenuhi dan tidak tercatat). Menghapus aturan kolaborasi sama sekali (tidak ada pemeriksaan sama sekali).
+
+**Konsekuensi:** Tim bergerak lebih cepat. Kualitas bergantung pada disiplin tim karena tidak ada pemeriksaan wajib. Jika branch protection diaktifkan di GitHub, aturannya harus mengizinkan pull request tanpa approval wajib.
+
+**Status:** Proposed, menunggu persetujuan tim.

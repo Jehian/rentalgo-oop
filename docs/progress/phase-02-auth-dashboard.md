@@ -9,7 +9,7 @@
 | Tanggal mulai | 2026-11-25 |
 | Tanggal selesai | 2026-11-25 |
 | Status | Merged |
-| Reviewer | Benny Anderson (422024008) |
+| Reviewer | Benny Anderson (422024008) — klaim tim, belum tercatat di GitHub |
 
 ## 1. Ringkasan
 
@@ -32,7 +32,7 @@ suite, Pint, dan build Vite lulus.
 | Chart.js via npm | Tercapai | `package.json` (`chart.js` 4.6.2), `resources/js/app.js` |
 | Feature test auth dan dashboard | Tercapai | `tests/Feature/Auth/AuthTest.php`, `tests/Feature/Dashboard/DashboardTest.php` |
 | Isi `routes/auth.php` dan `dashboard.php` | Tercapai | Route login, logout, dashboard |
-| PR/review/merge | Tercapai | PR #2 digabung ke `main` melalui merge commit `c4847c2` |
+| PR/merge | Tercapai | PR #2 digabung ke `main` melalui merge commit `c4847c2`; review belum tercatat di GitHub |
 
 ## 3. Scope yang Diselesaikan
 
@@ -48,7 +48,7 @@ suite, Pint, dan build Vite lulus.
 - [x] Chart.js melalui npm dan inisialisasi chart dari JSON yang disiapkan controller.
 - [x] Halaman 403 berbahasa Indonesia.
 - [x] Feature test auth, registrasi, isolasi guard, dashboard, dan portal pelanggan (47 test lulus, 153 assertions).
-- [x] PR #2, review anggota lain, dan merge ke `main` (`c4847c2`).
+- [x] PR #2 dan merge ke `main` (`c4847c2`); review anggota lain belum tercatat di GitHub.
 
 ## 4. File yang Dibuat/Diubah
 
@@ -158,7 +158,7 @@ Screenshot diambil dari aplikasi yang berjalan dengan data seeder MySQL melalui 
 ## 9. Masalah, Deviasi, dan Keterbatasan
 
 - Dokumentasi Phase 1 masih berstatus "pushed, belum PR" saat Phase 2 dimulai. Status disinkronkan
-  pada fase ini: PR #1 sudah merged (`1b5caee`) dan reviewer adalah Steven Credentia Ivanemaga Zega.
+  pada fase ini: PR #1 sudah merged (`1b5caee`) dan reviewer diklaim Steven Credentia Ivanemaga Zega (belum tercatat di GitHub).
 - `package-lock.json` sebelumnya untracked; sekarang ikut dipertahankan karena `npm install chart.js`
   mengubah lockfile. Dependency baru hanya Chart.js sesuai persetujuan.
 - Menu Pelanggan, Kendaraan, Rental, dan Pembayaran awalnya ditampilkan sebagai "Segera" karena
@@ -193,7 +193,7 @@ Screenshot diambil dari aplikasi yang berjalan dengan data seeder MySQL melalui 
 - [x] Tidak ada secret.
 - [x] Dokumentasi status/traceability/contribution log diperbarui.
 - [x] Screenshot disertakan.
-- [x] PR dibuat dan direview (PR #2).
+- [x] PR dibuat dan di-merge (PR #2); review belum tercatat di GitHub.
 - [x] Merge selesai (`c4847c2`).
 
 ## 12. Catatan Kontribusi

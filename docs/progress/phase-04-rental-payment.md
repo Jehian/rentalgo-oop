@@ -333,7 +333,7 @@ Semua screenshot diambil dari aplikasi lokal dengan data seeder MySQL dan disimp
 - [x] Tidak ada secret.
 - [x] Branch di-push.
 - [x] PR dibuat (PR #4).
-- [ ] PR direview oleh minimal satu anggota lain.
+- [ ] PR direview oleh anggota lain disarankan (jika tidak ada, tulis alasannya).
 - [ ] Merge ke `main` selesai.
 
 ---

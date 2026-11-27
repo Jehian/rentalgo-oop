@@ -17,14 +17,14 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
    masing-masing; kontribusi direkonsiliasi di `docs/CONTRIBUTION_LOG.md` pada Phase 5.
 6. **PR untuk implementasi.** Phase 0 adalah pengecualian dokumentasi di `main`.
 7. **Definition of Done wajib.** Fitur dianggap selesai hanya jika kode, test, dan dokumentasi fase
-   sudah lengkap serta direview.
+   sudah lengkap; review anggota lain disarankan.
 
 ## 2. Ringkasan Fase
 
 | Fase | Nama | Pelaksana / Histori Commit | Branch | Status |
 |---|---|---|---|---|
 | 0 | Requirements & Planning | Benny Anderson (`benanderson2nds@gmail.com`) | `main` (dokumentasi saja) | Selesai |
-| 1 | Foundation & Architecture | Benny Anderson (`benanderson2nds@gmail.com`), review Steven Zega | `phase/01-foundation` | Merged (PR #1, `1b5caee`) |
+| 1 | Foundation & Architecture | Benny Anderson (`benanderson2nds@gmail.com`), review Steven Zega (klaim tim, belum tercatat di GitHub) | `phase/01-foundation` | Merged (PR #1, `1b5caee`) |
 | 2 | Auth, Layout & Dashboard | Steven Zega (`steven.422024020@civitas.ukrida.ac.id`), merge Benny | `phase/02-auth-dashboard` | Merged (PR #2, `c4847c2`) |
 | 3 | Master Data CRUD | Steven (`steven.422024001@civitas.ukrida.ac.id`) | `phase/03-master-data` | Merged (PR #3, `9a738fb`) |
 | 4 | Rental & Payment Workflow | Jason (`jason.422024004@civitas.ukrida.ac.id`) | `phase/04-rental-payment` | Merged (PR #4, `9bcdf98`) |
@@ -114,7 +114,7 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 - [x] Semua test lulus; Pint bersih.
 - [x] Tidak ada controller/view/auth yang dikerjakan.
 - [x] Phase report, status, dan contribution log diperbarui.
-- [x] PR direview dan digabung (PR #1, `1b5caee`).
+- [x] PR digabung (PR #1, `1b5caee`); review belum tercatat di GitHub.
 
 **Handoff ke Phase 2–4:** schema stabil, model/relasi, seeder, domain/service, route stub.
 
@@ -160,7 +160,7 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 - [x] Dashboard menampilkan angka yang sesuai data seeder dan grafik tampil.
 - [x] Tidak ada akses halaman operasional tanpa login.
 - [x] Phase report, status, traceability, contribution log diperbarui.
-- [x] PR direview dan digabung (PR #2, `c4847c2`).
+- [x] PR digabung (PR #2, `c4847c2`); review belum tercatat di GitHub.
 
 **Handoff ke Phase 3–4:** layout, komponen, navigasi, pola controller/request/view.
 
@@ -201,7 +201,7 @@ dan setiap anggota memiliki bukti kontribusi yang dapat dinilai.
 - [x] UI responsif dan konsisten dengan layout Phase 2.
 - [x] Phase report, status, traceability, dan contribution log diperbarui.
 - [x] Commit dan push branch `phase/03-master-data` (`8336f17`, `be149f3`, `80af0a8`).
-- [x] PR di GitHub direview dan digabung (PR #3, `9a738fb`).
+- [x] PR di GitHub digabung (PR #3, `9a738fb`); review belum tercatat di GitHub.
 
 **Handoff ke Phase 4:** halaman/master data siap dipilih pada form rental.
 
@@ -334,7 +334,7 @@ Ketentuan:
 
 - Phase 0 dokumentasi langsung di `main` (pengecualian disetujui).
 - Implementasi tidak boleh langsung ke `main`.
-- Branch dibuat dari `main` terbaru setelah fase prasyarat digabung.
+- Branch dibuat dari `main` terbaru. Fase boleh paralel jika file yang disentuh tidak bertabrakan (ADR-032).
 - Nama branch mengikuti pola `phase/XX-nama-singkat`.
 - Satu branch = satu fase; jangan mencampur pekerjaan fase lain.
 
@@ -371,7 +371,7 @@ Checklist PR:
 - [ ] Phase report dibuat di `docs/progress/`.
 - [ ] `PROJECT_STATUS.md`, `UAS_TRACEABILITY.md`, `CONTRIBUTION_LOG.md` diperbarui.
 - [ ] Screenshot disertakan untuk perubahan UI.
-- [ ] Reviewer minimal satu anggota lain.
+- [ ] Reviewer anggota lain disarankan (jika tidak ada, tulis alasannya di phase report).
 - [ ] Merge memakai **merge commit** untuk mempertahankan commit individu.
 
 Setelah merge: hapus branch, tarik `main` terbaru, mulai fase berikutnya.
@@ -422,7 +422,7 @@ Sebuah fase dianggap selesai jika:
 - [ ] `PROJECT_STATUS.md` diperbarui.
 - [ ] `UAS_TRACEABILITY.md` diperbarui.
 - [ ] `CONTRIBUTION_LOG.md` diperbarui dengan kontribusi nyata berbasis task/commit; finalisasi di Phase 5.
-- [ ] PR direview minimal satu anggota lain.
+- [ ] PR direview anggota lain disarankan (jika tidak ada, tulis alasannya di phase report).
 - [ ] Merge ke `main` selesai.
 
 ## 9. Risiko dan Mitigasi

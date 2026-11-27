@@ -86,7 +86,7 @@ diminta untuk review. Catatan review di repo belum ada.
 - [x] Custom exception dan `DocumentCodeGenerator`.
 - [x] `RentalService` untuk create/update/complete/cancel dan denda.
 - [x] Factory, seeder demo, route stub, unit/feature test.
-- [x] PR #1 direview Steven Credentia Ivanemaga Zega dan di-merge (`1b5caee`).
+- [x] PR #1 di-merge (`1b5caee`); review oleh Steven Credentia Ivanemaga Zega diklaim tim, belum tercatat di GitHub.
 
 ### 4.3 Phase 2 — Authentication, Layout & Dashboard (merged)
 
@@ -116,7 +116,7 @@ diminta untuk review. Catatan review di repo belum ada.
 - [x] Feature test Phase 3 (27 test) termasuk validasi, unik terhadap data soft-deleted, upload, role, dan aturan hapus.
 - [x] Screenshot desktop/mobile daftar pelanggan dan kendaraan.
 - [x] Dokumentasi Phase 3, status, traceability, contribution log, phase plan, AI handoff, ADR-029, dan README diperbarui.
-- [x] Commit, push, PR #3, review, dan merge ke `main` (`9a738fb`).
+- [x] Commit, push, PR #3, dan merge ke `main` (`9a738fb`); review belum tercatat di GitHub.
 
 ### 4.5 Verifikasi Phase 3
 
@@ -207,6 +207,9 @@ Tidak ada pekerjaan implementasi lain yang berjalan.
 | 4 | Tanggal/format presentasi | Phase 5 | Menunggu informasi |
 | 5 | Polish UI/UX dan tampilan tabel mobile | Kenyamanan demo | Ditunda ke Phase 5 sesuai arahan pemilik proyek |
 | 6 | Finalisasi kontribusi | Penilaian individu | Log berbasis task/commit disiapkan; final di Phase 5 |
+| 7 | Review PR #1–#4 tidak tercatat di GitHub | Bukti review untuk penilaian individu; review kini disarankan (ADR-032) | Keputusan tim: catat review yang terjadi di luar GitHub, atau minta review sebagai komentar pada PR |
+| 8 | Commit `1fd5f7b` (dokumentasi) langsung ke `main` tanpa PR | Menyimpang dari aturan PR (ADR-014 hanya untuk Phase 0) | Keputusan tim: terima, atau buat PR susulan |
+| 9 | Urutan fase: PHASE_PLAN §6 mengizinkan paralel, AGENTS §6 mewajibkan prasyarat merged dulu | Dua aturan tidak sama | Keputusan tim: pilih satu aturan dan perbarui dokumen |
 
 Tidak ada blocker teknis untuk review Phase 4.
 
@@ -226,7 +229,7 @@ Tidak ada blocker teknis untuk review Phase 4.
 ## 10. Aturan Pembaruan Status
 
 1. Setiap fase wajib memperbarui file ini setelah pekerjaan selesai dan diverifikasi.
-2. Jangan menandai fase selesai sebelum PR direview dan digabung.
+2. Jangan menandai fase selesai sebelum PR digabung. Review anggota lain dicatat jika ada (ADR-032).
 3. Jangan menulis "100%" untuk implementasi yang belum diuji.
 4. Catat blocker dan pertanyaan terbuka secara eksplisit.
 5. Sertakan tanggal dan nama pembaru.

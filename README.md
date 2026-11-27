@@ -163,7 +163,7 @@ Dokumen UAS asli ada di `docs/reference/` dan tidak diubah.
 ## Alur Kolaborasi
 
 - Phase 0 (dokumentasi) dikerjakan langsung di `main`.
-- Fase implementasi memakai branch `phase/XX-nama` dan pull request ke `main`.
+- Fase implementasi memakai branch `phase/XX-nama` dan pull request ke `main`. Review anggota lain disarankan (lihat ADR-032).
 - Commit memakai Conventional Commits.
 - Setiap fase memperbarui laporan di `docs/progress/`, `PROJECT_STATUS.md`, `UAS_TRACEABILITY.md`,
   dan `CONTRIBUTION_LOG.md`.

@@ -40,7 +40,7 @@ Jika terjadi konflik, dokumen UAS menang. Jangan mengarang requirement baru; cat
 ## 4. Aturan yang Tidak Boleh Dilanggar
 
 1. **Jangan bekerja langsung di `main` untuk implementasi.** Phase 0 dokumentasi adalah pengecualian
-   yang disetujui pemilik proyek.
+   yang disetujui pemilik proyek. Perubahan dokumentasi kecil juga boleh langsung ke `main` (lihat ADR-032).
 2. **Jangan mengubah dokumen UAS** di `docs/reference/`.
 3. **Koordinasi sebelum mengedit file lintas modul** agar tidak terjadi konflik merge; tidak ada
    larangan kaku per orang karena siapa saja dapat mengerjakan phase mana pun (lihat `docs/PHASE_PLAN.md`).
@@ -79,7 +79,7 @@ Jika terjadi konflik, dokumen UAS menang. Jangan mengarang requirement baru; cat
 
 Ketentuan:
 
-- Buat branch dari `main` terbaru setelah fase prasyarat digabung.
+- Buat branch dari `main` terbaru. Fase boleh berjalan paralel jika file yang disentuh tidak bertabrakan (lihat ADR-032).
 - Satu branch untuk satu fase.
 - Jangan force-push branch yang sedang direview.
 - Rebase/merge `main` terbaru sebelum membuka PR.
@@ -107,7 +107,7 @@ Aturan:
 - PR wajib untuk fase implementasi; merge memakai merge commit agar histori individu terlihat.
 - PR harus menyertakan: ringkasan, file yang diubah, cara verifikasi, screenshot UI (jika ada),
   phase report, dan status dokumentasi.
-- Minimal satu anggota lain mereview.
+- Review anggota lain disarankan. Jika tidak ada reviewer, tulis alasannya di phase report (lihat ADR-032).
 - **AI agent tidak boleh menjalankan `git commit`, `git push`, atau membuat PR kecuali manusia
   secara eksplisit meminta.** Manusia pemilik tugas yang mengotorisasi commit/submission.
 
@@ -247,16 +247,7 @@ mysql -u root -p -e "CREATE DATABASE rentalgo CHARACTER SET utf8mb4 COLLATE utf8
 
 ## 15. Definition of Done
 
-- [ ] Scope fase selesai, tidak melebar.
-- [ ] Test relevan ditambahkan dan lulus.
-- [ ] `php artisan test` lulus.
-- [ ] `vendor/bin/pint --test` lulus.
-- [ ] Tidak ada error kritis.
-- [ ] UI responsif (jika ada UI).
-- [ ] Phase report, status, traceability, dan contribution log berbasis task/commit diperbarui; finalisasi di Phase 5.
-- [ ] Kontribusi setiap anggota tercatat sesuai histori commit (email Git) dan bukti task/review.
-- [ ] PR direview minimal satu anggota lain.
-- [ ] Merge ke `main` selesai.
+Definition of Done lengkap ada di `docs/PHASE_PLAN.md` §8. Minimal: `php artisan test` dan `vendor/bin/pint --test` lulus.
 
 ## 16. Perilaku AI Agent
 

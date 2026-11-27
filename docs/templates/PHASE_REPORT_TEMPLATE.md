@@ -101,7 +101,7 @@ Tests: XX passed
 - [ ] Tidak ada secret.
 - [ ] Dokumentasi status/traceability/contribution log diperbarui.
 - [ ] Screenshot disertakan (jika UI).
-- [ ] PR direview.
+- [ ] PR direview anggota lain disarankan (jika tidak ada, tulis alasannya).
 - [ ] Merge selesai.
 
 ## 12. Catatan Kontribusi
